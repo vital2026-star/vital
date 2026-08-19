@@ -1,0 +1,40 @@
+name: 每日自动更新税政归档
+
+on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tax-archive-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 配置 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 运行税务归档更新器
+        run: python tax_updater.py
+
+      - name: 提交并推送更新
+        run: |
+          if git diff --quiet tax_updates_archive.json; then
+            echo "本次没有新内容，跳过提交"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add tax_updates_archive.json
+            git commit -m "chore: 每日税务政策归档更新"
+            git push
+          fi

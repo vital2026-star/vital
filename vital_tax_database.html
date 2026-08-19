@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>唯特偶税务档案数据库</title>
+<style>
+  :root{
+    --bg:#f5f7fa; --card:#ffffff; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --brand:#b91c1c; --brand2:#2563eb; --accent:#0f766e;
+    --chip:#eef2ff; --chipink:#3730a3;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;}
+  header{background:linear-gradient(135deg,#7f1d1d,#b91c1c);color:#fff;padding:22px 28px;}
+  header h1{margin:0;font-size:22px;letter-spacing:.5px;}
+  header p{margin:6px 0 0;font-size:13px;opacity:.9;}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;padding:14px 28px 0;background:#fff;border-bottom:1px solid var(--line);}
+  .tab{appearance:none;border:none;background:transparent;padding:10px 16px;font-size:15px;cursor:pointer;
+    color:var(--muted);border-bottom:3px solid transparent;font-weight:600;}
+  .tab.active{color:var(--brand);border-bottom-color:var(--brand);}
+  main{padding:22px 28px 60px;max-width:1180px;margin:0 auto;}
+  .panel{display:none;}
+  .panel.active{display:block;}
+  .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:16px;}
+  select,input[type=text]{padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:14px;background:#fff;color:var(--ink);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.04);}
+  .card h3{margin:0 0 6px;font-size:16px;color:var(--brand2);}
+  .tag{display:inline-block;font-size:12px;background:var(--chip);color:var(--chipink);border-radius:999px;padding:2px 10px;margin:0 6px 6px 0;}
+  .rate{font-size:13px;color:var(--accent);font-weight:600;margin:6px 0;}
+  .notes{font-size:13px;color:var(--muted);}
+  .docs{margin-top:10px;border-top:1px dashed var(--line);padding-top:8px;}
+  .docs a{display:block;font-size:13px;color:var(--brand);text-decoration:none;padding:3px 0;}
+  .docs a:hover{text-decoration:underline;}
+  table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:top;}
+  th{background:#fafafa;color:var(--muted);font-weight:600;}
+  .qa{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:12px;}
+  .qa .q{font-weight:700;color:var(--brand);}
+  .qa .a{font-size:14px;color:var(--ink);margin-top:6px;}
+  .arch{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;}
+  .arch .meta{font-size:12px;color:var(--muted);}
+  .case-tag{display:inline-block;font-size:11px;border:1px solid var(--brand);color:var(--brand);border-radius:20px;padding:1px 8px;margin-left:6px;}
+  .cat-tag{display:inline-block;font-size:11px;border-radius:20px;padding:1px 8px;margin-left:6px;}
+  .cat-tag.c1{background:#e8f0fe;color:#0b57d0;border:1px solid #0b57d0;}
+  .cat-tag.c2{background:#e6f4ea;color:#188038;border:1px solid #188038;}
+  .cat-tag.c3{background:#fef7e0;color:#b06000;border:1px solid #b06000;}
+  .empty{color:var(--muted);font-size:14px;padding:20px;text-align:center;}
+  .btn{appearance:none;border:1px solid var(--brand);background:var(--brand);color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:14px;}
+  .btn.ghost{background:#fff;color:var(--brand);}
+  .note{font-size:12px;color:var(--muted);margin-top:10px;}
+  .remind{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px;border-left:4px solid var(--brand2);}
+  .remind-head{font-weight:600;font-size:15px;margin-bottom:8px;}
+  .remind-country{color:var(--muted);font-weight:500;font-size:13px;margin:0 6px;}
+  .remind-times{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:13px;margin:6px 0;}
+  .remind-times>div{flex:1 1 240px;}
+  .rt-label{display:inline-block;font-size:11px;background:#eef2ff;color:#3730a3;border-radius:6px;padding:1px 7px;margin-right:6px;}
+  .remind-status{display:inline-block;font-size:12px;font-weight:700;border-radius:20px;padding:3px 12px;margin-top:4px;}
+  .s-urgent{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;}
+  .s-soon{background:#fef3c7;color:#b45309;border:1px solid #fcd34d;}
+  .s-ok{background:#dcfce7;color:#15803d;border:1px solid #86efac;}
+  .s-event{background:#f1f5f9;color:#475569;border:1px solid #cbd5e1;}
+  #rmBanner{font-weight:700;color:var(--brand);}
+</style>
+</head>
+<body>
+<header>
+  <h1>唯特偶税务档案数据库</h1>
+  <p>深圳市唯特偶新材料股份有限公司（301319.SZ）· 分子公司地域/属性/税种/政策发布页 一体化台账</p>
+</header>
+<nav class="tabs">
+  <button class="tab active" data-p="overview">① 公司 / 分子公司概览</button>
+  <button class="tab" data-p="ledger">② 税种台账</button>
+  <button class="tab" data-p="archive">③ 每日更新归档</button>
+  <button class="tab" data-p="kb">④ 税务知识库</button>
+  <button class="tab" data-p="cases">⑤ 税务处罚案例</button>
+  <button class="tab" data-p="compliance">⑥ 境外合规要求</button>
+  <button class="tab" data-p="reminder">⑦ 合规时间提醒</button>
+</nav>
+<main>
+  <section class="panel active" id="overview">
+    <div class="bar">
+      <label>按地域：<select id="ovRegion"></select></label>
+      <label>按属性：<select id="ovAttr"></select></label>
+    </div>
+    <div id="ovOut"></div>
+  </section>
+
+  <section class="panel" id="ledger">
+    <div class="bar">
+      <label>管辖区：<select id="txJuris"></select></label>
+      <input type="text" id="txSearch" placeholder="搜索税种名称 / 关键词" style="min-width:220px;">
+    </div>
+    <div class="grid" id="txOut"></div>
+  </section>
+
+  <section class="panel" id="archive">
+    <div class="bar">
+      <button class="btn" id="loadArch">手动重新加载</button>
+      <span class="note" id="archMsg"></span>
+    </div>
+    <div id="archOut"></div>
+    <p class="note">说明：本页打开时会自动读取 tax_updates_archive.json 并显示最新数据（文件中记录了「外部数据最后更新时间」）。此 JSON 由同目录的 tax_updater.py 自动从国家税务总局政策指引库抓取更新（可用 launchd 定时执行，无需手动改文件）。以 file:// 直接打开时浏览器会拦截本地 JSON 读取，请通过本地服务器或预览面板查看实时数据；下方内置种子记录作为兜底。</p>
+  </section>
+
+  <section class="panel" id="kb">
+    <div class="bar">
+      <label>地域：<select id="kbRegion"></select></label>
+      <label>分类：<select id="kbCat"></select></label>
+      <input type="text" id="kbSearch" placeholder="搜索问题 / 关键词" style="min-width:220px;">
+    </div>
+    <div id="kbOut"></div>
+  </section>
+
+  <section class="panel" id="cases">
+    <div class="bar">
+      <label>年份：<select id="csYear"></select></label>
+      <label>税种：<select id="csTax"></select></label>
+      <input type="text" id="csSearch" placeholder="搜索案例关键词（标题 / 摘要 / 税种 / 地域）" style="min-width:240px;">
+      <button class="btn ghost" id="loadCases">手动重新加载</button>
+      <span class="note" id="csMsg"></span>
+    </div>
+    <div id="csOut"></div>
+    <p class="note">说明：本栏为「税务处罚案例」，汇集税务机关近三年（含历史典型）公开的稽查、处罚、曝光案例，仅作合规风险提示，具体认定以官方文书为准；按「💡 启示」提示本公司及分子公司可借鉴的合规动作。可按月份年份筛选、按税种/关键词检索。file:// 打开时自动显示内置种子案例；预览面板下可点击按钮加载实时案例档案。</p>
+  </section>
+
+  <section class="panel" id="compliance">
+    <div class="bar">
+      <label>国家/地区：<select id="cmCountry"></select></label>
+      <label>类别：<select id="cmCat"></select></label>
+      <input type="text" id="cmSearch" placeholder="搜索申报事项 / 要求 / 关键词" style="min-width:240px;">
+    </div>
+    <div id="cmOut"></div>
+    <p class="note">说明：境外子公司（香港 / 新加坡 / 美国德州 / 越南河内 / 泰国 / 墨西哥蒙特雷）涉及的公司注册与工商、政府申报、法律法规要求及官方链接；供合规管理参考，具体义务以当地主管部门最新规定为准。链接为对应机构官方页面，境外站点在国内网络下可能访问较慢。</p>
+  </section>
+  <section class="panel" id="reminder">
+    <div class="bar">
+      <label>国家/地区：<select id="rmCountry"></select></label>
+      <label>类别：<select id="rmCat"></select></label>
+      <input type="text" id="rmSearch" placeholder="搜索事项名称 / 关键词" style="min-width:220px;">
+      <label><input type="checkbox" id="rmOnlyNear"> 只看临近（90天内）</label>
+      <span class="note" id="rmBanner"></span>
+    </div>
+    <div id="rmOut"></div>
+    <p class="note">说明：基于「⑥ 境外合规要求」的法规，按各境外子公司（香港 / 新加坡 / 美国德州 / 越南 / 泰国 / 墨西哥）的申报、工商、法律义务，并补充中国内地主体的关键申报节点，梳理出「开始准备」与「截止」时间提醒；倒计时以当前系统日期为准，分年度 / 月度 / 季度 / 事件四类。具体日期以当地主管部门最新规定及公司实际财年为准。</p>
+  </section>
+</main>
+
+<script>
+const SUBSIDIARIES = [
+  {name:"深圳市唯特偶新材料股份有限公司（母公司）",region:"中国内地",attr:"母公司",biz:"微电子焊接材料、辅助焊接材料、可靠性材料的研发、生产、销售；危险化学品经营；货物/技术进出口",taxes:"增值税、企业所得税(15%高新)、城建税及附加、印花税、房产税、城镇土地使用税、环保税、个税、出口退(免)税、关税、研发加计"},
+  {name:"惠州市维佳化工有限公司",region:"中国内地",attr:"全资子公司",biz:"化工产品生产与销售（电子焊接辅助材料相关）",taxes:"增值税、企业所得税、城建税及附加、印花税、房产税、土使税、环保税、个税、研发加计"},
+  {name:"苏州唯特偶电子材料科技有限公司",region:"中国内地",attr:"全资子公司",biz:"电子材料科技研发、生产与销售",taxes:"增值税、企业所得税、城建税及附加、印花税、房产税、土使税、环保税、个税、研发加计"},
+  {name:"江苏唯特偶新材料有限公司",region:"中国内地",attr:"全资子公司",biz:"制造业（南通）",taxes:"增值税、企业所得税(25%)、城建税及附加、印花税、房产税、土使税、环保税、个税、研发加计"},
+  {name:"江苏唯特偶光伏新材料有限公司",region:"中国内地",attr:"全资子公司",biz:"新材料技术研发（苏州）",taxes:"增值税、企业所得税(小微)、城建税及附加、印花税、个税、研发加计"},
+  {name:"深圳市唯特偶焊锡材料科技有限公司",region:"中国内地",attr:"全资子公司",biz:"焊锡材料研发、生产、销售",taxes:"增值税、企业所得税、城建税及附加、印花税、房产税、土使税、环保税、个税、研发加计"},
+  {name:"深圳市唯特偶技术有限公司",region:"中国内地",attr:"全资子公司",biz:"制造业（新材料技术）",taxes:"增值税、企业所得税(小微)、城建税及附加、印花税、房产税、土使税、环保税、个税、研发加计"},
+  {name:"深圳市唯特偶新材料经销管理有限公司",region:"中国内地",attr:"全资子公司",biz:"贸易（经销管理）",taxes:"增值税、城建税及附加、企业所得税(小微)、印花税、个税"},
+  {name:"嘉兴吉弗爱消防科技有限公司",region:"中国内地",attr:"控股子公司(64.97%)",biz:"消防新材料、贸易",taxes:"增值税、城建税及附加、企业所得税(小微)、印花税、个税"},
+  {name:"厦门分公司",region:"中国内地",attr:"分公司",biz:"分公司（非独立法人，销售/服务）",taxes:"增值税、个税、印花税；企业所得税由总公司汇总纳税"},
+  {name:"唯特偶新材料(香港)有限公司",region:"中国香港",attr:"全资子公司",biz:"贸易（转口/分销）",taxes:"利得税(8.25%/16.5%两级)、印花税、薪俸税"},
+  {name:"唯特偶新材料(新加坡)有限公司",region:"新加坡",attr:"全资子公司",biz:"贸易",taxes:"企业所得税(17%)、消费税GST(9%)、印花税"},
+  {name:"唯特偶新材料(美国)有限公司",region:"美国",attr:"控股孙公司（间接持股90%）",biz:"研发、贸易（德州）",taxes:"联邦企业所得税(21%)、德州特许经营税(Margin Tax)、销售/使用税、工资税(FICA/失业税)、德州物业税、进口关税"},
+  {name:"唯特偶新材料(越南)有限公司",region:"越南",attr:"全资孙公司",biz:"生产、贸易（河内；已取得化学品经营许可）",taxes:"企业所得税(20%/优惠10-17%)、增值税(10%/8%)、个税PIT、关税、外国承包商税FCT"},
+  {name:"唯特偶新材料(泰国)有限公司",region:"泰国",attr:"全资孙公司",biz:"贸易（罗勇府）",taxes:"企业所得税(20%)、增值税(7%)、预提税、土地及建筑物税、关税"},
+  {name:"唯特偶新材料(墨西哥)有限公司",region:"墨西哥",attr:"全资孙公司",biz:"研发、生产（蒙特雷）",taxes:"企业所得税ISR(30%)、增值税IVA(16%/边境8%)、IEPS、州工资税ISN、DIOT、关税、社保/工资税IMSS"}
+];
+const TAXES = [
+{juris:"中国·国内",name:"增值税 VAT",rate:"货物 13% / 交通运输等 9% / 现代服务 6% / 出口 0%",notes:"",docs:[{t:"《中华人民共和国增值税法》（主席令第四十一号，2024-12-25 通过，2026-01-01 施行）全文",u:"https://www.gov.cn/yaowen/liebiao/202412/content_6994477.htm"},{t:"国家税务总局 增值税政策（配套公告/解读）",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"}]},
+{juris:"中国·国内",name:"企业所得税 CIT",rate:"法定 25%；高新技术企业减按 15%；研发加计 100%",notes:"",docs:[{t:"《中华人民共和国企业所得税法》（主席令第六十三号）全文",u:"https://www.gov.cn/gongbao/content/2007/content_609907.htm"},{t:"国家税务总局 企业所得税政策",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},{t:"财政部 税务总局公告2023年第7号（研发费用税前加计扣除政策）全文",u:"https://szs.mof.gov.cn/zhengcefabu/202303/t20230327_3874849.htm"}]},
+{juris:"中国·国内",name:"城市维护建设税 + 教育费附加 + 地方教育附加",rate:"城建税 7%(市区)/5%/1%；教育费附加 3%；地方教育附加 2%",notes:"",docs:[{t:"《中华人民共和国城市维护建设税法》（主席令第五十一号，2021-09-01 施行）全文",u:"https://www.gov.cn/xinwen/2020-08/11/content_5534200.htm?gov"},{t:"税务总局明确城市维护建设税征收管理有关事项（2021年第26号公告）",u:"https://www.chinatax.gov.cn/chinatax/n810219/n810780/c5168772/content.html"}]},
+{juris:"中国·国内",name:"印花税",rate:"购销合同等按《印花税法》税目税率（如买卖合同价款的万分之三）",notes:"",docs:[{t:"《中华人民共和国印花税法》（主席令第八十九号，2022-07-01 施行）全文",u:"https://www.gov.cn/xinwen/2021-06/10/content_5616886.htm"},{t:"深圳市税务局 印花税法全文",u:"https://shenzhen.chinatax.gov.cn/sztax/zcwj/zcfgk/zjzcfgk/yhszj/202106/f758b6a35738486cb00377d0f58b6ff9.shtml"}]},
+{juris:"中国·国内",name:"房产税",rate:"自用 1.2%（房产原值减除后）；出租 12%",notes:"",docs:[{t:"《中华人民共和国房产税暂行条例》（国发〔1986〕90号）全文",u:"https://zyk.bjhd.gov.cn/jbdt/auto4526_51824/201810/t20181002_3280387.shtml"}]},
+{juris:"中国·国内",name:"城镇土地使用税",rate:"按实际占用土地面积 × 地区定额税率（大城市 1.5–30 元/㎡·年）",notes:"",docs:[{t:"《中华人民共和国城镇土地使用税暂行条例》（国务院令第483号）全文",u:"https://www.gov.cn/zhengce/zhengceku/2008-03/28/content_1830.htm"}]},
+{juris:"中国·国内",name:"环境保护税",rate:"按大气/水污染物当量、固废吨数、噪声分贝定额征收",notes:"",docs:[{t:"《中华人民共和国环境保护税法》（主席令第六十一号，2018-01-01 施行）全文",u:"https://www.suqian.gov.cn/cnsq/sszc/202108/cf3e6e18c2564d9c9522906a5d50efbb.shtml"},{t:"国家税务总局 环境保护税政策",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"}]},
+{juris:"中国·国内",name:"水资源税",rate:"工业取用水按实际取水量从量计征，实行差别税额；节水/循环用水可减征",notes:"",docs:[{t:"财政部 税务总局 水利部公告2024年第28号（水资源费改税全面推开，2024-12-01施行）",u:"https://szs.mof.gov.cn"}]},
+{juris:"中国·国内",name:"个人所得税（代扣代缴）",rate:"综合所得 3%–45% 超额累进；月度预扣、年度汇算",notes:"",docs:[{t:"《中华人民共和国个人所得税法》（2018 年第七次修正）全文",u:"https://12366.chinatax.gov.cn/zqdetail/getcontentPage?contentId=1cd54f0d354940deb2278a108a988fa6&logoid=e48cc09c83349b1601837e5fb7bc1b1b"},{t:"国家税务总局 个人所得税政策",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"}]},
+{juris:"中国·国内",name:"契税 / 车船税 / 残保金",rate:"契税 3%–5%（不动产取得）；车船税按车型；残保金按差额人数",notes:"",docs:[{t:"《中华人民共和国契税法》（主席令第五十二号，2021-09-01 施行）全文",u:"http://www.npc.gov.cn/c2/c30834/202008/t20200811_307161.html"},{t:"国家税务总局 财产行为税政策（车船税/残保金）",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"}]},
+{juris:"中国·海关/出口",name:"出口退（免）税",rate:"按出口货物 HS 编码对应增值税退税率（多为 13%/对应征税率）",notes:"",docs:[{t:"国家税务总局 出口退（免）税政策",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},{t:"财政部 出口退税率文库",u:"http://szs.mof.gov.cn"}]},
+{juris:"中国·海关/出口",name:"关税（进出口）",rate:"进口最惠国税率按 HS 编码；出口一般免征（少数限制类除外）",notes:"",docs:[{t:"《中华人民共和国关税法》（主席令第四十二号，2024-12-01 施行）全文",u:"https://www.gov.cn/yaowen/liebiao/202404/content_6947843.htm"},{t:"海关总署 关税政策/进出口税则",u:"http://www.customs.gov.cn"}]},
+{juris:"中国香港",name:"利得税 Profits Tax",rate:"法团首 200 万港元利润 8.25%，超出部分 16.5%（两级制）",notes:"",docs:[
+  {t:"香港税务局 利得税（商业）",u:"https://www.ird.gov.hk/eng/tax/bus_pft.htm"},
+  {t:"《税务条例》利得税（Cap.112 全文）",u:"https://www.elegislation.gov.hk/hk/cap112"}
+]},
+{juris:"中国香港",name:"印花税 / 薪俸税",rate:"印花税按文书类别（物业/股票转易等）；薪俸税累进 2%–17% 或标准 15%",notes:"",docs:[
+  {t:"香港税务局 印花税",u:"https://www.ird.gov.hk/eng/tax/stamp.htm"},
+  {t:"香港税务局 薪俸税（个人）",u:"https://www.ird.gov.hk/eng/tax/ind.htm"},
+  {t:"《印花税条例》（Cap.117 全文）",u:"https://www.elegislation.gov.hk/hk/cap117"}
+]},
+{juris:"中国香港",name:"物业税 / 雇主报税表",rate:"物业税按应评税净值 15%；雇主须每年申报雇员薪酬（BIR56A/B）",notes:"",docs:[
+  {t:"香港税务局 物业税（业主）",u:"https://www.ird.gov.hk/eng/tax/ppr.htm"},
+  {t:"香港税务局 雇主报税表",u:"https://www.ird.gov.hk/eng/tax/er.htm"}
+]},
+{juris:"新加坡",name:"企业所得税 CIT",rate:"17%；新设企业部分免税 + 正常应税所得豁免计划",notes:"",docs:[
+  {t:"IRAS 新加坡国内税务局 企业所得税",u:"https://www.iras.gov.sg/taxes/corporate-income-tax"},
+  {t:"《所得税法》（Income Tax Act 全文）",u:"https://sso.agc.gov.sg/Act/ITA1947"}
+]},
+{juris:"新加坡",name:"消费税 GST",rate:"9%（2024-01-01 起由 8% 上调）",notes:"",docs:[
+  {t:"IRAS 消费税 GST",u:"https://www.iras.gov.sg/taxes/goods-services-tax-(gst)"},
+  {t:"《商品及服务税法》（GST Act 全文）",u:"https://sso.agc.gov.sg/Act/GSTA1993"}
+]},
+{juris:"新加坡",name:"预提税 / 物业税",rate:"向非居民付款一般预提 15%（部分 10%–17%）；物业税按年值累进（自住适用减免，商业约10%）",notes:"",docs:[
+  {t:"IRAS 预提税（Withholding Tax）",u:"https://www.iras.gov.sg/taxes/withholding-tax"},
+  {t:"IRAS 物业税（Property Tax）",u:"https://www.iras.gov.sg/taxes/property-tax"}
+]},
+{juris:"美国",name:"联邦企业所得税 + 州税",rate:"联邦 21%；德州无州企业所得税，但征特许经营税(Margin Tax)：2026年度报告免税额为年化总收入≤$265万，超出部分按 0.375%(批零)/0.75%(其他) 计征",notes:"",docs:[
+  {t:"IRS 企业所得税（Corporations）",u:"https://www.irs.gov/corporations"},
+  {t:"Texas Comptroller 特许经营税",u:"https://comptroller.texas.gov/taxes/franchise/"}
+]},
+{juris:"美国",name:"销售税 / 使用税 + 工资税 + 物业税 + 关税",rate:"德州销售税 6.25% + 地方附加；工资税（FICA 社保/医保 + 州失业税）；德州物业税（房产/营业资产）；进口关税",notes:"",docs:[
+  {t:"Texas Comptroller 销售税",u:"https://comptroller.texas.gov/taxes/sales/"},
+  {t:"U.S. Customs and Border Protection 关税",u:"https://www.cbp.gov/trade"}
+]},
+{juris:"越南",name:"企业所得税 CIT",rate:"标准 20%；小微企业：年收入≤30亿盾 15%、30亿–500亿盾 17%；优惠行业/区域 10%/15%/20%（一般10–15年）",notes:"",docs:[
+  {t:"越南政府法律数据库（官方，可查询 67/2025/QH15）",u:"https://vanban.chinhphu.vn"},
+  {t:"《企业所得税法》67/2025/QH15 全文（英译）",u:"https://english.luatvietnam.vn/lawoncorporateincometaxno67-2025-qh15datedjune142025ofthenationalassembly-404386-doc1.html"}
+]},
+{juris:"越南",name:"增值税 VAT + 个人所得税 PIT + 外国承包商税 FCT",rate:"增值税标准 10%（部分 8% 暂减）；PIT 累进 5%–35%；FCT 对非居民",notes:"",docs:[
+  {t:"《增值税法》实施细则（第181/2025/ND-CP号法令，英译）",u:"https://english.luatvietnam.vn/thue/decree-181-2025-nd-cp-detailing-the-law-on-value-added-tax-404357-d1.html"},
+  {t:"越南海关 General Department of Customs",u:"https://www.customs.gov.vn/index.jsp?ngon_ngu=en"}
+]},
+{juris:"泰国",name:"企业所得税 CIT",rate:"标准 20%；中小企（实缴资本≤500万泰铢 且 年收入≤3000万泰铢）：净利润≤30万 0%、30万–300万 15%、超出 20%",notes:"",docs:[
+  {t:"泰国税务局 企业所得税（CIT）",u:"https://www.rd.go.th/english/6044.html"},
+  {t:"《税收法典》企业所得税（Revenue Code）",u:"https://www.rd.go.th/english/38306.html"}
+]},
+{juris:"泰国",name:"（泰国）增值税 VAT + 关税",rate:"增值税法定 10% 但长期减按 7% 执行；关税按 HS",notes:"",docs:[
+  {t:"泰国税务局 增值税（VAT）",u:"https://www.rd.go.th/english/6043.html"},
+  {t:"泰国海关 关税税率数据库（HS编码查询/关税法令下载）",u:"https://www.customs.go.th/list_strc_link_image_with_infographic.php?ini_content=customs_tariff_service&lang=th&left_menu=nmenu_esevice_001"}
+]},
+{juris:"泰国",name:"预提税 / 土地及建筑物税 / 简易营业税",rate:"预提税1%–15%（按月报 PND.53、年终报 PND.54）；土地及建筑物税0.15%–1.2%（空地累进至3%）；特定业务简易营业税SBT 3%",notes:"",docs:[
+  {t:"泰国税务局 预提税（WHT）",u:"https://www.rd.go.th/english/6044.html"},
+  {t:"泰国地方税务局 土地及建筑物税",u:"https://www.dla.go.th"}
+]},
+{juris:"墨西哥",name:"企业所得税 ISR",rate:"30%",notes:"",docs:[
+  {t:"《所得税法》ISR（联邦法律全文）",u:"https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf"},
+  {t:"SAT 2026 综合税收决议（RMF 2026 官方全文 PDF）",u:"https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf"}
+]},
+{juris:"墨西哥",name:"增值税 IVA + IEPS + 关税",rate:"IVA 16%（边境地区 8%）；IEPS 特定商品；关税按 HS",notes:"",docs:[
+  {t:"《增值税法》IVA（联邦法律全文）",u:"https://www.diputados.gob.mx/LeyesBiblio/pdf/LIVA.pdf"},
+  {t:"《海关法》Ley Aduanera（联邦法律全文）",u:"https://www.diputados.gob.mx/LeyesBiblio/pdf/LAdua.pdf"}
+]},
+{juris:"墨西哥",name:"州工资税 ISN / DIOT / 电子账册",rate:"ISN 州工资税（新莱昂州约3%，按州法）；DIOT 进项申报按月（次月17日前）；电子账册按月提交（期限以 RMF 为准）",notes:"",docs:[
+  {t:"SAT 电子账册（Contabilidad Electrónica）",u:"https://www.sat.gob.mx/portal/public/tramites/contabilidad-electronica"},
+  {t:"Nuevo León 税务局（ISN）",u:"https://www.nl.gob.mx"}
+]},
+{juris:"墨西哥",name:"CFDI 电子发票（合规义务）",rate:"所有交易须经 PAC 开具 CFDI（交易后24小时内），XML 保存≥5年；特定货物运输须附 Carta Porte",notes:"",docs:[
+  {t:"SAT CFDI 电子发票说明",u:"https://www.sat.gob.mx/consultas/78606/consulta-la-factura-electronica-(cfdi)"}
+]},
+{juris:"中国·国内",name:"先进制造业企业增值税加计抵减",rate:"符合条件的一般纳税人按当期可抵扣进项税额加计 5% 抵减应纳增值税",notes:"",docs:[{t:"财政部 税务总局公告2023年第43号（先进制造业企业增值税加计抵减政策）全文",u:"https://fgk.chinatax.gov.cn/zcfgk/c102416/c5212095/content.html"},{t:"工业和信息化部 先进制造业企业名单管理",u:"https://www.miit.gov.cn"}]},
+{juris:"中国·国内",name:"高新技术企业优惠（15% 税率）",rate:"减按 15% 征收企业所得税（法定 25%）",notes:"",docs:[{t:"《企业所得税法》第二十八条（高新技术企业所得税优惠）",u:"https://www.gov.cn/gongbao/content/2007/content_609907.htm"},{t:"高新技术企业认定管理办法（国科发火〔2016〕32号）全文",u:"https://hainan.chinatax.gov.cn/xxgk_6_1/04153201.html"}]},
+{juris:"中国·国内",name:"研发费用加计扣除",rate:"符合条件研发费用按 100% 加计扣除（形成无形资产按 200% 摊销）",notes:"",docs:[{t:"财政部 税务总局公告2023年第7号（研发费用税前加计扣除政策）全文",u:"https://szs.mof.gov.cn/zhengcefabu/202303/t20230327_3874849.htm"},{t:"国家税务总局公告2017年第40号（研发费用税前加计扣除归集范围）全文",u:"https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194758/content.html"}]},
+{juris:"中国·国内",name:"土地增值税",rate:"四级超率累进 30%–60%（仅不动产转让时）",notes:"",docs:[{t:"《中华人民共和国土地增值税暂行条例》（国务院令第138号）全文",u:"https://www.gov.cn/gongbao/content/2011/content_1860848.htm"}]},
+{juris:"中国·国内",name:"车辆购置税",rate:"购置应税车辆按计税价格 ×10%",notes:"",docs:[{t:"《中华人民共和国车辆购置税法》（主席令第十九号，2019-07-01 施行）全文",u:"https://shanghai.chinatax.gov.cn/gate/big5/shanghai.chinatax.gov.cn/zcfw/zcfgk/node94/202109/t460134.html"},{t:"国家税务总局 车辆购置税政策",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"}]},
+{juris:"中国·国内",name:"消费税（一般不适用）",rate:"微电子焊接材料/辅助材料不在消费税税目",notes:"",docs:[{t:"《中华人民共和国消费税法》（立法推进中）— 国家税务总局 税收政策库",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"}]},
+{juris:"中国·国内",name:"水利建设基金 / 工会经费（费）",rate:"水利建设基金按地方规定（多数省份已停征）；工会经费工资总额 2%",notes:"",docs:[{t:"国家税务总局 税费政策（含水利建设基金/工会经费）",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"}]},
+{juris:"跨境",name:"预提税（对外支付）",rate:"向非居民支付股息/利息/特许权使用费/租金等，一般代扣 10% 预提所得税",notes:"",docs:[
+  {t:"国家税务总局公告2017年第37号（非居民企业所得税源泉扣缴）",u:"https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194755/content.html"},
+  {t:"非居民纳税人享受税收协定待遇管理办法（2019年第35号）",u:"https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194569/content.html"}
+]},
+{juris:"跨境",name:"转让定价",rate:"关联企业交易须符合独立交易原则，准备同期资料",notes:"",docs:[
+  {t:"特别纳税调查调整及相互协商程序管理办法（2017年第6号）",u:"https://hainan.chinatax.gov.cn/xxgk_6_1/17102963.html"},
+  {t:"OECD 转让定价指南",u:"https://www.oecd.org/en/topics/transfer-pricing.html"}
+]},
+{juris:"跨境",name:"受控外国企业（CFC）规则",rate:"控制低税负地区（实际税负<12.5%）外国企业不合理留存利润视同分配",notes:"",docs:[
+  {t:"企业所得税法实施条例（CFC 第116–118条）",u:"https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194417/content.html?zbb=true"},
+  {t:"特别纳税调整实施办法（试行）（国税发〔2009〕2号）",u:"https://www.chinatax.gov.cn/n810341/n810765/n812166/n812652/c1189827/content.html"}
+]},
+{juris:"跨境",name:"境外税收抵免",rate:"境外已缴所得税可在抵免限额内抵免（超限 5 年结转）",notes:"",docs:[
+  {t:"财税〔2009〕125号（企业境外所得税收抵免）",u:"https://guangdong.chinatax.gov.cn/gdsw/zjfg/2011-02/23/content_df7f5dc4cbaa41c59084b3e8b4018161.shtml"},
+  {t:"关于完善企业境外所得税收抵免政策问题的通知（2017）",u:"https://www.chinatax.gov.cn/chinatax/n810219/n810744/n1671176/n1671186/c3277992/content.html"}
+]},
+{juris:"跨境",name:"税收协定待遇",rate:"依中外税收协定降低预提税率、划分营业利润征税权",notes:"",docs:[
+  {t:"中国对外签订税收协定一览表（国家税务总局·税收条约）",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810770/common_list_ssty.html"},
+  {t:"非居民纳税人享受税收协定待遇管理办法（2019年第35号）",u:"https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194569/content.html"}
+]}
+];
+
+const KB = [
+ {region:"中国内地",cat:"高新优惠",q:"唯特偶适用什么企业所得税优惠？",a:"公司为国家级高新技术企业，企业所得税减按15%税率征收；另可叠加研发费用加计扣除。高新技术企业资格需满足研发占比、科技人员比例、高新收入占比等条件并定期复审。"},
+ {region:"中国内地",cat:"研发加计",q:"研发费用加计扣除如何适用？",a:"制造业/科技企业研发费用未形成无形资产的，按100%加计扣除；形成无形资产的按200%摊销。需设置辅助账、留存备查资料，并在汇算清缴时填报。"},
+ {region:"中国内地",cat:"增值税",q:"2026年《增值税法》主要变化？",a:"2026-01-01施行：应税交易范围明确（加工修理修配、服务、无形资产、不动产），起征点延续，进项抵扣新规（500万以下长期资产一次性抵扣），视同应税交易精简，混合销售按主业判定。"},
+ {region:"中国内地",cat:"出口退税",q:"出口退（免）税如何办理？",a:"出口货物适用增值税零税率，生产企业免抵退、外贸企业免退。需报关单、发票、收汇等单证齐全，通过电子税务局申报；2026年全面推行出口退税电子化、单证备案数字化。"},
+ {region:"跨境",cat:"预提税",q:"向境外支付特许权使用费如何扣缴？",a:"一般按10%代扣预提所得税（源泉扣缴）；若收款方所在国与我国有税收协定，可适用更低限制税率。依据《国家税务总局关于非居民企业所得税源泉扣缴有关问题的公告》（2017年第37号）。"},
+ {region:"跨境",cat:"转让定价",q:"关联交易有哪些转让定价风险？",a:"关联企业间交易须符合独立交易原则，需准备同期资料（主体/本地/特殊事项文档）。特别纳税调整依据《特别纳税调查调整及相互协商程序管理办法》（2017年第6号），并关注BEPS支柱二影响。"},
+ {region:"跨境",cat:"CFC",q:"境外子公司利润长期不分配有何风险？",a:"受控外国企业（CFC）规则：由居民企业控制、设在实际税负低于12.5%国家（地区）的企业，非合理经营需要而对利润不作分配的，应归属境内居民企业的部分计入当期收入。依据企业所得税法第45条及实施条例第116–118条。"},
+ {region:"跨境",cat:"税收协定",q:"如何利用税收协定待遇？",a:"向非居民支付或取得跨境所得时，可适用税收协定限制税率或免税条款。非居民纳税人自行判断并享受协定待遇，留存居民身份证明等资料备查。依据《非居民纳税人享受税收协定待遇管理办法》（2019年第35号）。协定文本见国家税务总局·税收条约栏目。"},
+ {region:"跨境",cat:"境外抵免",q:"境外已缴税款如何在我国抵免？",a:"居民企业境外所得已纳所得税可限额抵免，可选择“分国（地区）不分项”或“不分国（地区）不分项”，5年内不得变更。间接抵免适用持股20%以上多层外国企业。依据财税〔2009〕125号及2017年完善通知。"},
+ {region:"跨境",cat:"合规",q:"走出去企业整体税务合规要点？",a:"关注：转让定价同期资料、CFC、税收协定待遇、间接转让（股权）申报、境外所得抵免、支柱二全球最低税（IIR/UTPR）、以及各东道国申报与转让定价文档要求。"},
+ {region:"中国香港",cat:"利得税",q:"香港子公司利得税如何征收？",a:"香港采用地域来源征税原则，仅就香港境内产生或得自香港的利润征税。法团首200万港元利润税率8.25%，超出部分16.5%（两级制）。非香港来源利润可申请离岸豁免。"},
+ {region:"新加坡",cat:"企业所得税",q:"新加坡子公司企业所得税？",a:"标准税率17%；新设企业前三年可享部分免税计划（首10万新元全额免税、其后20万新元减半），并有许多税收优惠（如先锋企业、知识产权优惠）。"},
+ {region:"美国",cat:"联邦/州税",q:"美国（德州）子公司涉及哪些税？",a:"联邦企业所得税21%；德州无州所得税，但征特许经营税（margin tax）和销售税（8.25%左右）；进口环节由CBP征收关税。工资税（FICA）由雇主/雇员分担。"},
+ {region:"越南",cat:"企业所得税",q:"越南子公司企业所得税？",a:"标准税率20%；2025年新《企业所得税法》（67/2025/QH15，2025-10-01施行）对小微企业（年收入≤30亿/500亿越南盾）设15%/17%优惠税率，并扩大优惠行业与地域。"},
+ {region:"泰国",cat:"企业所得税/VAT",q:"泰国子公司涉及哪些税？",a:"企业所得税标准20%（中小企有减免）；增值税标准7%（法律税率10%暂减）；特定业务征简便业务税（SBT）。关税由海关征收。"},
+ {region:"墨西哥",cat:"ISR/IVA",q:"墨西哥子公司所得税与增值税？",a:"企业所得税（ISR）税率30%；增值税（IVA）标准16%（边境地区8%）；特定商品征IEPS；进口关税按HS编码。2026年适用新的综合税收决议（RMF）。"},
+ {region:"中国内地",cat:"关联申报",q:"每年汇算清缴须注意哪些关联申报义务？",a:"与关联方发生业务往来（含对境外子公司销售、采购、资金拆借、特许权使用费等）须随企业所得税年度纳税申报一并报送《企业年度关联业务往来报告表》（基本信息表＋关联交易明细），并关注同期资料准备门槛（境内关联交易≥4000万元、境外≥2亿元）与留存定价文档；未按规定报送将面临罚款及特别纳税调整风险。"},
+ {region:"中国内地",cat:"水资源税",q:"制造业企业是否涉及水资源税？",a:"2024-12-01 起水资源费全面改革为水资源税（财税〔2024〕28号），工业取用水按实际取水量从量计征、按行业与地区实行差别税额，对高效节水、循环用水企业可减征。企业应保有取水许可证与计量设施，按当地规定按月/按季申报缴纳；需注意与深圳现行测算核定口径的衔接。"},
+ {region:"中国香港",cat:"利得税",q:"香港公司雇主申报与物业税要点？",a:"雇主须于税局发出的雇主报税表（BIR56A/B）后1个月内申报全部雇员薪酬；物业税按应评税净值15%征收（出租予经营法团且该利得已课利得税的，可申请豁免）；利得税一般「两年一期」申报并连同审计账目提交。"},
+ {region:"新加坡",cat:"预提税",q:"新加坡预提税（WHT）如何申报？",a:"向非居民支付利息、特许权使用费、服务费、管理费等须代扣预提税（一般15%，部分按协定或批准10%–17%），并于次月15日前通过 IRAS 提交 IR37 申报并缴款；支付股息给非居民一般享受预提税豁免。未按期申报将计收滞纳金与罚款。"},
+ {region:"泰国",cat:"预提税",q:"泰国预提税（WHT）申报要求？",a:"向个人/法人支付服务费、租金、股息、利息、管理费等须代扣预提税（按收入类型 1%–15%），并每月（PND.53）于次月7日前向税务局申报缴纳、年终另报 PND.54。买方取得预提税凭证（50 TAVI）可作抵减。"},
+ {region:"墨西哥",cat:"CFDI",q:"墨西哥电子发票与电子账册有何强制要求？",a:"墨西哥全面实施 CFDI 电子发票（凭经 PAC 认证、含 SAT 数字盖章方为有效，交易后24小时内开具，XML 须保存≥5年）；并须按月提交「电子账册」（contabilidad electrónica，科目表＋试算表 XML，经 Buzón Tributario 通过 SAT 门户上报）以及月度进项交易汇总 DIOT（次月17日前）。缺失或失真面临罚款、税号冻结甚至停业处罚。"},
+ {region:"跨境",cat:"支柱二",q:"全球最低税（支柱二）对集团有何影响？",a:"集团合并收入连续两年≥7.5亿欧元才适用15%全球最低税（IIR/UTPR）。新加坡、香港、泰国均已实施国内补足税（2025财年起），越南已通过补充税决议并出台实施细则。维特偶集团当前营收规模（10亿人民币级）远低于门槛，但仍需持续跟踪集团合并规模及各东道国落地方案与国别报告层面逻辑。"}
+];
+
+
+const MONITORS = [
+ {juris:"中国内地",name:"国家税务总局 政策法规库",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"每日"},
+ {juris:"中国内地",name:"财政部 税政司",url:"http://szs.mof.gov.cn",freq:"每日"},
+ {juris:"中国内地",name:"国务院政策文件库（gov.cn）",url:"https://www.gov.cn/zhengce/",freq:"每日"},
+ {juris:"中国香港",name:"香港税务局 IRD",url:"https://www.ird.gov.hk/eng/tax.htm",freq:"每日"},
+ {juris:"新加坡",name:"IRAS 新闻与公告",url:"https://www.iras.gov.sg",freq:"每日"},
+ {juris:"美国",name:"IRS Newsroom",url:"https://www.irs.gov/newsroom",freq:"每日"},
+ {juris:"美国",name:"Texas Comptroller 税务",url:"https://comptroller.texas.gov/taxes/",freq:"每日"},
+ {juris:"越南",name:"越南税务总局 GDT",url:"https://www.gdt.gov.vn/wps/portal/english",freq:"每日"},
+ {juris:"泰国",name:"泰国税务局 RD",url:"https://www.rd.go.th/english/index-eng.html",freq:"每日"},
+ {juris:"墨西哥",name:"SAT 公告",url:"https://www.sat.gob.mx",freq:"每日"}
+];
+
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const el = t => document.createElement(t);
+function uniq(arr){return [...new Set(arr)];}
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('.tab').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    $('#'+b.dataset.p).classList.add('active');
+  });
+});
+
+/* ---------- ① overview ---------- */
+(function(){
+  const regions = uniq(SUBSIDIARIES.map(s=>s.region));
+  const attrs = uniq(SUBSIDIARIES.map(s=>s.attr));
+  const rSel=$('#ovRegion'), aSel=$('#ovAttr');
+  rSel.innerHTML='<option value="">全部</option>'+regions.map(r=>'<option>'+r+'</option>').join('');
+  aSel.innerHTML='<option value="">全部</option>'+attrs.map(a=>'<option>'+a+'</option>').join('');
+  function render(){
+    const rf=rSel.value, af=aSel.value;
+    const rows=SUBSIDIARIES.filter(s=>(!rf||s.region===rf)&&(!af||s.attr===af));
+    $('#ovOut').innerHTML = rows.length? '<table><thead><tr><th>名称</th><th>地域</th><th>属性</th><th>主营业务</th><th>涉及税种</th></tr></thead><tbody>'
+      + rows.map(s=>'<tr><td>'+s.name+'</td><td>'+s.region+'</td><td>'+s.attr+'</td><td>'+s.biz+'</td><td>'+s.taxes+'</td></tr>').join('')+'</tbody></table>'
+      : '<div class="empty">无匹配记录</div>';
+  }
+  rSel.onchange=render; aSel.onchange=render; render();
+})();
+
+/* ---------- ② ledger ---------- */
+(function(){
+  const juris = uniq(TAXES.map(t=>t.juris));
+  const jSel=$('#txJuris'), sch=$('#txSearch');
+  jSel.innerHTML='<option value="">全部管辖区</option>'+juris.map(j=>'<option>'+j+'</option>').join('');
+  function render(){
+    const jf=jSel.value, kw=sch.value.trim().toLowerCase();
+    const rows=TAXES.filter(t=>(!jf||t.juris===jf)&&(!kw||(t.name+t.notes+t.rate+t.juris).toLowerCase().includes(kw)));
+    $('#txOut').innerHTML = rows.length? rows.map(t=>{
+      const docs=(t.docs||[]).map(d=>'<a href="'+d.u+'" target="_blank" rel="noopener">🔗 '+d.t+'</a>').join('');
+      return '<div class="card"><h3>'+t.name+'</h3>'
+        +'<div><span class="tag">'+t.juris+'</span></div>'
+        +'<div class="rate">税率/征收：'+t.rate+'</div>'
+        +'<div class="notes">'+t.notes+'</div>'
+        +'<div class="docs">'+docs+'</div></div>';
+    }).join('') : '<div class="empty">无匹配税种</div>';
+  }
+  jSel.onchange=render; sch.oninput=render; render();
+})();
+
+/* ---------- ③ archive ---------- */
+const SEED_ARCHIVE = [
+  {date:"2026-08-19",juris:"中国内地",title:"增值税法配套公告持续落地",summary:"2026年第9/10/12/13/15号公告明确进项抵扣、视同应税交易等执行口径。",tags:["增值税","2026"],url:"https://www.gov.cn/yaowen/liebiao/202412/content_6994477.htm"},
+  {date:"2026-08-19",juris:"跨境",title:"非居民源泉扣缴与协定待遇关注",summary:"对外支付特许权使用费、股息、利息等注意10%预提及协定限制税率。",tags:["预提税","税收协定"],url:"https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194755/content.html"}
+];
+function renderArchive(list){
+  const out=$('#archOut');
+  if(!list||!list.length){out.innerHTML='<div class="empty">暂无归档记录</div>';return;}
+  out.innerHTML=list.map(a=>{
+    const u=a.url&&a.url.trim();
+    const titleHtml=u?'<a href="'+u+'" target="_blank" rel="noopener" style="color:#0b57d0;text-decoration:underline">'+a.title+' ↗</a>':'<span>'+a.title+'</span>';
+    const linkHtml=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 来源：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'<div class="meta" style="margin-top:4px;color:#999">（本条无来源链接）</div>';
+    return '<div class="arch"><div class="meta">'+a.date+' · '+(a.juris||a.source||'')+(a.tags?(' · #'+a.tags.join(' #')):'')+'</div><div style="font-weight:600;margin:4px 0">'+titleHtml+'</div><div class="notes">'+a.summary+'</div>'+linkHtml+'</div>';
+  }).join('');
+}
+renderArchive(SEED_ARCHIVE);
+function autoLoadArchive(btn, msgEl){
+  msgEl.textContent='正在读取…';
+  fetch('tax_updates_archive.json').then(r=>r.json()).then(j=>{
+    const arr=j.archives||j.updates||j;
+    if(Array.isArray(arr)&&arr.length){
+      renderArchive(arr);
+      const upd=j.updated?('（外部数据最后更新：'+j.updated+'）'):'';
+      if(btn) btn.textContent='手动重新加载';
+      msgEl.textContent='已自动加载 '+arr.length+' 条归档 '+upd+'。点击「手动重新加载」可重新读取。';
+    }else{
+      msgEl.textContent='归档文件为空或格式不符，已显示种子记录。';
+      renderArchive(SEED_ARCHIVE);
+    }
+  }).catch(e=>{msgEl.textContent='本地读取被浏览器拦截（file:// 限制，请用本地服务器打开），已显示种子记录。';renderArchive(SEED_ARCHIVE);});
+}
+$('#loadArch').addEventListener('click',()=>{autoLoadArchive($('#loadArch'),$('#archMsg'));});
+autoLoadArchive(null,$('#archMsg'));
+
+/* ---------- ⑤ 税务处罚案例 ---------- */
+const SEED_CASES = [
+  {date:"2026-05-22",juris:"中国内地",tax:"企业所得税/增值税",title:"私户收款隐匿收入被追缴并处罚（总局集中曝光 8 起）",summary:"内蒙古某公司通过员工及亲属私人账户收款、账簿少计收入，少缴增值税、企业所得税 2.17 亿元，被追缴税费加收滞纳金并处罚款共 3.69 亿元。",tags:["偷税","资金流","账外经营"],url:"https://www.chinatax.gov.cn/chinatax/n810219/c102025/c5249875/content.html",lesson:"严禁私户收款/账外收入；销售回款须全部入账并合规开票。"},
+  {date:"2026-02-01",juris:"中国内地",tax:"研发费用加计扣除",title:"违规冲减研发费用、多列研发人员工资被查补",summary:"青海某科技公司违反规定冲减研发费用、多列支研发人员工资支出、虚假申报，少缴增值税、企业所得税 245.61 万元，被追缴税费、滞纳金并处罚款共 456.48 万元。",tags:["研发加计","工资列支","稽查"],url:"https://www.chinatax.gov.cn/chinatax/n810219/c102025/c5249875/content.html",lesson:"研发人员与费用须真实归集、设置辅助账；非研发人员工资不得列入加计扣除。"},
+  {date:"2025-04-01",juris:"中国内地",tax:"研发费用加计扣除",title:"扩大研发人员范围骗享加计扣除优惠被处罚",summary:"江西某锂电公司 2021–2023 年将非直接从事研发工作的人员工资 668.22 万元纳入研发支出申报，违规享受研发费用加计扣除，被追缴税费、罚款共 571.9 万元并加收滞纳金。",tags:["研发加计","骗享优惠","高新技术企业"],url:"https://www.chinatax.gov.cn/chinatax/n810219/n810724/c5242368/content.html",lesson:"加计扣除人员口径须符合财税〔2015〕119号及 2017 年第 40 号公告，留存工时分配等备查资料。"},
+  {date:"2023-08-01",juris:"中国内地",tax:"出口退税",title:"深圳虚开骗出口退税 1.49 亿，主犯获刑十二年半",summary:"团伙操控 11 家企业，以“铅酸蓄电池”虚开发票冒充“锂电池”出口骗取出口退税 1.49 亿元，被追缴退税并处罚款，主犯被判骗取出口退税罪，获刑十二年六个月并处罚金 7000 万元。",tags:["出口退税","虚开发票","刑事风险"],url:"https://www.chinatax.gov.cn/chinatax/n810219/n810724/c5242368/content.html",lesson:"出口业务须单证齐全、货物流真实；杜绝买单出口与虚构报关。"},
+  {date:"2019-10-31",juris:"中国内地",tax:"增值税/发票",title:"虚开增值税专用发票案被移送司法机关",summary:"福建某商贸公司非法取得进项发票 98 份、对外虚开销项发票 100 份，税额合计约 319 万元，被依法移送司法机关。",tags:["虚开发票","发票管理"],url:"https://fujian.chinatax.gov.cn/npsswj/zfxxgkzl/zfxxgkml/zdsswfajgbl/201910/t20191031_335186.htm",lesson:"严格审核供应商资质与发票真实性；四流一致（合同/资金/货物/发票）。"},
+  {date:"2025-01-16",juris:"中国内地",tax:"增值税/发票",title:"新材料公司虚开专票被列重大税收违法失信主体",summary:"福州某新材料公司 2020–2023 年对外虚开增值税专用发票 543 份、价税合计 5864 万元，涉嫌犯罪移送公安机关，被确定为重大税收违法失信主体并适用 D 级纳税人管理。",tags:["虚开发票","失信惩戒","新材料"],url:"https://fujian.chinatax.gov.cn/fzsswj/xxgk/gsgg/qtl/202501/t20250116_590016.htm?type=bgxz",lesson:"虚开金额大即涉刑；失信主体在招投标、融资、退税等全面受限。"},
+  {date:"2026-08-19",juris:"跨境",tax:"转让定价",title:"关联交易不符合独立交易原则将被特别纳税调整",summary:"关联企业间购销、服务、资金往来未按独立交易原则定价的，税务机关可特别纳税调整补税并加收利息；同期资料缺失将加重风险。",tags:["转让定价","关联交易","BEPS"],url:"https://hainan.chinatax.gov.cn/xxgk_6_1/17102963.html",lesson:"境内外关联定价应留存定价政策文档；关注各子公司实际税负差异。"},
+  {date:"2026-08-19",juris:"跨境",tax:"预提税",title:"向境外支付款项未代扣预提税将被追缴处罚",summary:"向非居民支付特许权使用费、利息、股息未按规定源泉扣缴 10% 预提所得税的，税务机关可向扣缴义务人追缴并处罚款；符合协定条件可申请适用更低税率。",tags:["预提税","源泉扣缴","税收协定"],url:"https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194755/content.html",lesson:"对外支付须先判定是否代扣税款并留存居民身份证明等协定资料。"},
+  {date:"2026-08-19",juris:"中国香港",tax:"利得税",title:"香港利得税申报不合规的稽查关注",summary:"香港税务局就利得税申报开展核查，关注离岸收入申索、转让定价与税务亏损结转；申报不实将面临补税、罚款甚至检控。",tags:["利得税","香港","税务合规"],url:"https://www.ird.gov.hk/eng/tax/bus_pft.htm",lesson:"香港子公司按两年一期的利得税申报要求及时申报并留存账簿。"},
+  {date:"2026-08-19",juris:"中国内地",tax:"高新技术企业",title:"高企资质复审不达标将无法继续享受 15% 优惠",summary:"高新技术企业资格每三年复审，研发占比、科技人员比例、高新收入占比任一不达标即丧失资格，补缴按 25% 计算的税款差额并可能加收滞纳金。",tags:["高企复审","15%税率","研发占比"],url:"https://hainan.chinatax.gov.cn/xxgk_6_1/04153201.html",lesson:"按国科发火〔2016〕32号持续满足认定条件，研发费用归集口径与加计扣除一致。"}
+];
+function renderCases(list){
+  const out=$('#csOut');
+  if(!list||!list.length){out.innerHTML='<div class="empty">暂无案例</div>';return;}
+  out.innerHTML=list.map(c=>{
+    const u=c.url&&c.url.trim();
+    const titleHtml=u?'<a href="'+u+'" target="_blank" rel="noopener" style="color:#0b57d0;text-decoration:underline">'+c.title+' ↗</a>':c.title;
+    const srcHtml=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 来源：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
+    return '<div class="arch"><div class="meta">'+c.date+' · '+c.juris+(c.tax?('<span class="case-tag">'+c.tax+'</span>'):'')+(c.tags?(' · #'+c.tags.join(' #')):'')+'</div>'
+      +'<div style="font-weight:600;margin:4px 0">'+titleHtml+'</div>'
+      +'<div class="notes">'+c.summary+'</div>'
+      +(c.lesson?'<div class="meta" style="margin-top:6px;color:#8a5a00;background:#fff8e6;border-radius:6px;padding:6px 8px">💡 启示：'+c.lesson+'</div>':'')
+      +srcHtml+'</div>';
+  }).join('');
+}
+(function(){
+  let CASES_SRC = SEED_CASES;
+  const tSel=$('#csTax'), ySel=$('#csYear'), sch=$('#csSearch');
+  function fillSelectors(){
+    const taxes = uniq(CASES_SRC.map(c=>c.tax));
+    tSel.innerHTML='<option value="">全部税种</option>'+taxes.map(t=>'<option>'+t+'</option>').join('');
+    const years = uniq(CASES_SRC.map(c=>c.date.slice(0,4))).sort().reverse();
+    let yOpt='<option value="">全部年份</option><option value="3y">近三年</option>';
+    years.forEach(y=>{ if(y>='2023') yOpt+='<option value="'+y+'">'+y+'</option>'; });
+    if(years.some(y=>y<'2023')) yOpt+='<option value="early">2022及以前</option>';
+    ySel.innerHTML=yOpt;
+  }
+  function render(){
+    const yf=ySel.value, tf=tSel.value, kw=sch.value.trim().toLowerCase();
+    const rows=CASES_SRC.filter(c=>{
+      if(yf==='3y'){ if(c.date<'2023-08-19') return false; }
+      else if(yf==='early'){ if(c.date.slice(0,4)>='2023') return false; }
+      else if(yf){ if(c.date.slice(0,4)!==yf) return false; }
+      if(tf && c.tax!==tf) return false;
+      if(kw && !(c.title+c.summary+c.juris+c.tax+(c.tags||[]).join(' ')+(c.lesson||'')).toLowerCase().includes(kw)) return false;
+      return true;
+    });
+    renderCases(rows);
+  }
+  fillSelectors();
+  ySel.onchange=render; tSel.onchange=render; sch.oninput=render; render();
+  function autoLoadCases(btn,msgEl){
+    msgEl.textContent='正在读取…';
+    fetch('tax_cases_archive.json').then(r=>r.json()).then(j=>{
+      const arr=j.cases||j.updates||j;
+      if(Array.isArray(arr)&&arr.length){
+        CASES_SRC=arr; fillSelectors(); render();
+        const upd=j.updated?('（外部数据最后更新：'+j.updated+'）'):'';
+        if(btn) btn.textContent='手动重新加载';
+        msgEl.textContent='已自动加载 '+arr.length+' 条案例 '+upd+'（可继续按年份/税种筛选）。';
+      }else{$('#csMsg').textContent='案例档案为空或格式不符，已显示内置案例。';CASES_SRC=SEED_CASES; fillSelectors(); render();}
+    }).catch(e=>{$('#csMsg').textContent='本地读取被浏览器拦截（file:// 限制，已显示内置案例）；或在服务器模式下已自动加载最新案例。';CASES_SRC=SEED_CASES; fillSelectors(); render();});
+  }
+  $('#loadCases').addEventListener('click',function(){autoLoadCases(this,$('#csMsg'));});
+  autoLoadCases(null,$('#csMsg'));
+})();
+
+/* ---------- ⑥ overseas compliance ---------- */
+const SEED_COMPLIANCE = [
+  {country:"中国香港",cat:"申报",name:"商业登记证（BR）续期",req:"在香港经营业务须持有效商业登记证并每年续期（换领新证及缴付登记费）。",freq:"每年",url:"https://www.ird.gov.hk/eng/tax/bre.htm"},
+  {country:"中国香港",cat:"申报",name:"利得税报税表申报",req:"法团利得税两级制（首200万港元利润8.25%，其余16.5%）；除首年外一般两年一期报税，须连同审计账目一并提交。",freq:"两年一期",url:"https://www.ird.gov.hk/eng/tax/bus_pft.htm"},
+  {country:"中国香港",cat:"工商",name:"周年申报表（NAR1）",req:"私人有限公司须于成立周年日后42日内向公司注册处提交周年申报表并缴付登记费用，逾期有罚款。",freq:"每年",url:"https://www.cr.gov.hk"},
+  {country:"中国香港",cat:"法律",name:"审计账目（核数师报告）",req:"《公司条例》（Cap.622）要求公司账目经执业会计师审计并连同报税表提交，保存会计记录。",freq:"每年",url:"https://www.elegislation.gov.hk/hk/cap622"},
+  {country:"中国香港",cat:"法律",name:"强积金（MPF）登记与供款",req:"雇主须于雇员受雇首60日内为雇员登记强积金计划，并按月供款（雇员及雇主各5%）。",freq:"按月",url:"https://www.mpfa.org.hk"},
+  {country:"中国香港",cat:"法律",name:"公司条例合规（会议与记录）",req:"依《公司条例》Cap.622 维持公司记录、备存成员登记册、召开周年大会（如适用）并披露董事权益。",freq:"持续",url:"https://www.elegislation.gov.hk/hk/cap622"},
+  {country:"新加坡",cat:"工商",name:"ACRA 年度申报（Annual Return）",req:"公司须于周年大会后及财年结束后规定期限内向 ACRA 提交年度申报；豁免审计的小公司仍须提交经董事声明的账目。",freq:"每年",url:"https://www.acra.gov.sg"},
+  {country:"新加坡",cat:"申报",name:"企业所得税申报（Form C-S/C）",req:"税率17%（新设公司首三个估税年有豁免计划）；财年结束后提交估税申报表并完成税款结算。",freq:"每年",url:"https://www.iras.gov.sg/taxes/corporate-income-tax"},
+  {country:"新加坡",cat:"申报",name:"GST 注册与申报",req:"年应课税营业额超过100万新元须注册消费税（税率9%），注册后按期申报（多为季度）。",freq:"季度",url:"https://www.iras.gov.sg/taxes/goods-services-tax-(gst)"},
+  {country:"新加坡",cat:"法律",name:"审计豁免评估",req:"符合小规模公司条件的（营业额、总资产、员工人数门槛）可豁免法定审计，但仍需编制账目。",freq:"每年评估",url:"https://www.acra.gov.sg"},
+  {country:"新加坡",cat:"法律",name:"公司法（Companies Act）合规",req:"依《公司法》（Companies Act 1967）维持注册、备存会议记录、申报董事及秘书变更。",freq:"持续",url:"https://sso.agc.gov.sg/Act/CA1967"},
+  {country:"新加坡",cat:"申报",name:"雇员薪酬预扣所得税（IR8A）",req:"雇主须就雇员薪酬向 IRAS 申报（IR8A），并代扣代缴外籍员工薪酬的预扣税。",freq:"年度",url:"https://www.iras.gov.sg"},
+  {country:"美国（德州）",cat:"申报",name:"特许经营税（Franchise/Margin Tax）",req:"德州无州企业所得税；年收入超免税额门槛须申报特许经营税（Margin Tax），每年5月15日前提交并缴纳（2026年度报告免税额为年化总收入≤$265万，此前为$247万；低于门槛仍须提交公共信息申报 PIR）",freq:"每年（5月15日）",url:"https://comptroller.texas.gov/taxes/franchise/"},
+  {country:"美国（德州）",cat:"申报",name:"销售税注册与申报",req:"在德州销售应税商品/服务须注册销售税许可；州税率6.25%+地方附加，按月/季/年申报。",freq:"按月/季/年",url:"https://comptroller.texas.gov/taxes/sales/"},
+  {country:"美国（德州）",cat:"申报",name:"联邦企业所得税（Form 1120）",req:"联邦企业所得税税率21%；按日历/财年于4月15日（或展期后）前提交 Form 1120 并预缴估计税。",freq:"每年",url:"https://www.irs.gov/corporations"},
+  {country:"美国（德州）",cat:"申报",name:"工资税申报（941/940）",req:"雇主须代扣员工 FICA（社保+医保）与联邦所得税，按季报 Form 941、年度报 Form 940（失业税）。",freq:"季度/年度",url:"https://www.irs.gov"},
+  {country:"美国（德州）",cat:"工商",name:"州务卿办公室：公司存续/年报",req:"在德州维持注册代理人、提交 Public Information Report（特许经营税申报联动）以保持良好存续状态。",freq:"每年",url:"https://www.sos.texas.gov"},
+  {country:"美国（德州）",cat:"法律",name:"德州商业组织法合规",req:"依 Texas Business Organizations Code 维持公司章程、股东与董事记录、注册代理人有效。",freq:"持续",url:"https://www.sos.texas.gov"},
+  {country:"越南",cat:"申报",name:"企业所得税申报（CIT 20%）",req:"2025年新《企业所得税法》（67/2025/QH15）自2025-10-01生效；中小企业（年收入≤30亿盾15%、≤500亿盾17%）分档优惠；按月/季申报、年度汇算。",freq:"月度/季度+年度",url:"https://english.luatvietnam.vn/lawoncorporateincometaxno67-2025-qh15datedjune142025ofthenationalassembly-404386-doc1.html"},
+  {country:"越南",cat:"申报",name:"增值税申报（VAT 10%）",req:"标准税率10%；出口货物/服务适用0%；按《增值税法》及实施细则（181/2025/ND-CP）月/季申报。",freq:"月度/季度",url:"https://english.luatvietnam.vn/thue/decree-181-2025-nd-cp-detailing-the-law-on-value-added-tax-404357-d1.html"},
+  {country:"越南",cat:"申报",name:"外国承包商税（FCT）",req:"非居民/外国承包商在越取得收入须缴纳 FCT（外国承包商税，含所得税+增值税），由付款方代扣。",freq:"按合同/支付",url:"https://www.customs.gov.vn/index.jsp?ngon_ngu=en"},
+  {country:"越南",cat:"工商",name:"投资登记证与营业执照（IRC/ERC）",req:"外商直接投资须取得投资登记证（IRC）与企业登记证（ERC）；变更、增资须办理登记并公告。",freq:"设立/变更时",url:"https://dangkykinhdoanh.gov.vn"},
+  {country:"越南",cat:"申报",name:"社会保险申报与缴纳",req:"雇主须为雇员申报并缴纳社会保险（含医保、失业险），按工资基数比例缴纳。",freq:"月度",url:"https://vss.gov.vn"},
+  {country:"越南",cat:"法律",name:"年度财务报表与审计",req:"外商投资企业须按越南会计准则编制年度财务报表，经独立审计并提交；与税务汇算衔接。",freq:"年度",url:"https://vanban.chinhphu.vn"},
+  {country:"越南",cat:"申报",name:"海关进出口申报",req:"进出口货物通过电子报关系统向海关申报，适用 HS 编码与税率；关注原产地与自贸协定优惠。",freq:"每笔进出口",url:"https://www.customs.gov.vn/index.jsp?ngon_ngu=en"},
+  {country:"泰国",cat:"工商",name:"DBD 年度申报（财务报表提交）",req:"公司须于财年结束后规定期限内向商业发展厅（DBD）提交经审计/核准的财务报表并完成年度申报。",freq:"每年",url:"https://www.dbd.go.th"},
+  {country:"泰国",cat:"申报",name:"企业所得税申报（PND.50/51）",req:"企业所得税率20%（中小企业优惠）；年中预付（PND.51）、年度申报（PND.50）并缴纳。",freq:"年度+预付",url:"https://www.rd.go.th/english/6044.html"},
+  {country:"泰国",cat:"申报",name:"增值税申报（PP.30）",req:"增值税法定10%、长期减按7%；一般纳税人按月提交 PP.30 申报并缴纳。",freq:"月度",url:"https://www.rd.go.th/english/6043.html"},
+  {country:"泰国",cat:"申报",name:"社会保障申报（SSO）",req:"雇主与雇员各按工资基数比例缴纳社会保险（社保局 SSO），按月申报。",freq:"月度",url:"https://www.sso.go.th"},
+  {country:"泰国",cat:"法律",name:"外国业务法（FBA）许可",req:"外资持股≥50%从事限制行业须取得《外国业务法》许可（外商投资委员会审批）。",freq:"设立时（如适用）",url:"https://www.dbd.go.th"},
+  {country:"泰国",cat:"工商",name:"BOI 投资促进申请",req:"制造业/鼓励行业项目可向泰国投资促进委员会（BOI）申请投资促进：允许100%外资持股、免征机器进口关税、企业所得税免税期（依活动类别 3–8 年）等；通过 e-Investment Promotion 在线系统提交 F.01 申请表，审批时限按投资额 40/60/90 个工作日。",freq:"设立/增资时",url:"https://www.boi.go.th"},
+  {country:"泰国",cat:"申报",name:"BOI 优惠项目合规申报",req:"获批后须在规定期限内申领促进证书、按期开工投产并提交年度运营报告；机器进口期限、优惠权益使用、项目变更与转让均须经 BOI 审核；未按期履行或经营未达条件将影响优惠资格甚至被撤销。",freq:"每年+按节点",url:"https://www.boi.go.th/upload/content/BOI_A_Guide_EN.pdf"},
+  {country:"泰国",cat:"法律",name:"投资促进指南 2025（BOI 政策与优惠目录）",req:"BOI 官方英文版《A Guide to the Board of Investment（2025）》列明五类鼓励行业目录（BCG/先进制造/基础及配套/数字创意/高附加值服务）、优惠标准、申请程序及特殊措施（EEC 东部经济走廊、SEZ 边境经济特区、智能与可持续产业升级等）。",freq:"政策参考（年度更新）",url:"https://www.boi.go.th/upload/content/BOI_A_Guide_EN.pdf"},
+  {country:"泰国",cat:"法律",name:"《投资促进法》及修订（Investment Promotion Act）",req:"BOI 优惠依据《投资促进法》（B.E. 2520/1977）及其第 2、3、4 号修订（B.E. 2534/2544/2560）；与《外国业务法》衔接，获 BOI 促进的项目可豁免部分外资持股限制并享有土地所有权、外籍人员工作许可等便利。",freq:"持续",url:"https://www.boi.go.th"},
+  {country:"泰国",cat:"法律",name:"《税收法典》合规",req:"依泰国《税收法典》（Revenue Code）保存账簿凭证、按期申报各税种；账务须以泰语记账。",freq:"持续",url:"https://www.rd.go.th/english/38306.html"},
+  {country:"墨西哥",cat:"工商",name:"RFC 税号注册",req:"在墨西哥设立公司须向 SAT 注册税号（RFC）；未注册不得开票经营。",freq:"设立时",url:"https://www.sat.gob.mx"},
+  {country:"墨西哥",cat:"申报",name:"ISR/IVA 月度申报",req:"企业所得税（ISR）30%、增值税（IVA）16%（边境地区8%）；按月申报并年度汇算，按 RMF 2026 执行。",freq:"月度+年度",url:"https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf"},
+  {country:"墨西哥",cat:"申报",name:"IMSS 社保登记与申报",req:"雇主须向墨西哥社保局（IMSS）为雇员登记并申报社保（含 IMSS、INFONAVIT 住房基金、退休储蓄 SAR）。",freq:"月度",url:"https://www.imss.gob.mx"},
+  {country:"墨西哥",cat:"工商",name:"年度股东会与财务报表",req:"依商法召开年度股东大会、审定财务报表，并由注册会计师（Contador Público）出具意见后备案。",freq:"每年",url:"https://www.economia.gob.mx"},
+  {country:"墨西哥",cat:"法律",name:"外国投资登记（RNIE）",req:"外国投资者须于设立/并购后40日内向经济部（Secretaría de Economía）办理外国投资登记（RNIE）。",freq:"设立后40日内",url:"https://www.economia.gob.mx"},
+  {country:"墨西哥",cat:"申报",name:"海关进口商登记（Padrón de Importadores）",req:"进口前须向 SAT 申请进口商登记（Padrón de Importadores）；依《海关法》（Ley Aduanera）办理进出口清关。",freq:"首次进口前",url:"https://www.diputados.gob.mx/LeyesBiblio/pdf/LAdua.pdf"},
+  {country:"墨西哥",cat:"申报",name:"DIOT 进项交易申报",req:"按月汇总向第三方供应商支付的含增值税交易（DIOT），于次月17日前经 SAT 平台申报，并与月度 IVA 申报的进项抵减相互匹配。",freq:"每月（次月17日前）",url:"https://www.sat.gob.mx"},
+  {country:"墨西哥",cat:"申报",name:"电子账册（Contabilidad Electrónica）",req:"按《联邦税收法典》（CFF art.28）按月向 SAT 提交电子账册（科目表＋试算表 XML），经 Buzón Tributario 上报，期限以 RMF 2026 规定为准；缺失将面临罚款与税务合规负面评价。",freq:"每月",url:"https://www.sat.gob.mx/portal/public/tramites/contabilidad-electronica"},
+  {country:"墨西哥",cat:"申报",name:"CFDI 电子发票签发",req:"所有销售/服务须在交易时（不迟于交易后24小时）经 PAC 开具 CFDI 电子发票，XML 为法定凭证并保存≥5年；货物运输使用 Carta Porte 补充单。",freq:"每笔交易",url:"https://www.sat.gob.mx/consultas/78606/consulta-la-factura-electronica-(cfdi)"},
+  {country:"中国香港",cat:"申报",name:"雇主报税表 BIR56A/B",req:"雇主须于税局发出雇主报税表后1个月内申报所有雇员薪酬（BIR56A）及说明文件（BIR56B），逾期将面临罚款与检控。",freq:"每年",url:"https://www.ird.gov.hk/eng/tax/er.htm"},
+  {country:"新加坡",cat:"申报",name:"预提税申报（IR37）",req:"向非居民付款（利息/特许权使用费/服务费/管理费/租金等）代扣预提税后，须于次月15日前通过 IRAS 提交 IR37 申报并缴款，同时申领缴款凭证。",freq:"每月（次月15日前）",url:"https://www.iras.gov.sg/taxes/withholding-tax"},
+  {country:"新加坡",cat:"法律",name:"中央公积金（CPF）供款",req:"雇主须为新加坡公民/PR 雇员缴纳中央公积金（雇员≤55岁雇主供款比例为17%），供款于工资支付后经结算于次月末前缴交。",freq:"每月",url:"https://www.cpf.gov.sg"},
+  {country:"美国（德州）",cat:"申报",name:"州失业税申报（TWC 季度）",req:"雇主须向德州劳工委员会（TWC）按季申报并缴纳州失业税（SUTA），同时确保工伤保险（Worker's Comp）合规。",freq:"季度",url:"https://www.twc.texas.gov"},
+  {country:"美国（德州）",cat:"申报",name:"德州物业税申报",req:"德州对公司不动产及经营性动产（库存/设备等）征收物业税（ad valorem，地方核定税率），每年4月30日前完成申报，缴纳方式依地方分期。",freq:"每年（4月30日前申报）",url:"https://comptroller.texas.gov/taxes/property-tax/"},
+  {country:"越南",cat:"申报",name:"关联交易申报（TP Form 01）",req:"与关联方交易须符合独立交易原则，随企业所得税年度汇算一并报送关联交易专项申报表（Form 01）；达到门槛时保存主体/本地/国别报告（TP 文档）。",freq:"年度",url:"https://english.luatvietnam.vn/lawoncorporateincometaxno67-2025-qh15datedjune142025ofthenationalassembly-404386-doc1.html"},
+  {country:"泰国",cat:"申报",name:"预提税申报（PND.53/54）",req:"按月（PND.53）于次月7日前申报代扣的预提税，年度另报 PND.54；预提税率按收入类型 1%–15% 不等。",freq:"每月（次月7日前）",url:"https://www.rd.go.th/english/6044.html"}
+];
+const CM_CAT = {工商:"c1",申报:"c2",法律:"c3"};
+function renderCompliance(list){
+  const out=$('#cmOut');
+  if(!list||!list.length){out.innerHTML='<div class="empty">无匹配合规事项</div>';return;}
+  out.innerHTML=list.map(c=>{
+    const u=c.url&&c.url.trim();
+    const titleHtml=u?'<a href="'+u+'" target="_blank" rel="noopener" style="color:#0b57d0;text-decoration:underline">'+c.name+' ↗</a>':c.name;
+    const srcHtml=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 官方：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
+    return '<div class="arch"><div class="meta">'+c.country+' · 类别：<span class="cat-tag '+CM_CAT[c.cat]+'">'+c.cat+'</span> · 频率：'+c.freq+'</div>'
+      +'<div style="font-weight:600;margin:4px 0">'+titleHtml+'</div>'
+      +'<div class="notes">'+c.req+'</div>'
+      +srcHtml+'</div>';
+  }).join('');
+}
+(function(){
+  const countries = uniq(SEED_COMPLIANCE.map(c=>c.country));
+  const cats = uniq(SEED_COMPLIANCE.map(c=>c.cat));
+  const cSel=$('#cmCountry'), gSel=$('#cmCat'), sch=$('#cmSearch');
+  cSel.innerHTML='<option value="">全部国家/地区</option>'+countries.map(x=>'<option>'+x+'</option>').join('');
+  gSel.innerHTML='<option value="">全部类别</option>'+cats.map(x=>'<option>'+x+'</option>').join('');
+  function render(){
+    const cf=cSel.value, gf=gSel.value, kw=sch.value.trim().toLowerCase();
+    const rows=SEED_COMPLIANCE.filter(c=>(!cf||c.country===cf)&&(!gf||c.cat===gf)&&(!kw||(c.name+c.req+c.country+c.cat+c.freq).toLowerCase().includes(kw)));
+    renderCompliance(rows);
+  }
+  cSel.onchange=render; gSel.onchange=render; sch.oninput=render; render();
+})();
+
+/* ---------- ⑦ reminder ---------- */
+const SEED_REMINDERS = [
+  // 中国香港
+  {country:"中国香港",cat:"工商",name:"商业登记证（BR）续期",url:"https://www.ird.gov.hk/eng/tax/bre.htm",freq:"每年",type:"event",start:"登记证届满前（登记证载有有效期间）",dueText:"届满前1个月完成换领新证并缴付登记费"},
+  {country:"中国香港",cat:"申报",name:"利得税报税表提交",url:"https://www.ird.gov.hk/eng/tax/bus_pft.htm",freq:"两年一期",type:"event",start:"税局发出利得税报税表（通常8–11月）后",dueText:"发出后1个月内连同审计账目一并提交"},
+  {country:"中国香港",cat:"工商",name:"周年申报表（NAR1）",url:"https://www.cr.gov.hk",freq:"每年",type:"event",start:"公司成立周年日",dueText:"周年日后42日内向公司注册处提交"},
+  {country:"中国香港",cat:"法律",name:"审计账目（核数师报告）",url:"https://www.elegislation.gov.hk/hk/cap622",freq:"每年",type:"event",start:"财年结束后",dueText:"连同利得税报税表一并提交（Cap.622 要求）"},
+  {country:"中国香港",cat:"法律",name:"强积金（MPF）供款",url:"https://www.mpfa.org.hk",freq:"按月",type:"monthly",d:10,start:"每月薪金结算后",dueText:"每月10日前供款（雇主与雇员各5%）"},
+  {country:"中国香港",cat:"法律",name:"公司条例记录合规",url:"https://www.elegislation.gov.hk/hk/cap622",freq:"持续",type:"event",start:"持续",dueText:"持续备存记录、召开周年大会、披露董事权益"},
+  // 新加坡
+  {country:"新加坡",cat:"工商",name:"ACRA 年度申报",url:"https://www.acra.gov.sg",freq:"每年",type:"event",start:"财年结束后",dueText:"财年结束后≤7个月内（上市公司≤5个月）提交"},
+  {country:"新加坡",cat:"申报",name:"企业所得税 Form C-S/C",url:"https://www.iras.gov.sg/taxes/corporate-income-tax",freq:"每年",type:"annual",m:11,d:30,start:"财年结束（次年估税年 YA）",dueText:"11月30日前电子提交估税申报并结算税款"},
+  {country:"新加坡",cat:"申报",name:"GST 注册与申报",url:"https://www.iras.gov.sg/taxes/goods-services-tax-(gst)",freq:"季度",type:"quarterly",qd:[[4,30],[7,31],[10,31],[1,31]],start:"注册消费税后",dueText:"按季度申报（季度结束后1个月内）"},
+  {country:"新加坡",cat:"法律",name:"审计豁免评估",url:"https://www.acra.gov.sg",freq:"每年",type:"event",start:"财年结束后",dueText:"与年度申报同步评估（符合条件可豁免法定审计）"},
+  {country:"新加坡",cat:"法律",name:"公司法（Companies Act）合规",url:"https://sso.agc.gov.sg/Act/CA1967",freq:"持续",type:"event",start:"持续",dueText:"持续维持注册、申报董事/秘书变更、备存记录"},
+  {country:"新加坡",cat:"申报",name:"雇员薪酬申报 IR8A",url:"https://www.iras.gov.sg",freq:"每年",type:"annual",m:3,d:1,start:"每年1月",dueText:"3月1日前向 IRAS 申报雇员薪酬"},
+  // 美国（德州）
+  {country:"美国（德州）",cat:"申报",name:"特许经营税（Margin Tax）",url:"https://comptroller.texas.gov/taxes/franchise/",freq:"每年",type:"annual",m:5,d:15,start:"财年结束后",dueText:"5月15日前申报缴纳（年收入>$247万门槛）"},
+  {country:"美国（德州）",cat:"申报",name:"销售税申报",url:"https://comptroller.texas.gov/taxes/sales/",freq:"按月/季/年",type:"monthly",d:20,start:"月度应税销售额产生后",dueText:"次月20日前申报缴纳（州6.25%+地方附加）"},
+  {country:"美国（德州）",cat:"申报",name:"联邦企业所得税 Form 1120",url:"https://www.irs.gov/corporations",freq:"每年",type:"annual",m:4,d:15,start:"财年结束后",dueText:"4月15日前提交（可展期）并预缴估计税"},
+  {country:"美国（德州）",cat:"申报",name:"工资税 Form 941",url:"https://www.irs.gov",freq:"季度",type:"quarterly",qd:[[4,30],[7,31],[10,31],[1,31]],start:"每季度工资发生后",dueText:"季度结束后次月最后一天前申报"},
+  {country:"美国（德州）",cat:"申报",name:"失业税 Form 940",url:"https://www.irs.gov",freq:"每年",type:"annual",m:1,d:31,start:"每年初",dueText:"1月31日前年度申报"},
+  {country:"美国（德州）",cat:"工商",name:"州务卿存续/Public Information Report",url:"https://www.sos.texas.gov",freq:"每年",type:"annual",m:5,d:15,start:"财年结束后",dueText:"5月15日前（联动特许经营税）保持良好存续"},
+  {country:"美国（德州）",cat:"法律",name:"商业组织法合规",url:"https://www.sos.texas.gov",freq:"持续",type:"event",start:"持续",dueText:"持续维持章程、股东/董事记录、注册代理人有效"},
+  // 越南
+  {country:"越南",cat:"申报",name:"企业所得税 CIT 申报",url:"https://english.luatvietnam.vn/lawoncorporateincometaxno67-2025-qh15datedjune142025ofthenationalassembly-404386-doc1.html",freq:"季度+年度",type:"quarterly",qd:[[4,30],[7,30],[10,30],[1,30]],start:"季度/财年结束",dueText:"季度结束后30日内预缴+财年结束后90日内汇算"},
+  {country:"越南",cat:"申报",name:"增值税 VAT 申报",url:"https://english.luatvietnam.vn/thue/decree-181-2025-nd-cp-detailing-the-law-on-value-added-tax-404357-d1.html",freq:"月度/季度",type:"monthly",d:20,start:"应税销售额产生后",dueText:"次月20日前申报（标准10%/出口0%）"},
+  {country:"越南",cat:"申报",name:"外国承包商税 FCT",url:"https://www.customs.gov.vn/index.jsp?ngon_ngu=en",freq:"按支付",type:"event",start:"对外支付非居民款项前",dueText:"付款时由付款方代扣代缴（含所得税+增值税）"},
+  {country:"越南",cat:"工商",name:"投资/营业执照 IRC/ERC",url:"https://dangkykinhdoanh.gov.vn",freq:"设立/变更时",type:"event",start:"设立/增资时",dueText:"设立/变更时办理登记并公告"},
+  {country:"越南",cat:"申报",name:"社会保险申报缴纳",url:"https://vss.gov.vn",freq:"月度",type:"monthly",d:15,start:"每月工资结算后",dueText:"次月申报缴纳（社保+医保+失业险）"},
+  {country:"越南",cat:"法律",name:"年度财务报表与审计",url:"https://vanban.chinhphu.vn",freq:"年度",type:"event",start:"财年结束后",dueText:"财年结束后90日内提交经审计的年度财报"},
+  {country:"越南",cat:"申报",name:"海关进出口申报",url:"https://www.customs.gov.vn/index.jsp?ngon_ngu=en",freq:"每笔",type:"event",start:"每笔进出口前",dueText:"通关时通过电子报关系统申报"},
+  // 泰国
+  {country:"泰国",cat:"工商",name:"DBD 年度申报（财报）",url:"https://www.dbd.go.th",freq:"每年",type:"event",start:"财年结束后",dueText:"财年结束后≤5个月内（上市公司≤4个月）提交"},
+  {country:"泰国",cat:"申报",name:"企业所得税 PND.50/51",url:"https://www.rd.go.th/english/6044.html",freq:"年度+预付",type:"event",start:"半年度/财年结束",dueText:"PND.51 半年度8月内预付；PND.50 财年结束后150日内年度申报"},
+  {country:"泰国",cat:"申报",name:"增值税 PP.30",url:"https://www.rd.go.th/english/6043.html",freq:"月度",type:"monthly",d:15,start:"应税销售额产生后",dueText:"次月15日前申报缴纳（法定10%长期减按7%）"},
+  {country:"泰国",cat:"申报",name:"社会保障 SSO",url:"https://www.sso.go.th",freq:"月度",type:"monthly",d:15,start:"每月工资结算后",dueText:"次月15日前申报缴纳（雇主与雇员各比例）"},
+  {country:"泰国",cat:"法律",name:"外国业务法 FBA 许可",url:"https://www.dbd.go.th",freq:"设立时",type:"event",start:"设立前（如适用）",dueText:"外资≥50%从事限制行业须取得 FBA 许可"},
+  {country:"泰国",cat:"法律",name:"BOI 年度运营报告",url:"https://www.boi.go.th/upload/content/BOI_A_Guide_EN.pdf",freq:"每年",type:"event",start:"获批后每个财年",dueText:"年度运营报告按期提交，机器进口/项目变更须审核"},
+  {country:"泰国",cat:"法律",name:"《税收法典》合规",url:"https://www.rd.go.th/english/38306.html",freq:"持续",type:"event",start:"持续",dueText:"依《税收法典》保存泰语账簿凭证、按期申报"},
+  // 墨西哥
+  {country:"墨西哥",cat:"工商",name:"RFC 税号注册",url:"https://www.sat.gob.mx",freq:"设立时",type:"event",start:"设立前",dueText:"设立时向 SAT 注册 RFC 税号"},
+  {country:"墨西哥",cat:"申报",name:"ISR/IVA 月度申报",url:"https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf",freq:"月度+年度",type:"monthly",d:17,start:"应税业务发生后",dueText:"次月17日前申报+年度汇算（3–4月）"},
+  {country:"墨西哥",cat:"申报",name:"IMSS 社保登记与申报",url:"https://www.imss.gob.mx",freq:"月度",type:"monthly",d:17,start:"每月工资结算后",dueText:"次月申报缴纳（含 INFONAVIT/SAR）"},
+  {country:"墨西哥",cat:"工商",name:"年度股东会与财务报表",url:"https://www.economia.gob.mx",freq:"每年",type:"annual",m:4,d:30,start:"财年结束后",dueText:"财年结束后4个月内召开股东会、审定财报并备案"},
+  {country:"墨西哥",cat:"法律",name:"外国投资登记 RNIE",url:"https://www.economia.gob.mx",freq:"设立后40日内",type:"event",start:"设立/并购后",dueText:"设立后40日内向经济部办理外国投资登记"},
+  {country:"墨西哥",cat:"法律",name:"海关进口商登记 Padrón",url:"https://www.diputados.gob.mx/LeyesBiblio/pdf/LAdua.pdf",freq:"首次进口前",type:"event",start:"首次进口前",dueText:"进口前向 SAT 申请 Padrón de Importadores"},
+  // 墨西哥 — 补充
+  {country:"墨西哥",cat:"申报",name:"ISR 年度汇算（Declaración Anual）",url:"https://www.sat.gob.mx",freq:"年度",type:"annual",m:3,d:31,start:"财年结束后",dueText:"次年3月31日前完成法人年度汇算并缴足差额"},
+  {country:"墨西哥",cat:"申报",name:"DIOT 进项交易申报",url:"https://www.sat.gob.mx",freq:"每月",type:"monthly",d:17,start:"月度账务结账后",dueText:"次月17日前申报 DIOT（与 IVA 进项抵减匹配）"},
+  {country:"墨西哥",cat:"申报",name:"电子账册 Contabilidad Electrónica",url:"https://www.sat.gob.mx/portal/public/tramites/contabilidad-electronica",freq:"每月",type:"event",start:"每月账务结账后",dueText:"按规定期限经 Buzón Tributario 上报电子账册（法人一般为次次月第3个工作日前，以 RMF 为准）"},
+  // 中国香港 — 补充
+  {country:"中国香港",cat:"申报",name:"雇主报税表 BIR56A",url:"https://www.ird.gov.hk/eng/tax/er.htm",freq:"每年",type:"event",start:"税局发出报税表后（一般每年上半年）",dueText:"发出后1个月内申报全部雇员薪酬"},
+  // 新加坡 — 补充
+  {country:"新加坡",cat:"申报",name:"预提税 IR37",url:"https://www.iras.gov.sg/taxes/withholding-tax",freq:"每月",type:"monthly",d:15,start:"向非居民付款并代扣后",dueText:"次月15日前提交 IR37 申报并缴款（一般预提15%/部分10%–17%）"},
+  {country:"新加坡",cat:"法律",name:"中央公积金 CPF 供款",url:"https://www.cpf.gov.sg",freq:"每月",type:"monthly",d:28,start:"工资支付后",dueText:"工资支付次月末前缴交（雇主供款≤17%，以当月工资为基数）"},
+  // 泰国 — 补充
+  {country:"泰国",cat:"申报",name:"预提税 PND.53",url:"https://www.rd.go.th/english/6044.html",freq:"每月",type:"monthly",d:7,start:"代扣预提税后",dueText:"次月7日前申报缴纳（年终另报 PND.54）"},
+  {country:"泰国",cat:"申报",name:"土地及建筑物税",url:"https://www.dla.go.th",freq:"每年",type:"annual",m:4,d:30,start:"征税年度开始后",dueText:"每年4月30日前缴纳（税率0.15%–1.2%，空地累进至3%）"},
+  // 中国内地 — 境内主体关键申报节点
+  {country:"中国内地",cat:"申报",name:"增值税及附加、印花税申报",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"月度/季度",type:"monthly",d:15,start:"纳税义务发生后",dueText:"次月15日前申报缴纳（增值税/城建及附加/印花税，按月或按季以核定为准）"},
+  {country:"中国内地",cat:"申报",name:"个人所得税代扣代缴",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"月度",type:"monthly",d:15,start:"支付工资薪金后",dueText:"次月15日前申报代扣个税并缴库"},
+  {country:"中国内地",cat:"申报",name:"企业所得税季度预缴",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"季度",type:"quarterly",qd:[[4,15],[7,15],[10,15],[1,15]],start:"季度终了",dueText:"季度终了15日内预缴（母公司按15%高新，小微主体实际税负5%）"},
+  {country:"中国内地",cat:"申报",name:"企业所得税年度汇算清缴",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"年度",type:"annual",m:5,d:31,start:"次年1月1日起",dueText:"次年5月31日前完成汇算清缴（含研发加计备查资料留存）"},
+  {country:"中国内地",cat:"申报",name:"关联业务往来申报",url:"https://hainan.chinatax.gov.cn/xxgk_6_1/17102963.html",freq:"年度",type:"annual",m:5,d:31,start:"年度汇算期间",dueText:"次年5月31日前随年度汇算报送关联业务往来报告表"},
+  {country:"中国内地",cat:"申报",name:"环境保护税申报",url:"https://www.suqian.gov.cn/cnsq/sszc/202108/cf3e6e18c2564d9c9522906a5d50efbb.shtml",freq:"月度/季度",type:"quarterly",qd:[[4,15],[7,15],[10,15],[1,15]],start:"按月或按季排放后",dueText:"纳税期限届满之日起15日内申报（按月缴征主体为次月15日前）"},
+  {country:"中国内地",cat:"申报",name:"出口退（免）税申报",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"按月",type:"event",start:"出口报关并收汇后",dueText:"及时申报办理出口退（免）税并按规定留存单证备案（申报期限以最新公告为准）"}
+];
+function nextDue(it){
+  const t=new Date(); t.setHours(0,0,0,0);
+  const diff=d=>Math.round((d-t)/86400000);
+  if(it.type==='annual'&&it.m&&it.d){let y=t.getFullYear();let due=new Date(y,it.m-1,it.d);if(due<t)due=new Date(y+1,it.m-1,it.d);return{date:due,days:diff(due),label:it.m+'月'+it.d+'日'};}
+  if(it.type==='monthly'&&it.d){let y=t.getFullYear(),m=t.getMonth();let due=new Date(y,m,it.d);if(due<t)due=new Date(y,m+1,it.d);return{date:due,days:diff(due),label:'每月'+it.d+'日'};}
+  if(it.type==='quarterly'&&it.qd){let best=null,bd=1e9;for(const q of it.qd){let y=t.getFullYear();let due=new Date(y,q[0]-1,q[1]);if(due<t)due=new Date(y+1,q[0]-1,q[1]);const dd=diff(due);if(dd<bd){bd=dd;best=due;}}return{date:best,days:bd,label:'季度申报'};}
+  return{date:null,days:null,label:it.dueText||'按事件触发'};
+}
+function rmStatus(days){if(days===null)return{cls:'s-event',txt:'按事件触发'};if(days<=30)return{cls:'s-urgent',txt:'⚠ 紧急 · 剩'+days+'天'};if(days<=90)return{cls:'s-soon',txt:'临期 · 剩'+days+'天'};return{cls:'s-ok',txt:'充足 · 剩'+days+'天'};}
+function renderReminders(list){
+  const out=$('#rmOut');
+  if(!list||!list.length){out.innerHTML='<div class="empty">无匹配提醒事项</div>';$('#rmBanner').textContent='';return;}
+  let urgent=0,soon=0;
+  const rows=list.map(it=>{const nd=nextDue(it);const st=rmStatus(nd.days);if(nd.days!==null){if(nd.days<=30)urgent++;else if(nd.days<=90)soon++;}return Object.assign({},it,{_nd:nd,_st:st});});
+  rows.sort((a,b)=>(a._nd.days===null?1e9:a._nd.days)-(b._nd.days===null?1e9:b._nd.days));
+  $('#rmBanner').textContent='临近提醒：紧急（30天内）'+urgent+' 项 · 临期（90天内）'+soon+' 项（共 '+rows.length+' 项）';
+  out.innerHTML=rows.map(it=>{
+    const u=it.url&&it.url.trim();
+    const title=u?'<a href="'+u+'" target="_blank" rel="noopener" style="color:#0b57d0;text-decoration:underline">'+it.name+' ↗</a>':it.name;
+    const src=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 官方：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
+    return '<div class="remind">'
+      +'<div class="remind-head"><span class="cat-tag '+CM_CAT[it.cat]+'">'+it.cat+'</span> <span class="remind-country">'+it.country+'</span> <span class="remind-name">'+title+'</span></div>'
+      +'<div class="remind-times"><div><span class="rt-label">开始/准备</span>'+it.start+'</div><div><span class="rt-label">截止</span>'+it.dueText+'</div></div>'
+      +'<div class="remind-status '+it._st.cls+'">'+it._st.txt+' · 频率：'+it.freq+' · 节点：'+it._nd.label+'</div>'
+      +src+'</div>';
+  }).join('');
+}
+(function(){
+  const countries=uniq(SEED_REMINDERS.map(c=>c.country));
+  const cats=uniq(SEED_REMINDERS.map(c=>c.cat));
+  const cSel=$('#rmCountry'),gSel=$('#rmCat'),near=$('#rmOnlyNear'),sSel=$('#rmSearch');
+  cSel.innerHTML='<option value="">全部国家/地区</option>'+countries.map(x=>'<option>'+x+'</option>').join('');
+  gSel.innerHTML='<option value="">全部类别</option>'+cats.map(x=>'<option>'+x+'</option>').join('');
+  function render(){
+    const cf=cSel.value,gf=gSel.value,kw=sSel.value.trim().toLowerCase();
+    let rows=SEED_REMINDERS.filter(c=>(!cf||c.country===cf)&&(!gf||c.cat===gf)&&(!kw||(c.name+c.start+c.dueText).toLowerCase().includes(kw)));
+    if(near.checked){rows=rows.filter(c=>{const nd=nextDue(c);return nd.days!==null&&nd.days<=90;});}
+    renderReminders(rows);
+  }
+  cSel.onchange=render;gSel.onchange=render;near.onchange=render;sSel.oninput=render;render();
+})();
+
+/* ---------- ④ kb ---------- */
+(function(){
+  const regions = uniq(KB.map(k=>k.region));
+  const cats = uniq(KB.map(k=>k.cat));
+  const rSel=$('#kbRegion'), cSel=$('#kbCat'), sch=$('#kbSearch');
+  rSel.innerHTML='<option value="">全部地域</option>'+regions.map(r=>'<option>'+r+'</option>').join('');
+  cSel.innerHTML='<option value="">全部分类</option>'+cats.map(c=>'<option>'+c+'</option>').join('');
+  function render(){
+    const rf=rSel.value, cf=cSel.value, kw=sch.value.trim().toLowerCase();
+    const rows=KB.filter(k=>(!rf||k.region===rf)&&(!cf||k.cat===cf)&&(!kw||(k.q+k.a+k.cat+k.region).toLowerCase().includes(kw)));
+    $('#kbOut').innerHTML = rows.length? rows.map(k=>'<div class="qa"><div class="q">Q：'+k.q+'</div><div class="a">A：'+k.a+'</div><div class="meta" style="margin-top:6px">'+k.region+' · '+k.cat+'</div></div>').join('') : '<div class="empty">无匹配知识条目</div>';
+  }
+  rSel.onchange=render; cSel.onchange=render; sch.oninput=render; render();
+})();
+</script>
+</body>
+</html>
