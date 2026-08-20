@@ -6,9 +6,9 @@
 
 - `vital_tax_database.html` —— 税务数据库网页（主体 / 税种 / 归档 / 案例 / 合规 / 提醒 六个面板）
 - `tax_updates_archive.json` —— 税政归档数据，由下面这个定时任务自动更新
-- `tax_updater.py` —— 自动抓取国家税务总局政策指引库并去重合并的更新器
+- `tax_updater.py` —— 自动抓取国家税务总局政策指引库、国家税务总局与江苏省税务局「税案通报」并去重合并的更新器（税政归档 + 处罚案例两档）
 - `.github/workflows/update.yml` —— GitHub Actions 定时任务：**每天 01:30（UTC）自动抓取并更新归档**，也支持手动触发
-- `tax_cases_archive.json` —— 处罚案例（人工维护）
+- `tax_cases_archive.json` —— 处罚案例：每天自动抓取国家税务总局/江苏省税务局「税案通报」（自动条目带 `auto:true` 标记），与人工录入案例（带 `lesson` 亮）合并
 
 ## 部署步骤（一次性，约 5 分钟）
 

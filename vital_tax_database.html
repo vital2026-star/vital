@@ -138,7 +138,7 @@
       <span class="note" id="csMsg"></span>
     </div>
     <div id="csOut"></div>
-    <p class="note">说明：本栏为「税务处罚案例」，汇集税务机关近三年（含历史典型）公开的稽查、处罚、曝光案例，仅作合规风险提示，具体认定以官方文书为准；按「💡 启示」提示本公司及分子公司可借鉴的合规动作。可按月份年份筛选、按税种/关键词检索。file:// 打开时自动显示内置种子案例；预览面板下可点击按钮加载实时案例档案。</p>
+    <p class="note">说明：本栏为「税务处罚案例」，汇集税务机关公开的稽查、处罚、曝光案例。档案由 tax_updater.py 每个工作日自动抓取国家税务总局「税案通报」与江苏省税务局「税案通报」，进入原文提取事实摘要并按税种/风险自动打标签后合并写入（标记「自动抓取·供参考」）；原有经人工核对的案例保留「💡 启示」人工点评。仅作合规风险提示，具体认定以官方文书为准。可按年份/税种/关键词筛选，可点击按钮手动重新加载（立即拉取最新 JSON）。</p>
   </section>
 
   <section class="panel" id="compliance">
@@ -539,7 +539,7 @@ function renderCases(list){
     const u=c.url&&c.url.trim();
     const titleHtml=u?'<a href="'+u+'" target="_blank" rel="noopener" style="color:#0b57d0;text-decoration:underline">'+c.title+' ↗</a>':c.title;
     const srcHtml=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 来源：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
-    return '<div class="arch"><div class="meta">'+c.date+' · '+c.juris+(c.tax?('<span class="case-tag">'+c.tax+'</span>'):'')+(c.tags?(' · #'+c.tags.join(' #')):'')+'</div>'
+    return '<div class="arch"><div class="meta">'+c.date+' · '+c.juris+(c.auto?'<span class="case-tag" style="background:#e8f0fe;color:#0b57d0;border:1px solid #0b57d0">自动抓取</span>':'<span class="case-tag" style="background:#e6f4ea;color:#188038;border:1px solid #188038">人工核对</span>')+(c.tax?('<span class="case-tag">'+c.tax+'</span>'):'')+(c.tags?(' · #'+c.tags.join(' #')):'')+'</div>'
       +'<div style="font-weight:600;margin:4px 0">'+titleHtml+'</div>'
       +'<div class="notes">'+c.summary+'</div>'
       +(c.lesson?'<div class="meta" style="margin-top:6px;color:#8a5a00;background:#fff8e6;border-radius:6px;padding:6px 8px">💡 启示：'+c.lesson+'</div>':'')

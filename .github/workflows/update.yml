@@ -24,17 +24,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: 运行税务归档更新器
+      - name: 运行税务更新器（税政归档 + 处罚案例）
         run: python tax_updater.py
 
       - name: 提交并推送更新
         run: |
-          if git diff --quiet tax_updates_archive.json; then
+          if git diff --quiet tax_updates_archive.json && git diff --quiet tax_cases_archive.json; then
             echo "本次没有新内容，跳过提交"
           else
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add tax_updates_archive.json
-            git commit -m "chore: 每日税务政策归档更新"
+            git add tax_updates_archive.json tax_cases_archive.json
+            git commit -m "chore: 每日税务政策归档与处罚案例自动更新"
             git push
           fi
