@@ -86,6 +86,8 @@
   <button class="tab" data-p="compliance">⑥ 境外合规要求</button>
   <button class="tab" data-p="reminder">⑦ 合规时间提醒</button>
   <button class="tab" data-p="tp">⑧ 转让定价</button>
+  <button class="tab" data-p="incent">⑨ 优惠与补助</button>
+  <button class="tab" data-p="check">⑩ 税务自检</button>
 </nav>
 <main>
   <section class="panel active" id="overview">
@@ -164,6 +166,31 @@
     </div>
     <div id="tpOut"></div>
     <p class="note">说明：本栏聚焦集团与中国内地母公司及境外子（孙）公司之间的关联交易、转让定价方法与定价政策、同期资料准备门槛、跨境资金往来预提税、常设机构/CFC/间接转让等风险，以及支柱二全球最低税落地跟踪；并附年度自查清单。定价方法、门槛与税率以《企业所得税法》及特别纳税调整规则（国税发〔2009〕2号、总局公告〔2016〕42号、〔2017〕6号/7号/35号等）和最新协定/东道国规定为准，建议按实际架构与功能承担逐年复核。</p>
+  </section>
+
+  <section class="panel" id="incent">
+    <div class="bar">
+      <label>国家/地区：<select id="inJuris"></select></label>
+      <label>类别：<select id="inCat"></select></label>
+      <input type="text" id="inSearch" placeholder="搜索优惠/补助名称、依据、主体" style="min-width:240px;">
+      <button class="btn ghost" id="inReset">重置状态</button>
+      <span class="note" id="inBanner"></span>
+    </div>
+    <div id="inOut"></div>
+    <p class="note">说明：本栏记录集团各主体可适用/已享受的税收优惠与政府补助台账：资质有效期、优惠幅度、申报/复审节点、备案留存要求。状态可在本地标记（不写入云端）：未开始 / 进行中 / 已享受 / 已到期。具体以各辖区政策与合同约定为准，逐年复核。</p>
+  </section>
+
+  <section class="panel" id="check">
+    <div class="bar">
+      <label>类别：<select id="ckCat"></select></label>
+      <label>风险等级：<select id="ckRisk"></select></label>
+      <button class="btn ghost" id="ckAllY">全部通过</button>
+      <button class="btn ghost" id="ckAllN">全部存疑</button>
+      <button class="btn ghost" id="ckReset">重置</button>
+    </div>
+    <div id="ckScore"></div>
+    <div id="ckOut"></div>
+    <p class="note">说明：年度税务健康自检清单（按主体/事项逐项核对）。每项点选「通过 / 存疑」参与计分：存疑项按其风险权重累计风险分，得出 良好 / 关注 / 预警 三档结论；本地浏览器记忆，不写云端。请在汇算及对外付款节点前执行并有针对性地整改存疑项。</p>
   </section>
 </main>
 
@@ -745,6 +772,121 @@ function renderTP(list){
     renderTP(rows);
   }
   cSel.onchange=render; eSel.onchange=render; sch.oninput=render; render();
+})();
+
+/* ---------- ⑨ 税收优惠与补助台账 ---------- */
+const IN_CAT={q:"资质",y:"税收优惠",e:"出口",b:"政府补助",d:"其他"};
+const IN_CLS={q:"c-purple",y:"c-green",e:"c-blue",b:"c-amber",d:"c-blue"};
+const IN_STATUS=["未开始","进行中","已享受","已到期"];
+const IN_DATA=[
+ {juris:"中国内地",cat:"q",name:"高新技术企业资格（15%）",entity:"母公司",benefit:"企业所得税减按15%征收；利于招投标与融资。",basis:"国科发火〔2016〕32号；每3年复审。",expiry:"证书有效期3年，到期前重新认定",action:"持续满足研发占比/科技人员/高新收入占比；复审材料提前6个月准备。",doc:"高企证书、研发辅助账、审计报告、人员与收入占比测算。",status:"已享受",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+ {juris:"中国内地",cat:"y",name:"研发费用加计扣除",entity:"母公司及主要制造主体",benefit:"研发费用按100%加计扣除（形成无形资产按200%摊销）。",basis:"财税〔2023〕7号；口径与高企认定衔接。",expiry:"年度汇算时适用",action:"设置研发费用辅助账，费用、人工作时分摊清晰留痕。",doc:"立项书、辅助账、人工工时表、委外合同、留存备查资料。",status:"已享受",url:"https://szs.mof.gov.cn/zhengcefabu/202303/t20230327_3874849.htm"},
+ {juris:"中国内地",cat:"e",name:"出口退（免）税",entity:"出口销售主体",benefit:"出口货物零税率；生产企业免抵退、外贸企业免退。",basis:"《增值税法》及出口退（免）税管理办法；2026年起单证备案数字化。",expiry:"申报期内",action:"报关单/发票/收汇单证齐全并留痕。",doc:"报关单、箱单、发票、收汇水单、物流轨迹。",status:"进行中",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+ {juris:"中国内地",cat:"y",name:"固定资产一次性扣除/加速折旧",entity:"母公司及制造主体",benefit:"单价≤500万元的器具/设备可一次性税前扣除；特殊设备可加速折旧。",basis:"第28/45/46号等公告（当年延续政策以官方为准）。",expiry:"购置年度汇算",action:"购置台账化并做好扣除与否的选择记录。",doc:"购置发票、固定资产台账、汇算明细表。",status:"进行中",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+ {juris:"中国内地",cat:"b",name:"小微企业所得税优惠",entity:"江苏唯特偶光伏/深圳唯特偶技术/经销管理/消防科技等",benefit:"应纳税所得额≤300万元部分实际税负5%。",basis:"小微企业所得税优惠（延续性文件逐年发布）。",expiry:"按年度（看当年文件）",action:"年度测算从业人数/资产/所得额条件并正确预缴。",doc:"小微条件自测表、季度预缴表。",status:"已享受",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+ {juris:"中国内地",cat:"b",name:"地方科技/产业扶持资金（深圳等）",entity:"母公司/园区主体",benefit:"研发资助、技改补贴、智能制造专项等（以各区政策为准）。",basis:"各区科技创新与工信部门年度申报指南。",expiry:"按申报批次",action:"关注申报窗口，提前立项与专项核算。",doc:"项目计划书、备案立项文件、专项核算与验收资料。",status:"进行中",url:"https://stic.sz.gov.cn"},
+ {juris:"中国香港",cat:"y",name:"利得税两级制",entity:"香港子公司",benefit:"法团首200万港元利润8.25%，其余16.5%。",basis:"《税务条例》分级税率；须经审计申报。",expiry:"每个课税年度",action:"按两年一期申报并连同审计账目提交。",doc:"审计报告、利得税报税表。",status:"已享受",url:"https://www.ird.gov.hk/eng/tax/bus_pft.htm"},
+ {juris:"中国香港",cat:"b",name:"BUD专项基金（市场拓展资助）",entity:"香港子公司",benefit:"BUD专项基金累计资助上限700万港元（内地/东盟/其他FTA市场）。",basis:"BUD专项基金（生产力局执行）。",expiry:"按项目期（需新增资金投入）",action:"以香港主体申请；项目须新增投入并完成核数报告。",doc:"项目建议书、合规承诺、核数报告。",status:"未开始",url:"https://www.bud.hkpc.org"},
+ {juris:"新加坡",cat:"y",name:"新设企业部分免税",entity:"新加坡子公司",benefit:"前三个估税年：首10万新元全额免税、其后20万新元减半免税（需符合实质条件）。",basis:"新加坡《所得税法》新设企业免税计划。",expiry:"成立后3个估税年",action:"确认本地实质并按时在估税申报中主张。",doc:"估税申报表、实质证明。",status:"未开始",url:"https://www.iras.gov.sg/taxes/corporate-income-tax"},
+ {juris:"新加坡",cat:"y",name:"合资格业务激励（先锋/总部等）",entity:"新加坡子公司",benefit:"符合条件的合资格业务可获税收豁免或特别税率，均需事先向EDB申请。",basis:"新加坡经济发展局（EDB）激励计划。",expiry:"依批文年限",action:"评估贸易/总部实质，决定是否申请；注意激励年份合规申报。",doc:"激励批文、年度合规报告。",status:"未开始",url:"https://www.edb.gov.sg"},
+ {juris:"美国（德州）",cat:"y",name:"联邦研发税收抵免（R&D Credit）",entity:"美国孙公司",benefit:"合资格研发支出抵减联邦所得税（IRC 41/QRE口径），不足结转20年。",basis:"IRC Section 41；申报Form 6765。",expiry:"每年申报",action:"研发支出按QRE口径台账化（人员/物资/合同研发）。",doc:"QRE测算表、研发台账、Form 6765。",status:"未开始",url:"https://www.irs.gov/credits-deductions/research-credit"},
+ {juris:"美国（德州）",cat:"q",name:"替代最低税(CAMT)/预估税自查",entity:"美国孙公司",benefit:"上市/大型企业评估15%最低替代税（CAMT）影响；季度预估税避免利息罚。",basis:"IRC 55（CAMT）、IRC 6655（预估税）。",expiry:"逐季",action:"季度预估税测算并按时缴纳。",doc:"预估税计算表、当季损益。",status:"进行中",url:"https://www.irs.gov"},
+ {juris:"越南",cat:"y",name:"鼓励行业/地区优惠税率",entity:"越南孙公司",benefit:"高新技术/配套工业/园区项目可享10%/15%/17%优惠税率及免税期（按新法67/2025/QH15）。",basis:"67/2025/QH15 及其实施细目。",expiry:"按认定期间，逐年复核",action:"评估河内主体是否符行业/区域优惠并留存认定文件。",doc:"执照载明的行业代码、优惠认定书。",status:"未开始",url:"https://english.luatvietnam.vn/lawoncorporateincometaxno67-2025-qh15datedjune142025ofthenationalassembly-404386-doc1.html"},
+ {juris:"越南",cat:"e",name:"出口VAT 0% / 自贸协定关税",entity:"越南孙公司",benefit:"出口货物VAT 0%；按自贸协定（CPTPP等）优惠关税。",basis:"181/2025/ND-CP及原产地规则。",expiry:"每笔交易",action:"出口单证与原产地证办理留存（Form E等）。",doc:"报关单、原产地证、VAT申报表。",status:"进行中",url:"https://english.luatvietnam.vn/thue/decree-181-2025-nd-cp-detailing-the-law-on-value-added-tax-404357-d1.html"},
+ {juris:"泰国",cat:"y",name:"BOI 企业所得税豁免/机器关税减免",entity:"泰国孙公司",benefit:"鼓励项目获批后免企业所得税3–8年（+减半期）；免机器进口关税；允100%外资。",basis:"《投资促进法》（B.E.2520）及修订；BOI A Guide 2025。",expiry:"按促进证书期限",action:"评估以功能性产业项目申请BOI并按时履约。",doc:"BOI证书、机器进口清单、年度运营报告。",status:"未开始",url:"https://www.boi.go.th"},
+ {juris:"泰国",cat:"y",name:"小微企业所得税减免",entity:"泰国孙公司",benefit:"净利≤30万泰铢免税、30万–300万区间按档优惠（按现行Revenue Code）。",basis:"泰国《税收法典》小微优惠。",expiry:"每个会计期间",action:"年度测算小微条件并正确申报。",doc:"注册资本/收入/净利测算表。",status:"未开始",url:"https://www.rd.go.th/english/6044.html"},
+ {juris:"墨西哥",cat:"q",name:"IMMEX 出口加工计划",entity:"墨西哥孙公司",benefit:"临时进口机设备/原材料免IVA、暂免关税（维持出口比例）；边境IVA 8%。",basis:"IMMEX法令；SAT Padrón。",expiry:"依批文与出口比例考核",action:"维持出口比例与账实相符并完成年度计划确认。",doc:"IMMEX批文、进出口报关单、年度计划与核查报告。",status:"未开始",url:"https://www.economia.gob.mx"},
+ {juris:"墨西哥",cat:"y",name:"研发税收抵免（LISR Art.200）",entity:"墨西哥孙公司",benefit:"合资格研发支出抵免ISR（经IMPI登记与SAT申报）。",basis:"LISR 第200条。",expiry:"按年度（年初提出）",action:"研发项目提前IMPI登记，汇算时主张抵免。",doc:"IMPI项目注册、研发支出证明、年度申报。",status:"未开始",url:"https://www.sat.gob.mx"}
+];
+const IN_KEY='vital_incent_status_v1';
+(function(){
+  const store=(()=>{try{return JSON.parse(localStorage.getItem(IN_KEY)||'{}');}catch(e){return {};}})();
+  const jurisSel=$('#inJuris'), catSel=$('#inCat'), sch=$('#inSearch');
+  jurisSel.innerHTML='<option value="">全部国家/地区</option>'+uniq(IN_DATA.map(x=>x.juris)).map(x=>'<option>'+x+'</option>').join('');
+  catSel.innerHTML='<option value="">全部类别</option>'+Object.keys(IN_CAT).map(c=>'<option value="'+c+'">'+IN_CAT[c]+'</option>').join('');
+  function getStatus(it){return store[it.name]||it.status||IN_STATUS[0];}
+  function render(){
+    const jf=jurisSel.value, cf=catSel.value, kw=sch.value.trim().toLowerCase();
+    const rows=IN_DATA.filter(it=>(!jf||it.juris===jf)&&(!cf||it.cat===cf)&&(!kw||(it.name+it.entity+it.basis+it.juris).toLowerCase().includes(kw)));
+    const cnt={};IN_STATUS.forEach(s=>cnt[s]=0);rows.forEach(r=>{const s=getStatus(r);if(s in cnt)cnt[s]++;});
+    $('#inBanner').textContent='共 '+rows.length+' 项['+IN_STATUS.map(s=>s+': '+cnt[s]).join(' | ')+']';
+    $('#inOut').innerHTML=rows.map(it=>{
+      const u=it.url&&it.url.trim();
+      const src=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 依据：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
+      return '<div class="arch"><div class="meta"><span class="cat-tag '+IN_CLS[it.cat]+'">'+IN_CAT[it.cat]+'</span> <span class="remind-country">'+it.juris+'</span> <b>'+it.name+'</b> <span class="remind-country">'+it.entity+'</span></div>'
+        +'<div class="notes" style="margin-top:6px">'+it.benefit+'</div>'
+        +'<div class="tp-box"><span class="tp-label">依据/条件</span>'+it.basis+'</div>'
+        +'<div class="tp-box"><span class="tp-label">有效期/节点</span>'+it.expiry+'</div>'
+        +'<div class="tp-box"><span class="tp-label">申报/履约动作</span>'+it.action+'</div>'
+        +'<div class="tp-box"><span class="tp-label">留存文档</span>'+it.doc+'</div>'
+        +'<div style="margin-top:8px">状态：<select data-n="'+it.name+'">'+IN_STATUS.map(s=>'<option '+(getStatus(it)===s?'selected':'')+'>'+s+'</option>').join('')+'</select></div>'
+        +src+'</div>';
+    }).join('');
+  }
+  $('#inOut').addEventListener('change',e=>{const t=e.target;if(t.dataset.n){store[t.dataset.n]=t.value;localStorage.setItem(IN_KEY,JSON.stringify(store));render();}});
+  $('#inReset').addEventListener('click',()=>{Object.keys(store).forEach(k=>delete store[k]);localStorage.removeItem(IN_KEY);render();});
+  jurisSel.onchange=render;catSel.onchange=render;sch.oninput=render;render();
+})();
+
+/* ---------- ⑩ 税务健康自检 ---------- */
+const CK_CAT={c:"申报合规",f:"发票/单证",r:"研发/资质",t:"转让定价",x:"跨境风险",o:"境外主体"};
+const CK_LVL={H:"高风险",M:"中风险",L:"低风险"};
+const CK_LVC={H:"c-red",M:"c-amber",L:"c-green"};
+const CKDATA=[
+ {cat:"c",risk:"H",entity:"中国内地·全部",name:"各税费按期申报缴纳",hint:"增值税/附加/印花税（次月15日前）、个税（次月15日前）、季度预缴、环保税、出口退（免）税，逐主体核对。",w:3},
+ {cat:"c",risk:"H",entity:"中国内地·母公司",name:"企业所得税汇算清缴",hint:"次年5月31日前完成，含研发加计、小微优惠、损失税前扣除等申报表。",w:3},
+ {cat:"f",risk:"H",entity:"中国内地·全部",name:"发票开具与取得合规",hint:"四流一致（合同/资金/货物/发票）；进项取得合规专票；杜绝虚开与代开。",w:3},
+ {cat:"f",risk:"M",entity:"中国内地·出口主体",name:"出口单证备案齐全",hint:"报关单、发票、收汇、物流轨迹齐全并数字化备案。",w:2},
+ {cat:"r",risk:"H",entity:"母公司",name:"高企三指标达标复核",hint:"研发费用占比、科技人员比例、高新收入占比（国科发火〔2016〕32号）。",w:3},
+ {cat:"r",risk:"M",entity:"母公司及制造主体",name:"研发加计扣除真实归集",hint:"辅助账、立项书、工时分配；非研发人员工资不得列入。",w:2},
+ {cat:"t",risk:"H",entity:"中国内地·全部",name:"关联申报随汇算报送",hint:"企业年度关联业务往来报告表随汇算一并报送（次年5月31日前）。",w:3},
+ {cat:"t",risk:"H",entity:"集团",name:"同期资料门槛测算",hint:"境外有形≥2亿/无形≥1亿/金融≥1亿/劳务≥4000万；境内≥4000万；达门槛次年5月31日前备妥。",w:3},
+ {cat:"t",risk:"M",entity:"集团",name:"关联定价政策年度复核",hint:"购销/服务/研发/资金定价是否符合独立交易原则并有书面支持。",w:2},
+ {cat:"t",risk:"H",entity:"中国内地·全部",name:"对外付款预提税判定",hint:"付利息/特许权使用费/股息/服务费前判定协定限率与10%口径并留存居民证明。",w:3},
+ {cat:"x",risk:"M",entity:"集团",name:"常设机构风险排查",hint:"驻外人员、代表处、服务交付是否触发6个月/工程12个月PE。",w:2},
+ {cat:"x",risk:"M",entity:"集团",name:"CFC利润留存审查",hint:"境外主体实际税负<12.5%、闲置利润留存是否有商业合理经营需要说明。",w:2},
+ {cat:"x",risk:"M",entity:"集团",name:"间接转让境内财产评估",hint:"境外股权重组/退出前评估7号公告间接转让风险。",w:2},
+ {cat:"x",risk:"L",entity:"集团",name:"支柱二门槛年度核对",hint:"集团合并收入是否接近7.5亿欧元；东道国补充税（港/新/泰/越）跟进。",w:1},
+ {cat:"o",risk:"H",entity:"中国香港",name:"香港申报与审计",hint:"商业登记续期、利得税报税表（连同审计账目）、周年申报表NAR1、雇主BIR56A。",w:3},
+ {cat:"o",risk:"H",entity:"新加坡",name:"新加坡申报与CPF/WHT",hint:"Form C-S/C（11月30日前）、GST季报、IR8A、预提税IR37（次月15日）、CPF供款。",w:3},
+ {cat:"o",risk:"H",entity:"美国（德州）",name:"美国申报与就业税",hint:"Form 1120（4/15）、季度预估税、941/940、州特许经营税（5/15）、物业税（4/30）、注册代理人存续。",w:3},
+ {cat:"o",risk:"H",entity:"越南",name:"越南申报与FCT",hint:"CIT季度预付+年度汇算（90日内）、VAT（次月20日）、FCT代扣、社保、关联申报Form 01。",w:3},
+ {cat:"o",risk:"H",entity:"泰国",name:"泰国申报与BOI履约",hint:"PND.50/51、PP.30（15日）、PND.53（次月7日）、SSO、DBD年报、BOI年度运营报告。",w:3},
+ {cat:"o",risk:"H",entity:"墨西哥",name:"墨西哥申报与CFDI/电子账册",hint:"ISR/IVA月度（次月17日）、年度汇算（3/31）、DIOT（次月17日）、电子账册、CFDI每笔24小时内、IMSS。",w:3},
+ {cat:"f",risk:"M",entity:"中国内地·母公司",name:"跨境付汇流备查",hint:"涉及跨境付汇的付汇申报与税务备查文件（合同、完税/备案凭证）齐全。",w:2}
+];
+const CK_KEY='vital_check_state_v1';
+function renderCheck(){
+  const cf=cSel&&cSel.value, rf=rSel&&rSel.value;
+  const rows=CKDATA.filter(x=>(!cf||x.cat===cf)&&(!rf||x.risk===rf));
+  const st=(()=>{try{return JSON.parse(localStorage.getItem(CK_KEY)||'{}');}catch(e){return {};}})();
+  let tot=0,dec=0,doubt=0;
+  rows.forEach(r=>{const v=st[r.name];tot+=r.w;if(v!==undefined){dec+=r.w;if(v==='N')doubt+=r.w;}});
+  const verdict=doubt===0?'<span class="s-ok" style="background:#dcfce7;color:#15803d;border:1px solid #86efac;padding:3px 12px;border-radius:20px;font-weight:700">税务状态：良好</span>'
+    :(doubt<=6?'<span class="s-soon" style="background:#fef3c7;color:#b45309;border:1px solid #fcd34d;padding:3px 12px;border-radius:20px;font-weight:700">税务状态：关注 · 存疑权重 '+doubt+'</span>'
+      :'<span class="s-urgent" style="background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;padding:3px 12px;border-radius:20px;font-weight:700">税务状态：预警 · 存疑权重 '+doubt+'</span>');
+  $('#ckScore').innerHTML='<div style="border:1px solid #cbd5e1;border-radius:8px;padding:10px 12px;margin-bottom:10px;background:#f8fafc">'+verdict+' <span style="color:#64748b;font-size:13px">检查进度：已决定 '+dec+'/'+tot+' 权重值 · 存疑 '+doubt+'</span></div>';
+  $('#ckOut').innerHTML=rows.map(r=>{
+    const v=st[r.name];
+    return '<div class="arch"><div class="meta"><span class="cat-tag '+CK_LVC[r.risk]+'">'+CK_LVL[r.risk]+'</span> <span class="cat-tag c-blue">'+CK_CAT[r.cat]+'</span> <span class="remind-country">'+r.entity+'</span> <b>'+r.name+'</b></div>'
+      +'<div class="notes">'+r.hint+'</div>'
+      +'<div style="margin-top:8px"><button class="btn '+(v==='N'?'':'ghost')+'" data-n="'+r.name+'" data-v="N" style="background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5">⚠ 存疑</button> '
+      +'<button class="btn '+(v==='Y'?'':'ghost')+'" data-n="'+r.name+'" data-v="Y" style="background:#dcfce7;color:#15803d;border:1px solid #86efac">✓ 通过</button> '
+      +(v?'<span class="meta">当前：'+(v==='Y'?'已通过':'已存疑')+'</span>':'<span class="meta" style="color:#94a3b8">未标记</span>')+'</div></div>';
+  }).join('');
+}
+let cSel,rSel;
+(function(){
+  cSel=$('#ckCat'); rSel=$('#ckRisk');
+  cSel.innerHTML='<option value="">全部类别</option>'+Object.keys(CK_CAT).map(c=>'<option value="'+c+'">'+CK_CAT[c]+'</option>').join('');
+  rSel.innerHTML='<option value="">全部风险</option>'+Object.keys(CK_LVL).map(r=>'<option value="'+r+'">'+CK_LVL[r]+'</option>').join('');
+  function mark(v){const st=(()=>{try{return JSON.parse(localStorage.getItem(CK_KEY)||'{}');}catch(e){return {};}})();CKDATA.forEach(r=>st[r.name]=v);localStorage.setItem(CK_KEY,JSON.stringify(st));renderCheck();}
+  $('#ckAllY').addEventListener('click',()=>mark('Y'));
+  $('#ckAllN').addEventListener('click',()=>mark('N'));
+  $('#ckReset').addEventListener('click',()=>{localStorage.removeItem(CK_KEY);renderCheck();});
+  $('#ckOut').addEventListener('click',e=>{const b=e.target.closest('button[data-n]');if(b){const st=(()=>{try{return JSON.parse(localStorage.getItem(CK_KEY)||'{}');}catch(e){return {};}})();st[b.dataset.n]=b.dataset.v;localStorage.setItem(CK_KEY,JSON.stringify(st));renderCheck();}});
+  cSel.onchange=renderCheck; rSel.onchange=renderCheck;
+  renderCheck();
 })();
 
 /* ---------- ④ kb ---------- */
