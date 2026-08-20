@@ -100,12 +100,6 @@
     </div>
     <div id="ovOut"></div>
   </section>
-    <div class="bar">
-      <label>按地域：<select id="ovRegion"></select></label>
-      <label>按属性：<select id="ovAttr"></select></label>
-    </div>
-    <div id="ovOut"></div>
-  </section>
 
   <section class="panel" id="ledger">
     <div class="bar">
@@ -988,7 +982,7 @@ function buildIntro(){
     +'<div class="notes" style="margin:6px 0">· 本地标记（⑨ 优惠状态、⑦ 申报频率与「已申报」勾选）仅存于你的浏览器，不写入云端、他人不可见；页面为公开访问，请勿放置涉密数据。</div>'
     +'<div class="notes" style="margin:6px 0">· 人工维护部分：「⑤ 处罚案例」涉及金额与定性不自动抓取；新加坡 IRAS / 墨西哥 SAT / 欧盟 无稳定公开源，需要时人工补录归档 JSON 即可。</div>'
     +'</div>';
-  document.getElementById('introVer').textContent='v15 · 2026-08-20（移除⑩自检；⑦提醒新增频率自选与已申报勾选；进出口改⑩）';
+  document.getElementById('introVer').textContent='v16 · 2026-08-20（修复重复残留的按地域/按属性下拉栏）';
   nav.querySelectorAll('.tab').forEach(b=>{b.addEventListener('click',()=>{bindTabs(b.dataset.p);});});
   document.getElementById('introBody').addEventListener('click',e=>{const g=e.target.closest('.go-tab');if(g){bindTabs(g.dataset.p);}});
 }
