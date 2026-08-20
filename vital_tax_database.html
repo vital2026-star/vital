@@ -78,6 +78,9 @@
   .intro-desc{color:#475569;font-size:13px;margin-top:2px;}
   .intro-row .btn{margin-left:auto;}
   #rmBanner{font-weight:700;color:var(--brand);}
+  .remind-done{border-left-color:#15803d;opacity:.78;}
+  .remind select{padding:2px 6px;border:1px solid var(--line);border-radius:6px;font-size:12px;margin:0 4px;}
+  .remind label{display:inline-flex;align-items:center;margin-right:10px;}
 </style>
 </head>
 <body>
@@ -157,10 +160,12 @@
       <label>类别：<select id="rmCat"></select></label>
       <input type="text" id="rmSearch" placeholder="搜索事项名称 / 关键词" style="min-width:220px;">
       <label><input type="checkbox" id="rmOnlyNear"> 只看临近（90天内）</label>
+      <label><input type="checkbox" id="rmOnlyUndone"> 只看未申报</label>
+      <button class="btn ghost" id="rmReset">重置本机设置</button>
       <span class="note" id="rmBanner"></span>
     </div>
     <div id="rmOut"></div>
-    <p class="note">说明：基于「⑥ 境外合规要求」的法规，按各境外子公司（香港 / 新加坡 / 美国德州 / 越南 / 泰国 / 墨西哥）的申报、工商、法律义务，并补充中国内地主体的关键申报节点，梳理出「开始准备」与「截止」时间提醒；倒计时以当前系统日期为准，分年度 / 月度 / 季度 / 事件四类。具体日期以当地主管部门最新规定及公司实际财年为准。</p>
+    <p class="note">说明：境内+境外主体各项申报/工商节点台账。每项可在卡片上自选「申报频率」：按月 / 按季度 / 按年（按事件类保持默认），倒计时据此重新计算；申报完成后勾选「已申报」，该事项不再计入紧急/临期统计并显示绿色已申报标记。所有自选与勾选仅存于你的浏览器，不写云端。具体截止日期以各辖区主管部门最新规定为准。</p>
   </section>
 
   <section class="panel" id="tp">
@@ -184,19 +189,6 @@
     </div>
     <div id="inOut"></div>
     <p class="note">说明：本栏记录集团各主体可适用/已享受的税收优惠与政府补助台账：资质有效期、优惠幅度、申报/复审节点、备案留存要求。状态可在本地标记（不写入云端）：未开始 / 进行中 / 已享受 / 已到期。具体以各辖区政策与合同约定为准，逐年复核。</p>
-  </section>
-
-  <section class="panel" id="check">
-    <div class="bar">
-      <label>类别：<select id="ckCat"></select></label>
-      <label>风险等级：<select id="ckRisk"></select></label>
-      <button class="btn ghost" id="ckAllY">全部通过</button>
-      <button class="btn ghost" id="ckAllN">全部存疑</button>
-      <button class="btn ghost" id="ckReset">重置</button>
-    </div>
-    <div id="ckScore"></div>
-    <div id="ckOut"></div>
-    <p class="note">说明：年度税务健康自检清单（按主体/事项逐项核对）。每项点选「通过 / 存疑」参与计分：存疑项按其风险权重累计风险分，得出 良好 / 关注 / 预警 三档结论；本地浏览器记忆，不写云端。请在汇算及对外付款节点前执行并有针对性地整改存疑项。</p>
   </section>
 
   <section class="panel" id="trade">
@@ -686,6 +678,17 @@ const SEED_REMINDERS = [
   {country:"中国内地",cat:"申报",name:"环境保护税申报",url:"https://www.suqian.gov.cn/cnsq/sszc/202108/cf3e6e18c2564d9c9522906a5d50efbb.shtml",freq:"月度/季度",type:"quarterly",qd:[[4,15],[7,15],[10,15],[1,15]],start:"按月或按季排放后",dueText:"纳税期限届满之日起15日内申报（按月缴征主体为次月15日前）"},
   {country:"中国内地",cat:"申报",name:"出口退（免）税申报",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"按月",type:"event",start:"出口报关并收汇后",dueText:"及时申报办理出口退（免）税并按规定留存单证备案（申报期限以最新公告为准）"}
 ];
+const RM_KEY='vital_remind_state_v2';
+const RM_FREQ=['按月','按季度','按年','按默认'];
+function rmDefaultFreq(it){return it.type==='monthly'?'按月':it.type==='quarterly'?'按季度':it.type==='annual'?'按年':'按默认';}
+function effCfg(it,f){
+  const c={type:it.type};
+  if(it.m)c.m=it.m; if(it.d)c.d=it.d; if(it.qd)c.qd=it.qd;
+  if(f==='按月'){c.type='monthly';c.d=it.d||15;delete c.qd;delete c.m;}
+  else if(f==='按季度'){c.type='quarterly';c.qd=it.qd||[[1,15],[4,15],[7,15],[10,15]];delete c.m;delete c.d;}
+  else if(f==='按年'){c.type='annual';c.m=it.m||12;c.d=it.d||31;delete c.qd;}
+  return c;
+}
 function nextDue(it){
   const t=new Date(); t.setHours(0,0,0,0);
   const diff=d=>Math.round((d-t)/86400000);
@@ -698,34 +701,59 @@ function rmStatus(days){if(days===null)return{cls:'s-event',txt:'按事件触发
 function renderReminders(list){
   const out=$('#rmOut');
   if(!list||!list.length){out.innerHTML='<div class="empty">无匹配提醒事项</div>';$('#rmBanner').textContent='';return;}
-  let urgent=0,soon=0;
-  const rows=list.map(it=>{const nd=nextDue(it);const st=rmStatus(nd.days);if(nd.days!==null){if(nd.days<=30)urgent++;else if(nd.days<=90)soon++;}return Object.assign({},it,{_nd:nd,_st:st});});
-  rows.sort((a,b)=>(a._nd.days===null?1e9:a._nd.days)-(b._nd.days===null?1e9:b._nd.days));
-  $('#rmBanner').textContent='临近提醒：紧急（30天内）'+urgent+' 项 · 临期（90天内）'+soon+' 项（共 '+rows.length+' 项）';
+  const store=(()=>{try{return JSON.parse(localStorage.getItem(RM_KEY)||'{}');}catch(e){return {};}})();
+  const done=n=>!!(store.done&&store.done[n]);
+  const freq=n=>store.freq&&store.freq[n]||null;
+  let urgent=0,soon=0;const doneCnt=0;
+  const rows=list.map(it=>{
+    const cfg=effCfg(it,freq(it.name));
+    const nd=nextDue(cfg);
+    const st=done(it.name)?{cls:'s-ok',txt:'✓ 已申报'}:rmStatus(nd.days);
+    const dlt=done(it.name)?-1:(nd.days===null?1e9:nd.days);
+    if(!done(it.name)&&nd.days!==null){if(nd.days<=30)urgent++;else if(nd.days<=90)soon++;}
+    return Object.assign({},it,{_nd:nd,_st:st,_dlt:dlt,_done:done(it.name),_freq:freq(it.name)||rmDefaultFreq(it)});
+  });
+  rows.sort((a,b)=>a._dlt-b._dlt);
+  const undone=list.length-rows.filter(r=>r._done).length;
+  $('#rmBanner').textContent='紧急（30天内）'+urgent+' 项 · 临期（90天内）'+soon+' 项 · 未申报 '+undone+' 项 · 共 '+rows.length+' 项';
   out.innerHTML=rows.map(it=>{
     const u=it.url&&it.url.trim();
     const title=u?'<a href="'+u+'" target="_blank" rel="noopener" style="color:#0b57d0;text-decoration:underline">'+it.name+' ↗</a>':it.name;
     const src=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 官方：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
-    return '<div class="remind">'
+    return '<div class="remind'+(it._done?' rm-done':'')+'">'
       +'<div class="remind-head"><span class="cat-tag '+CM_CAT[it.cat]+'">'+it.cat+'</span> <span class="remind-country">'+it.country+'</span> <span class="remind-name">'+title+'</span></div>'
       +'<div class="remind-times"><div><span class="rt-label">开始/准备</span>'+it.start+'</div><div><span class="rt-label">截止</span>'+it.dueText+'</div></div>'
-      +'<div class="remind-status '+it._st.cls+'">'+it._st.txt+' · 频率：'+it.freq+' · 节点：'+it._nd.label+'</div>'
+      +'<div style="margin-top:6px"><label style="font-size:12px;color:#475569">申报频率：'
+      +'<select data-f="'+it.name+'">'+RM_FREQ.map(f=>'<option '+(it._freq===f?'selected':'')+'>'+f+'</option>').join('')+'</select></label> '
+      +'<label style="font-size:12px;color:#475569"><input type="checkbox" data-d="'+it.name+'"'+(it._done?' checked':'')+'> 已申报</label> '
+      +'<span class="remind-status '+it._st.cls+'">'+it._st.txt+' · 频率：'+(it._freq==='按默认'?it.freq:it._freq)+' · 节点：'+it._nd.label+'</span></div>'
       +src+'</div>';
   }).join('');
 }
 (function(){
   const countries=uniq(SEED_REMINDERS.map(c=>c.country));
   const cats=uniq(SEED_REMINDERS.map(c=>c.cat));
-  const cSel=$('#rmCountry'),gSel=$('#rmCat'),near=$('#rmOnlyNear'),sSel=$('#rmSearch');
+  const cSel=$('#rmCountry'),gSel=$('#rmCat'),near=$('#rmOnlyNear'),undone=$('#rmOnlyUndone'),sSel=$('#rmSearch');
   cSel.innerHTML='<option value="">全部国家/地区</option>'+countries.map(x=>'<option>'+x+'</option>').join('');
   gSel.innerHTML='<option value="">全部类别</option>'+cats.map(x=>'<option>'+x+'</option>').join('');
+  function loadStore(){try{return JSON.parse(localStorage.getItem(RM_KEY)||'{}');}catch(e){return {};}}
+  function saveStore(s){localStorage.setItem(RM_KEY,JSON.stringify(s));}
   function render(){
     const cf=cSel.value,gf=gSel.value,kw=sSel.value.trim().toLowerCase();
     let rows=SEED_REMINDERS.filter(c=>(!cf||c.country===cf)&&(!gf||c.cat===gf)&&(!kw||(c.name+c.start+c.dueText).toLowerCase().includes(kw)));
-    if(near.checked){rows=rows.filter(c=>{const nd=nextDue(c);return nd.days!==null&&nd.days<=90;});}
+    if(near.checked){const nf=loadStore().freq||{};rows=rows.filter(c=>{const nd=nextDue(effCfg(c,nf[c.name]||null));return nd.days!==null&&nd.days<=90;});}
+    if(undone.checked){const s=loadStore();rows=rows.filter(c=>!(s.done&&s.done[c.name]));}
     renderReminders(rows);
   }
-  cSel.onchange=render;gSel.onchange=render;near.onchange=render;sSel.oninput=render;render();
+  $('#rmOut').addEventListener('change',e=>{
+    const t=e.target,s=loadStore();
+    if(!s.freq)s.freq={};if(!s.done)s.done={};
+    if(t.dataset.f){s.freq[t.dataset.f]=t.value;}
+    if(t.dataset.d){s.done[t.dataset.d]=t.checked;}
+    saveStore(s);render();
+  });
+  $('#rmReset').addEventListener('click',()=>{localStorage.removeItem(RM_KEY);render();});
+  cSel.onchange=render;gSel.onchange=render;near.onchange=render;undone.onchange=render;sSel.oninput=render;render();
 })();
 
 /* ---------- ⑧ 转让定价与关联交易 ---------- */
@@ -846,68 +874,7 @@ const IN_KEY='vital_incent_status_v1';
   jurisSel.onchange=render;catSel.onchange=render;sch.oninput=render;render();
 })();
 
-/* ---------- ⑩ 税务健康自检 ---------- */
-const CK_CAT={c:"申报合规",f:"发票/单证",r:"研发/资质",t:"转让定价",x:"跨境风险",o:"境外主体"};
-const CK_LVL={H:"高风险",M:"中风险",L:"低风险"};
-const CK_LVC={H:"c-red",M:"c-amber",L:"c-green"};
-const CKDATA=[
- {cat:"c",risk:"H",entity:"中国内地·全部",name:"各税费按期申报缴纳",hint:"增值税/附加/印花税（次月15日前）、个税（次月15日前）、季度预缴、环保税、出口退（免）税，逐主体核对。",w:3},
- {cat:"c",risk:"H",entity:"中国内地·母公司",name:"企业所得税汇算清缴",hint:"次年5月31日前完成，含研发加计、小微优惠、损失税前扣除等申报表。",w:3},
- {cat:"f",risk:"H",entity:"中国内地·全部",name:"发票开具与取得合规",hint:"四流一致（合同/资金/货物/发票）；进项取得合规专票；杜绝虚开与代开。",w:3},
- {cat:"f",risk:"M",entity:"中国内地·出口主体",name:"出口单证备案齐全",hint:"报关单、发票、收汇、物流轨迹齐全并数字化备案。",w:2},
- {cat:"r",risk:"H",entity:"母公司",name:"高企三指标达标复核",hint:"研发费用占比、科技人员比例、高新收入占比（国科发火〔2016〕32号）。",w:3},
- {cat:"r",risk:"M",entity:"母公司及制造主体",name:"研发加计扣除真实归集",hint:"辅助账、立项书、工时分配；非研发人员工资不得列入。",w:2},
- {cat:"t",risk:"H",entity:"中国内地·全部",name:"关联申报随汇算报送",hint:"企业年度关联业务往来报告表随汇算一并报送（次年5月31日前）。",w:3},
- {cat:"t",risk:"H",entity:"集团",name:"同期资料门槛测算",hint:"境外有形≥2亿/无形≥1亿/金融≥1亿/劳务≥4000万；境内≥4000万；达门槛次年5月31日前备妥。",w:3},
- {cat:"t",risk:"M",entity:"集团",name:"关联定价政策年度复核",hint:"购销/服务/研发/资金定价是否符合独立交易原则并有书面支持。",w:2},
- {cat:"t",risk:"H",entity:"中国内地·全部",name:"对外付款预提税判定",hint:"付利息/特许权使用费/股息/服务费前判定协定限率与10%口径并留存居民证明。",w:3},
- {cat:"x",risk:"M",entity:"集团",name:"常设机构风险排查",hint:"驻外人员、代表处、服务交付是否触发6个月/工程12个月PE。",w:2},
- {cat:"x",risk:"M",entity:"集团",name:"CFC利润留存审查",hint:"境外主体实际税负<12.5%、闲置利润留存是否有商业合理经营需要说明。",w:2},
- {cat:"x",risk:"M",entity:"集团",name:"间接转让境内财产评估",hint:"境外股权重组/退出前评估7号公告间接转让风险。",w:2},
- {cat:"x",risk:"L",entity:"集团",name:"支柱二门槛年度核对",hint:"集团合并收入是否接近7.5亿欧元；东道国补充税（港/新/泰/越）跟进。",w:1},
- {cat:"o",risk:"H",entity:"中国香港",name:"香港申报与审计",hint:"商业登记续期、利得税报税表（连同审计账目）、周年申报表NAR1、雇主BIR56A。",w:3},
- {cat:"o",risk:"H",entity:"新加坡",name:"新加坡申报与CPF/WHT",hint:"Form C-S/C（11月30日前）、GST季报、IR8A、预提税IR37（次月15日）、CPF供款。",w:3},
- {cat:"o",risk:"H",entity:"美国（德州）",name:"美国申报与就业税",hint:"Form 1120（4/15）、季度预估税、941/940、州特许经营税（5/15）、物业税（4/30）、注册代理人存续。",w:3},
- {cat:"o",risk:"H",entity:"越南",name:"越南申报与FCT",hint:"CIT季度预付+年度汇算（90日内）、VAT（次月20日）、FCT代扣、社保、关联申报Form 01。",w:3},
- {cat:"o",risk:"H",entity:"泰国",name:"泰国申报与BOI履约",hint:"PND.50/51、PP.30（15日）、PND.53（次月7日）、SSO、DBD年报、BOI年度运营报告。",w:3},
- {cat:"o",risk:"H",entity:"墨西哥",name:"墨西哥申报与CFDI/电子账册",hint:"ISR/IVA月度（次月17日）、年度汇算（3/31）、DIOT（次月17日）、电子账册、CFDI每笔24小时内、IMSS。",w:3},
- {cat:"f",risk:"M",entity:"中国内地·母公司",name:"跨境付汇流备查",hint:"涉及跨境付汇的付汇申报与税务备查文件（合同、完税/备案凭证）齐全。",w:2}
-];
-const CK_KEY='vital_check_state_v1';
-function renderCheck(){
-  const cf=cSel&&cSel.value, rf=rSel&&rSel.value;
-  const rows=CKDATA.filter(x=>(!cf||x.cat===cf)&&(!rf||x.risk===rf));
-  const st=(()=>{try{return JSON.parse(localStorage.getItem(CK_KEY)||'{}');}catch(e){return {};}})();
-  let tot=0,dec=0,doubt=0;
-  rows.forEach(r=>{const v=st[r.name];tot+=r.w;if(v!==undefined){dec+=r.w;if(v==='N')doubt+=r.w;}});
-  const verdict=doubt===0?'<span class="s-ok" style="background:#dcfce7;color:#15803d;border:1px solid #86efac;padding:3px 12px;border-radius:20px;font-weight:700">税务状态：良好</span>'
-    :(doubt<=6?'<span class="s-soon" style="background:#fef3c7;color:#b45309;border:1px solid #fcd34d;padding:3px 12px;border-radius:20px;font-weight:700">税务状态：关注 · 存疑权重 '+doubt+'</span>'
-      :'<span class="s-urgent" style="background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;padding:3px 12px;border-radius:20px;font-weight:700">税务状态：预警 · 存疑权重 '+doubt+'</span>');
-  $('#ckScore').innerHTML='<div style="border:1px solid #cbd5e1;border-radius:8px;padding:10px 12px;margin-bottom:10px;background:#f8fafc">'+verdict+' <span style="color:#64748b;font-size:13px">检查进度：已决定 '+dec+'/'+tot+' 权重值 · 存疑 '+doubt+'</span></div>';
-  $('#ckOut').innerHTML=rows.map(r=>{
-    const v=st[r.name];
-    return '<div class="arch"><div class="meta"><span class="cat-tag '+CK_LVC[r.risk]+'">'+CK_LVL[r.risk]+'</span> <span class="cat-tag c-blue">'+CK_CAT[r.cat]+'</span> <span class="remind-country">'+r.entity+'</span> <b>'+r.name+'</b></div>'
-      +'<div class="notes">'+r.hint+'</div>'
-      +'<div style="margin-top:8px"><button class="btn '+(v==='N'?'':'ghost')+'" data-n="'+r.name+'" data-v="N" style="background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5">⚠ 存疑</button> '
-      +'<button class="btn '+(v==='Y'?'':'ghost')+'" data-n="'+r.name+'" data-v="Y" style="background:#dcfce7;color:#15803d;border:1px solid #86efac">✓ 通过</button> '
-      +(v?'<span class="meta">当前：'+(v==='Y'?'已通过':'已存疑')+'</span>':'<span class="meta" style="color:#94a3b8">未标记</span>')+'</div></div>';
-  }).join('');
-}
-let cSel,rSel;
-(function(){
-  cSel=$('#ckCat'); rSel=$('#ckRisk');
-  cSel.innerHTML='<option value="">全部类别</option>'+Object.keys(CK_CAT).map(c=>'<option value="'+c+'">'+CK_CAT[c]+'</option>').join('');
-  rSel.innerHTML='<option value="">全部风险</option>'+Object.keys(CK_LVL).map(r=>'<option value="'+r+'">'+CK_LVL[r]+'</option>').join('');
-  function mark(v){const st=(()=>{try{return JSON.parse(localStorage.getItem(CK_KEY)||'{}');}catch(e){return {};}})();CKDATA.forEach(r=>st[r.name]=v);localStorage.setItem(CK_KEY,JSON.stringify(st));renderCheck();}
-  $('#ckAllY').addEventListener('click',()=>mark('Y'));
-  $('#ckAllN').addEventListener('click',()=>mark('N'));
-  $('#ckReset').addEventListener('click',()=>{localStorage.removeItem(CK_KEY);renderCheck();});
-  $('#ckOut').addEventListener('click',e=>{const b=e.target.closest('button[data-n]');if(b){const st=(()=>{try{return JSON.parse(localStorage.getItem(CK_KEY)||'{}');}catch(e){return {};}})();st[b.dataset.n]=b.dataset.v;localStorage.setItem(CK_KEY,JSON.stringify(st));renderCheck();}});
-  cSel.onchange=renderCheck; rSel.onchange=renderCheck;
-  renderCheck();
-})();
-
-/* ---------- ⑪ 进出口通关 ---------- */
+/* ---------- ⑩ 进出口通关 ---------- */
 const TR_CAT={r:"税率/归类",c:"清关流程",a:"审核重点",k:"风险提示",o:"重要事项"};
 const TR_CLS={r:"c-blue",c:"c-amber",a:"c-green",k:"c-red",o:"c-purple"};
 const TR_DIRS=["进口","出口","双向"];
@@ -923,13 +890,13 @@ const TRADE_DATA=[
  {dir:"进口",cat:"c",name:"美国进口清关（CBP HTSUS 归类）",entity:"美国孙公司",rule:"美国进口商品按 HTSUS 税则归类，CBP 报关并缴纳关税（消费账单），须维持进口 bond；关联进口注意转移定价与估价联动。",key:"估值按 19 CFR Part 152（交易价格法），与关联方交易价格须合理。",flow:"货运代理/报关行系统申报（ISF 预申报）→放行→按月结算账单。",audit:"HTSUS 归类、估价基础、301 附加税适用状态跟踪。",risk:"低估申报触发 CBP 追缴与罚则；301 附加税漏计抬高采购成本。",notes:"美国关税调整频繁，按季度复核 HTSUS 与贸易政策变动。",url:"https://www.cbp.gov"},
  {dir:"进口",cat:"a",name:"完税价格审定：特许权使用费与关联交易",entity:"境内进口主体",rule:"与进口货物有关且构成销售条件的特许权使用费应计入完税价格；买方免费提供的材料/模具/设计等也应计入；依据《海关审定进出口货物完税价格办法》。",audit:"逐票核对向卖方/关联方支付的特许权、免费供应项目；关联定价与转让定价报告口径衔接。",risk:"特许权费漏计入=少缴增值税+关税，补税+滞纳金；同时触发转让定价与海关估值联动关注。",flow:"进口时按既有特许权安排留存合同与分摊说明。",notes:"转让定价定价与海关完税价格口径不同，注意两条线合一核算。",url:"http://www.customs.gov.cn"},
  {dir:"双向",cat:"a",name:"「三单相符」实质性审核",entity:"各主体",rule:"报关单、合同、发票、提单/运单、付汇水单等相互印证；单价明显偏离同期市场行情须能说明商业理由。",audit:"价格、数量、币种、抬头一致性；用途与经营实际匹配；成交价格真实性。",risk:"价格异常易触发审价与稽查，虚报价格涉走私风险。",flow:"出口/进口均按真实成交价申报，不两头对敲洗单。",notes:"与外汇收付汇申报联动核对。",url:"http://www.customs.gov.cn"},
- {dir:"出口",cat:"a",name:"出口退（免）税单证与收汇核销",entity:"境内出口主体",rule:"出口退（免）税申报须报关单、进货发票、收汇记录齐全且相互匹配；生产企业免抵退、外贸企业免退。",audit:"报关单品名/计量单位与发票一致；计税依据（FOB 金额）准确；收汇真实并按规定留存。",risk:"申报虚假或收汇偏离引发转内销补税、罚款乃至骗取退税刑事追责；单证备案缺失影响退税办理。",flow:"出口后按申报期归集单证，2026 年起单证备案数字化。",notes:"与 ⑨ 出口退免条目/⑩ 自检联动。",url:"http://www.customs.gov.cn"},
+ {dir:"出口",cat:"a",name:"出口退（免）税单证与收汇核销",entity:"境内出口主体",rule:"出口退（免）税申报须报关单、进货发票、收汇记录齐全且相互匹配；生产企业免抵退、外贸企业免退。",audit:"报关单品名/计量单位与发票一致；计税依据（FOB 金额）准确；收汇真实并按规定留存。",risk:"申报虚假或收汇偏离引发转内销补税、罚款乃至骗取退税刑事追责；单证备案缺失影响退税办理。",flow:"出口后按申报期归集单证，2026 年起单证备案数字化。",notes:"与 ⑨ 出口退（免）税条目联动。",url:"http://www.customs.gov.cn"},
  {dir:"双向",cat:"a",name:"企业海关信用与经营资质维持",entity:"各主体",rule:"进出口收发货人备案、报关企业注册登记、危化品等许可类目维持有效；注册信息（地址、法人、经营范围）变更及时更新。",audit:"备案有效性、报关代理资质、许可年审与到期换证提醒。",risk:"备案失效或超经营范围进出口导致通关受阻及行政处罚。",notes:"新建境外主体涉及进出口的同步办理东道国报关登记。",url:"http://www.customs.gov.cn"},
  {dir:"双向",cat:"k",name:"申报不实与漏缴税款处罚",entity:"各主体",rule:"申报不实（品名、税则号列、数量、价格、原产地等）按《海关法》及行政处罚条例处理，处漏缴等值以下罚款；主动向海关报告并如实申报的可依法从轻或减免。",key:"一旦进入稽查/刑事程序，申报前错误难以自证主观无故意。",flow:"发现申报错误及时主动更正（改单/删单）并依法补税，降低处罚幅度。",audit:"每票申报前自查要素完整性。",risk:"被动被查时补税+罚款+滞纳金三损失叠加。",notes:"主动披露制度（自我纠正）应优先利用。",url:"http://www.customs.gov.cn"},
  {dir:"双向",cat:"k",name:"走私与骗取出口退税刑事红线",entity:"各主体",rule:"伪报品名/税号、低报价格、循环出口、泡沫单证等可构成走私普通货物罪、骗取出口退税罪，刑事红线务必远离。",audit:"对低价、高报、异常税号的交易逐票复核商业真实性。",risk:"涉税刑事风险会波及母公司上市公司合规与信息披露。",notes:"内控上禁止代开票、虚构贸易背景等任何形式倒挂。",url:"https://www.gov.cn"},
  {dir:"出口",cat:"k",name:"两用物项出口管制与制裁清单合规",entity:"境内出口主体 + 美国孙公司",rule:"依《出口管制法》及商务部两用物项清单，涉敏感技术/物项出口需许可；同时关注美 OFAC/商务部制裁与实体清单对美业务的传导影响。",key:"原材料/成品中是否含受管制成分需由业务与技术部门联合判定。",flow:"建立出口管制筛查清单（物项+最终用户+最终用途）。",audit:"客户筛查、用途声明、最终用户证书留存。",risk:"未经许可管制物项出口=行政+刑事双重风险；涉美制裁将冻结在美业务。",notes:"建议年度由法务/合规复核清单更新。",url:"https://www.mofcom.gov.cn"},
  {dir:"出口",cat:"k",name:"原产地证退证查询与优惠维持",entity:"境内出口主体",rule:"进口国海关对原产地证书发起退证查询（疑点函）时，须在时限内提供直运、原产地计算等证据；应对不力将取消优惠资格并追溯补税。",flow:"历年证书存档、原产地台账、供应商成分数据可随时调取。",audit:"证书真实性、直运单证链、RVC 计算底稿齐全。",risk:"退证未复=批量货物追溯补税+行业协会通报。",notes:"证书签发机构（贸促会/海关）便于追溯。",url:"https://www.ccpit.org"},
- {dir:"双向",cat:"k",name:"汇率折算与付汇合规",entity:"各主体",rule:"报关币种与收付汇申报一致；汇率波动影响完税价格换算与出口退税计税；大额/预付付汇须符合外汇管理单证留存要求。",flow:"清关时按申报当日汇率中间价折算；付汇保留合同、发票、报关及税务备案凭证。",audit:"汇率采用与币种一致性；出境付汇与完税/备案凭证衔接。",risk:"付汇单证不齐在未来反避税或 NRA 核查时无法自证。",notes:"跨境付汇与 ⑩ 自检「跨境付汇流备查」联动。",url:"https://www.safe.gov.cn"},
+ {dir:"双向",cat:"k",name:"汇率折算与付汇合规",entity:"各主体",rule:"报关币种与收付汇申报一致；汇率波动影响完税价格换算与出口退税计税；大额/预付付汇须符合外汇管理单证留存要求。",flow:"清关时按申报当日汇率中间价折算；付汇保留合同、发票、报关及税务备案凭证。",audit:"汇率采用与币种一致性；出境付汇与完税/备案凭证衔接。",risk:"付汇单证不齐在未来反避税或 NRA 核查时无法自证。",notes:"跨境付汇单证留存与付汇税务备案联动。",url:"https://www.safe.gov.cn"},
  {dir:"双向",cat:"o",name:"汇总征税 / 关税保证保险降低资金占用",entity:"境内主体",rule:"符合条件企业（含高级认证）可用汇总征税或关税保证保险方式集中纳税，缓解逐票缴税现金流压力。",flow:"向海关申请适用并维持额度；月结后按时足额补缴。",audit:"额度使用、月度补缴及时性、资格维持。",risk:"逾期补缴将被暂停适用并计滞纳金。",notes:"对高频进出口业务性价比高。",url:"http://www.customs.gov.cn"},
  {dir:"双向",cat:"o",name:"危险化学品进出口合规（母公司化工品）",entity:"境内化工类主体 + 越南孙公司",rule:"危化品进出口须完成安监应急登记、SDS/TDG 标签公示、满足运输与装卸要求；越南侧同步持化学品经营许可。",flow:"出口前取得危险特性鉴定；订舱运输按危险品流程；进口留存许可与申报。",audit:"品名活性成分与实际一致、包装运输合规。",risk:"瞒报危险品运输=公海级事故+报关行政处罚+承运方索赔。",notes:"母公司焊料助剂类产品涉化学组分，逐单判定。",url:"https://www.mem.gov.cn"},
  {dir:"进出口",cat:"o",name:"中美 301 / 关税与两反动态跟踪",entity:"美国孙公司 + 进口供应链",rule:"美国对中国商品征收 301 附加税（多轮加征）、对供应链端产品开展反倾销/反补贴（两反）调查，直接影响进口到岸成本与越南转口结构。",flow:"季度跟踪 USTR 清单、办案机关初裁/终裁与税率。",audit:"采购到岸成本测算含 301 与两反税率；评估关税排除申请与供应链再布局。",risk:"政策突变导致到岸成本骤升、合同履约亏损。",notes:"美方单位若被两反终裁，需评估应诉策略。",url:"https://www.ustr.gov"}
@@ -988,11 +955,10 @@ const PANELS=[
  {p:"kb",no:"④",label:"税务知识库",desc:"常见税务问题问答，按地域/分类检索。",calc:s=>"问答 "+KB.length+" 条"},
  {p:"cases",no:"⑤",label:"税务处罚案例",desc:"处罚/稽查曝光案例（人工维护），附合规启示；按年份/税种/关键词筛选。",calc:s=>"案例 "+SEED_CASES.length+" 条"},
  {p:"compliance",no:"⑥",label:"境外合规要求",desc:"各境外主体的申报、工商、法律义务及官方链接。",calc:s=>"事项 "+SEED_COMPLIANCE.length+" 项"},
- {p:"reminder",no:"⑦",label:"合规时间提醒",desc:"境内+境外申报节点倒计时（紧急/临期/充足），支持只看 90 天内。",calc:s=>"提醒 "+SEED_REMINDERS.length+" 项"},
+ {p:"reminder",no:"⑦",label:"合规时间提醒",desc:"境内+境外申报节点倒计时，每项可自选按月/季/年申报频率并勾选「已申报」。",calc:s=>"提醒 "+SEED_REMINDERS.length+" 项"},
  {p:"tp",no:"⑧",label:"转让定价",desc:"关联交易定价方法、同期资料门槛、预提税率表、支柱二落地、年度自查清单。",calc:s=>"条目 "+TP_DATA.length+" 条"},
- {p:"incent",no:"⑨",label:"优惠与补助",desc:"各主体适用优惠/补助台账，状态可在本机标记。",calc:s=>"优惠 "+IN_DATA.length+" 项"},
- {p:"check",no:"⑩",label:"税务自检",desc:"年度健康检查清单，点选「通过 / 存疑」实时打分（良好 / 关注 / 预警）。",calc:s=>"检查项 "+CKDATA.length+" 项"},
-  {p:"trade",no:"⑪",label:"进出口通关",desc:"进出口税率/HS归类、清关流程、海关审核重点、风险提示与重要跟踪事项。",calc:s=>"条目 "+TRADE_DATA.length+" 条"}
+{p:"incent",no:"⑨",label:"优惠与补助",desc:"各主体适用优惠/补助台账，状态可在本机标记。",calc:s=>"优惠 "+IN_DATA.length+" 项"},
+  {p:"trade",no:"⑩",label:"进出口通关",desc:"进出口税率/HS归类、清关流程、海关审核重点、风险提示与重要跟踪事项。",calc:s=>"条目 "+TRADE_DATA.length+" 条"}
  ];
 function bindTabs(activeId){
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active', b.dataset.p===activeId));
@@ -1019,10 +985,10 @@ function buildIntro(){
     +'<div class="notes" style="margin:6px 0">· 页面数据更新时间：<b id="introUpd">读取中…</b> ｜ 当前版本：<b id="introVer"></b></div>'
     +'<div class="notes" style="margin:6px 0">· 手动刷新：进入「③ 每日更新归档」点「手动重新加载」；需要重跑云端抓取，可到 GitHub Actions 页面点 Run workflow。</div>'
     +'<div class="notes" style="margin:6px 0">· 返回本页：任何板块下点击顶部导航最左侧的「〇 使用说明」标签即可随时返回。</div>'
-    +'<div class="notes" style="margin:6px 0">· 本地标记（⑨ 优惠状态、⑩ 自检结果）仅存于你的浏览器，不写入云端、他人不可见；页面为公开访问，请勿放置涉密数据。</div>'
+    +'<div class="notes" style="margin:6px 0">· 本地标记（⑨ 优惠状态、⑦ 申报频率与「已申报」勾选）仅存于你的浏览器，不写入云端、他人不可见；页面为公开访问，请勿放置涉密数据。</div>'
     +'<div class="notes" style="margin:6px 0">· 人工维护部分：「⑤ 处罚案例」涉及金额与定性不自动抓取；新加坡 IRAS / 墨西哥 SAT / 欧盟 无稳定公开源，需要时人工补录归档 JSON 即可。</div>'
     +'</div>';
-  document.getElementById('introVer').textContent='v14 · 2026-08-20（新增 ⑪ 进出口通关板块）';
+  document.getElementById('introVer').textContent='v15 · 2026-08-20（移除⑩自检；⑦提醒新增频率自选与已申报勾选；进出口改⑩）';
   nav.querySelectorAll('.tab').forEach(b=>{b.addEventListener('click',()=>{bindTabs(b.dataset.p);});});
   document.getElementById('introBody').addEventListener('click',e=>{const g=e.target.closest('.go-tab');if(g){bindTabs(g.dataset.p);}});
 }
