@@ -102,7 +102,7 @@
       <span class="note" id="archMsg"></span>
     </div>
     <div id="archOut"></div>
-    <p class="note">说明：本页打开时会自动读取 tax_updates_archive.json 并显示最新数据（文件中记录了「外部数据最后更新时间」）。此 JSON 由同目录的 tax_updater.py 自动从国家税务总局政策指引库抓取更新（可用 launchd 定时执行，无需手动改文件）。以 file:// 直接打开时浏览器会拦截本地 JSON 读取，请通过本地服务器或预览面板查看实时数据；下方内置种子记录作为兜底。</p>
+    <p class="note">说明：本页打开时会自动读取 tax_updates_archive.json 并显示最新数据（文件中记录了「外部数据最后更新时间」）。此 JSON 由同目录的 tax_updater.py 在云端平台（GitHub Actions）每天自动抓取更新，来源包括：国家税务总局政策指引库、美国国税局 IRS 新闻稿、英国税务及海关总署 HMRC 动态、美国税务基金会税制研究等；用户无需手动改文件。以 file:// 直接打开时浏览器会拦截本地 JSON 读取，请通过服务器模式查看实时数据；下方内置种子记录作为兜底。</p>
   </section>
 
   <section class="panel" id="kb">
