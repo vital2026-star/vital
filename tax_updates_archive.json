@@ -4,6 +4,83 @@
   "archives": [
     {
       "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "支持乡村振兴税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102128/common_list_zcxcjx.html"
+    },
+    {
+      "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "小微企业、个体工商户税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101970/common_list_xwqy.html"
+    },
+    {
+      "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "国别（地区）投资税收指南",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n1671176/n1671206/index.html"
+    },
+    {
+      "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "其他企业研发费用加计扣除比例提高到100%政策操作指南",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181758/content.html"
+    },
+    {
+      "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "企业投入基础研究税收优惠政策操作指南",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181967/content.html"
+    },
+    {
+      "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "“走出去”税收指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n1671176/n2884609/c2884646/content.html"
+    },
+    {
+      "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "“大众创业 万众创新”税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101827/common_list_dzcy.html"
+    },
+    {
+      "date": "2026-08-20",
       "juris": "美国",
       "title": "Vehicle Miles Traveled Taxes Need Not Invade Drivers’ Privacy",
       "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
@@ -267,6 +344,39 @@
       "url": "https://www.gov.uk/government/statistics/announcements/research-and-development-tax-credits-statistics-september-2026"
     },
     {
+      "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "2023年延续优化创新实施的税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102418/common_list_2023sfyhzczy.html"
+    },
+    {
+      "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "2022年新的组合式税费支持政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
+    },
+    {
+      "date": "2026-08-20",
+      "juris": "中国内地",
+      "title": "2019年度个人所得税综合所得年度汇算办税指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
+    },
+    {
       "date": "2026-08-19",
       "juris": "中国内地",
       "title": "高新技术企业购置设备、器具企业所得税税前一次性扣除和100％加计扣除政策操作指南",
@@ -331,116 +441,6 @@
         "指引"
       ],
       "url": "http://www.chinatax.gov.cn/chinatax/c102176/common_list_wwm.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "研发费用税前加计扣除新政指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5164426/content.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "研发费用加计扣除政策执行指引（2.0版）",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5208701/content.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "支持高校毕业生等青年就业创业税收优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5206981/content.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "支持脱贫攻坚税收优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n3439465/index.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "支持绿色发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102153/common_list_lsfz.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "支持疫情防控和经济社会发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5145863/content.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "支持教育事业发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5206982/content.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "支持小微企业和个体工商户发展税费优惠政策指引（1.0）",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210955/content.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "支持协调发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210010/content.html"
-    },
-    {
-      "date": "2026-08-19",
-      "juris": "中国内地",
-      "title": "支持共享发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。近日发布的税收政策/指引，建议点击原文核对全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210009/content.html"
     }
   ]
 }
