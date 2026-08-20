@@ -157,11 +157,12 @@
       <input type="text" id="rmSearch" placeholder="搜索事项名称 / 关键词" style="min-width:220px;">
       <label><input type="checkbox" id="rmOnlyNear"> 只看临近（90天内）</label>
       <label><input type="checkbox" id="rmOnlyUndone"> 只看未申报</label>
+      <button class="btn ghost" id="rmIcs">📅 导出日历 .ics</button>
       <button class="btn ghost" id="rmReset">重置为默认</button>
       <span class="note" id="rmBanner"></span>
     </div>
     <div id="rmOut"></div>
-    <p class="note">说明：境内+境外主体各项申报/工商节点台账。每项可在卡片上自选「申报频率」：按月 / 按季度 / 按年（按事件类保持默认），倒计时据此重新计算；申报完成后勾选「已申报」，该事项不再计入紧急/临期统计并显示绿色已申报标记。以上自选与勾选已升级为「一人更新、公共云端存储、全员可见」，无需任何设置（数据存于本页公共云库；具体截止日期以各辖区主管部门最新规定为准）。</p>
+    <p class="note">说明：境内+境外主体各项申报/工商节点台账。每项可在卡片上自选「申报频率」：按月 / 按季度 / 按年（按事件类保持默认），倒计时据此重新计算；申报完成后勾选「已申报」，该事项不再计入紧急/临期统计并显示绿色已申报标记。⑨ 中设置的「优惠/资质到期日」会自动出现在本表并参与倒计时。以上自选、勾选与到期日均已升级为「一人更新、公共云端存储、全员可见」，无需任何设置。点「📅 导出日历 .ics」可将全部节点导出为日历文件（可导入 Outlook / Google / 手机日历）。（具体截止日期以各辖区主管部门最新规定为准）。</p>
   </section>
 
   <section class="panel" id="tp">
@@ -192,6 +193,7 @@
       <label>方向：<select id="trDir"></select></label>
       <label>类别：<select id="trCat"></select></label>
       <label>主体/路径：<select id="trEntity"></select></label>
+      <label>区域：<select id="trRegion"></select></label>
       <input type="text" id="trSearch" placeholder="搜索：商品 / 税率 / 流程 / 审核 / 风险" style="min-width:250px;">
       <span class="note" id="trBanner"></span>
     </div>
@@ -735,7 +737,17 @@ const SEED_REMINDERS = [
   {country:"中国内地",cat:"申报",name:"企业所得税年度汇算清缴",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"年度",type:"annual",m:5,d:31,start:"次年1月1日起",dueText:"次年5月31日前完成汇算清缴（含研发加计备查资料留存）"},
   {country:"中国内地",cat:"申报",name:"关联业务往来申报",url:"https://hainan.chinatax.gov.cn/xxgk_6_1/17102963.html",freq:"年度",type:"annual",m:5,d:31,start:"年度汇算期间",dueText:"次年5月31日前随年度汇算报送关联业务往来报告表"},
   {country:"中国内地",cat:"申报",name:"环境保护税申报",url:"https://www.suqian.gov.cn/cnsq/sszc/202108/cf3e6e18c2564d9c9522906a5d50efbb.shtml",freq:"月度/季度",type:"quarterly",qd:[[4,15],[7,15],[10,15],[1,15]],start:"按月或按季排放后",dueText:"纳税期限届满之日起15日内申报（按月缴征主体为次月15日前）"},
-  {country:"中国内地",cat:"申报",name:"出口退（免）税申报",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"按月",type:"event",start:"出口报关并收汇后",dueText:"及时申报办理出口退（免）税并按规定留存单证备案（申报期限以最新公告为准）"}
+  {country:"中国内地",cat:"申报",name:"出口退（免）税申报",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html",freq:"按月",type:"event",start:"出口报关并收汇后",dueText:"及时申报办理出口退（免）税并按规定留存单证备案（申报期限以最新公告为准）"},
+  // 中国内地 — 工商
+  {country:"中国内地",cat:"工商",name:"企业年度报告公示（市场监管年报）",url:"https://www.gsxt.gov.cn",freq:"每年",type:"annual",m:6,d:30,start:"次年1月1日起",dueText:"每年6月30日前通过国家企业信用信息公示系统报送并公示上一年度报告（工商年报，浦东等试点区可联合报送）"},
+  {country:"中国内地",cat:"工商",name:"营业执照登记事项变更办理",url:"https://www.gsxt.gov.cn",freq:"变更时",type:"event",start:"登记事项（名称/住所/法定代表人/注册资本/经营范围等）变更后",dueText:"变更登记决议后及时办理变更登记并向登记机关申报"},
+  {country:"中国内地",cat:"工商",name:"年报即时信息公示",url:"https://www.gsxt.gov.cn",freq:"变更时",type:"event",start:"股东出资、股权转让、行政处罚等即时信息形成后",dueText:"即时信息应于形成之日起20个工作日内通过公示系统公示"},
+  // 中国内地 — 法律
+  {country:"中国内地",cat:"法律",name:"上市公司定期报告披露（母公司）",url:"https://www.csrc.gov.cn",freq:"季度+年度",type:"quarterly",qd:[[4,30],[8,31],[10,31],[1,1]],start:"报告期末",dueText:"年报4月30日前、半年报8月31日前、季报10月31日前披露（母公司系上市公司须依法履行披露义务）"},
+  {country:"中国内地",cat:"法律",name:"年度股东大会与股东大会决议披露",url:"https://www.csrc.gov.cn",freq:"每年",type:"annual",m:4,d:30,start:"财年结束后",dueText:"年度股东大会须于财年结束后6个月内召开；决议依规披露并留存会议记录"},
+  {country:"中国内地",cat:"法律",name:"全员劳动合同与社会保险合规自查",url:"https://www.mohrss.gov.cn",freq:"每年",type:"annual",m:3,d:31,start:"每年一季度",dueText:"每年3月31日前自查全员劳动合同签订、社保/公积金申报缴纳与劳动争议风险"},
+  {country:"中国内地",cat:"法律",name:"危化品安全生产许可与合规",url:"https://www.mem.gov.cn",freq:"按年",type:"annual",m:5,d:31,start:"每年中",dueText:"危化品生产/经营须持有效许可证，安全生产责任险、应急预案演练与从业人员培训记录俱全"},
+  {country:"中国内地",cat:"法律",name:"排污许可证与环境保护合规",url:"https://www.mee.gov.cn",freq:"每年",type:"event",start:"排污许可证载明的年度执行报告期",dueText:"持有排污许可证的主体须按期提交年度执行报告并按证排污（危废转移执行联单制度）"}
 ];
 const RM_KEY='vital_remind_state_v2';
 const RM_FREQ=['按月','按季度','按年','按默认'];
@@ -794,15 +806,86 @@ function renderReminders(list){
       +src+'</div>';
   }).join('');
 }
+/* ---------- ⑦ 申报提醒：动态数据源（通关/进出口 单据 + 优惠续期） ---------- */
+const TR_DOCS={
+  "进出口关税税率与 HS 归类":"报关单、合同、发票、箱单、提单；预归类决定书（如适用）",
+  "优惠贸易安排关税评审（RCEP / 中国-东盟 / CPTPP）":"原产地证书（FORM E / RCEP CO / CPTPP CO）、直运提单、发票、报关单",
+  "进口增值税与消费税":"海关缴款书、报关单、成交合同、运保费单据（FOB 加成依据）",
+  "国际贸易「单一窗口」申报与无纸化通关":"报关单（无纸化）、委托/协议、随附单证电子档案",
+  "越南进口清关（VNACCS）":"报关单、原产地证（C/O）、化学许可（FCI）、进口增值税缴款凭证",
+  "美国进口清关（CBP HTSUS 归类）":"HTSUS 归类底稿、报关行经手单证、进口 bond、301 附加税评估记录",
+  "完税价格审定：特许权使用费与关联交易":"特许权使用费合同、关联定价分摊说明、免费供应项目清单",
+  "出口退（免）税单证与收汇核销":"报关单、进货发票、箱单、收汇水单、单证备案目录（数字化）",
+  "原产地证退证查询与优惠维持":"历年原产地证书、直运提单、原产地台账、RVC 计算底稿",
+  "危险化学品进出口合规（母公司化工品）":"危险特性鉴定报告、SDS/TDG 标签、运输单证、安监/经可批准文件",
+  "两用物项出口管制与制裁清单合规":"客户/最终用户筛查记录、用途声明、最终用户证书、清单复核底稿"
+};
+const TR_SCHED=[
+  {country:"通关/进出口",cat:"申报",name:"报关与缴税（国际贸易单一窗口）",url:"https://www.singlewindow.cn",freq:"按月",type:"monthly",d:15,start:"货物到港/出运后",dueText:"按申报票次及时报关并缴税（缴款后按期核对缴款书抵扣）"},
+  {country:"通关/进出口",cat:"申报",name:"海关「汇总征税/关税保证保险」月结",url:"http://www.customs.gov.cn",freq:"按月",type:"monthly",d:10,start:"上月通关后",dueText:"次月按时足额补缴汇总征税/保证保险月结税款，维持额度"},
+  {country:"通关/进出口",cat:"申报",name:"出口收汇核销与单证备案核对",url:"https://www.safe.gov.cn",freq:"按季度",type:"quarterly",qd:[[4,15],[7,15],[10,15],[1,15]],start:"季度出口后",dueText:"季度内核对报关/发票/收汇单证齐备并完成备案归档"},
+  {country:"通关/进出口",cat:"合规",name:"AEO / 海关信用资质维持复核",url:"http://www.customs.gov.cn",freq:"按年",type:"annual",m:6,d:30,start:"年度中期",dueText:"每年复核认证条件与注册备案有效性，变更及时报备"},
+  {country:"通关/进出口",cat:"合规",name:"原产地证书年度核对",url:"https://www.ccpit.org",freq:"按年",type:"annual",m:12,d:31,start:"每年末",dueText:"核对当年证书存档、原产地台账与成分数据完备"},
+  {country:"通关/进出口",cat:"合规",name:"危化品/两用物项 出口管制清单复核",url:"https://www.mofcom.gov.cn",freq:"按年",type:"annual",m:3,d:31,start:"每年一季度",dueText:"每年复核管制清单、客户与最终用途筛查记录"},
+  {country:"美国（德州）",cat:"申报",name:"美国 301 附加税与关税政策季度评估",url:"https://www.ustr.gov",freq:"按季度",type:"quarterly",qd:[[1,31],[4,30],[7,31],[10,31]],start:"季度末",dueText:"每季度评估 USTR 清单与 301 附加税适用状态并更新到岸成本测算"},
+  {country:"越南",cat:"申报",name:"越南进口清关资料定期核对",url:"https://www.customs.gov.vn",freq:"按月",type:"monthly",d:20,start:"每月进口后",dueText:"核对 VNACCS 申报要素、原产地单据与许可范围一致性"}
+];
+function buildRemindList(){
+  const base=SEED_REMINDERS.slice();
+  try{TR_SCHED.forEach(x=>{if(!base.some(b=>b.name===x.name))base.push(x);});}catch(e){}
+  try{
+    const due=inDueStore();
+    IN_DATA.forEach(it=>{
+      const d=due[it.name];
+      if(!d)return;
+      const dt=new Date(d+'T00:00:00');
+      if(isNaN(dt))return;
+      base.push({country:it.juris,cat:"申报",name:it.name+"（续期/复审）",url:it.url||'',type:"annual",m:dt.getMonth()+1,d:dt.getDate(),start:"到期前 1 个月启动续期准备",dueText:"优惠/资质到期节点："+d+" 前完成续期与说明 — "+it.action});
+    });
+  }catch(e){}
+  return base;
+}
+function downloadIcs(){
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//vital-tax//reminder//CN','CALSCALE:GREGORIAN'];
+  const iso=d=>d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0');
+  const stamp=new Date();
+  const fmt=d=>d.getFullYear()+'/'+(d.getMonth()+1)+'/'+d.getDate();
+  let uid=0;
+  buildRemindList().forEach(it=>{
+    const cfg=effCfg(it,(rmStore().freq&&rmStore().freq[it.name])||null);
+    const t=new Date();
+    let occ=[];
+    if(cfg.type==='annual'&&cfg.m&&cfg.d){let y=t.getFullYear();for(let i=0;i<5;i++)occ.push(new Date(y+i,cfg.m-1,cfg.d));}
+    else if(cfg.type==='monthly'&&cfg.d){let y=t.getFullYear(),m=t.getMonth();for(let i=0;i<12;i++){const mm=(m+i)%12,yy=y+Math.floor((m+i)/12);occ.push(new Date(yy,mm,cfg.d));}}
+    else if(cfg.type==='quarterly'&&cfg.qd){let y=t.getFullYear();for(let i=0;i<8;i++){const q=cfg.qd[i%4];occ.push(new Date(y+Math.floor(i/4),q[0]-1,q[1]));}}
+    else if(cfg.type==='event'&&it.dueText){const nd=nextDue(it);if(nd.date)occ=[nd.date];}
+    for(const d of occ){
+      if(d<t)continue;
+      lines.push('BEGIN:VEVENT','UID:'+(++uid)+'@vital-tax','DTSTAMP:'+iso(stamp)+'T000000Z','DTSTART;VALUE=DATE:'+iso(d),'DTEND;VALUE=DATE:'+iso(new Date(d.getTime()+86400000)),'SUMMARY:'+it.name+'（'+it.country+'）','DESCRIPTION:'+it.dueText,'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:申报节点提醒','TRIGGER:-P7D','END:VALARM','END:VEVENT');
+    }
+  });
+  lines.push('END:VCALENDAR');
+  const blob=new Blob([lines.join('\r\n')],{type:'text/calendar;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='vital_tax_reminders_'+iso(new Date())+'.ics';
+  document.body.appendChild(a);a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},100);
+  alert('已导出 '+uid+' 个日历事件（含未来 12 个月/5 年节点）。');
+}
 (function(){
-  const countries=uniq(SEED_REMINDERS.map(c=>c.country));
-  const cats=uniq(SEED_REMINDERS.map(c=>c.cat));
   const cSel=$('#rmCountry'),gSel=$('#rmCat'),near=$('#rmOnlyNear'),undone=$('#rmOnlyUndone'),sSel=$('#rmSearch');
-  cSel.innerHTML='<option value="">全部国家/地区</option>'+countries.map(x=>'<option>'+x+'</option>').join('');
-  gSel.innerHTML='<option value="">全部类别</option>'+cats.map(x=>'<option>'+x+'</option>').join('');
+  function fedList(){try{return buildRemindList();}catch(e){return SEED_REMINDERS;}}
+  function refill(keep){
+    const items=fedList();
+    const cf=cSel.value,gf=gSel.value;
+    cSel.innerHTML='<option value="">全部国家/地区</option>'+uniq(items.map(x=>x.country)).map(x=>'<option '+(keep?'':(cf===x?'selected':''))+'>'+x+'</option>').join('');
+    gSel.innerHTML='<option value="">全部类别</option>'+uniq(items.map(x=>x.cat)).map(x=>'<option '+(keep?'':(gf===x?'selected':''))+'>'+x+'</option>').join('');
+  }
+  refill(true);
   function render(){
     const cf=cSel.value,gf=gSel.value,kw=sSel.value.trim().toLowerCase();
-    let rows=SEED_REMINDERS.filter(c=>(!cf||c.country===cf)&&(!gf||c.cat===gf)&&(!kw||(c.name+c.start+c.dueText).toLowerCase().includes(kw)));
+    let rows=fedList().filter(c=>(!cf||c.country===cf)&&(!gf||c.cat===gf)&&(!kw||(c.name+c.start+c.dueText).toLowerCase().includes(kw)));
     if(near.checked){const nf=rmStore().freq||{};rows=rows.filter(c=>{const nd=nextDue(effCfg(c,nf[c.name]||null));return nd.days!==null&&nd.days<=90;});}
     if(undone.checked){const s=rmStore();rows=rows.filter(c=>!(s.done&&s.done[c.name]));}
     renderReminders(rows);
@@ -824,7 +907,8 @@ function renderReminders(list){
     if(!confirm('确定将该模块所有「申报频率」与「已申报」标记恢复为默认？将同步保存到云端，全员可见。'))return;
     rmPersist({freq:{},done:{}});
   });
-  cloudOnReady(()=>{render();});
+  $('#rmIcs').addEventListener('click',()=>{try{downloadIcs();}catch(e){alert('导出失败：'+e.message);}});
+  cloudOnReady(()=>{refill(true);render();});
   cSel.onchange=render;gSel.onchange=render;near.onchange=render;undone.onchange=render;sSel.oninput=render;render();
 })();
 
@@ -922,16 +1006,25 @@ function inStore(){ /* 云端优先，本地缓存兜底 */
   try{return JSON.parse(localStorage.getItem(IN_KEY)||'{}');}catch(e){return {};}
 }
 function inSaveLocal(s){try{localStorage.setItem(IN_KEY,JSON.stringify(s));}catch(e){}}
+const IN_KEY_DUE='vital_incent_due_v1';
+function inDueStore(){ /* 云端优先，本地缓存兜底：优惠/资质到期日 name→YYYY-MM-DD */
+  if(cloudData&&cloudData.incentDue)return cloudData.incentDue;
+  try{return JSON.parse(localStorage.getItem(IN_KEY_DUE)||'{}');}catch(e){return {};}
+}
+function inSaveDueLocal(d){try{if(d)localStorage.setItem(IN_KEY_DUE,JSON.stringify(d));else localStorage.removeItem(IN_KEY_DUE);}catch(e){}}
 (function(){
   const jurisSel=$('#inJuris'), catSel=$('#inCat'), sch=$('#inSearch');
   jurisSel.innerHTML='<option value="">全部国家/地区</option>'+uniq(IN_DATA.map(x=>x.juris)).map(x=>'<option>'+x+'</option>').join('');
   catSel.innerHTML='<option value="">全部类别</option>'+Object.keys(IN_CAT).map(c=>'<option value="'+c+'">'+IN_CAT[c]+'</option>').join('');
   function getStatus(it){return inStore()[it.name]||it.status||IN_STATUS[0];}
+  function getDue(it){return inDueStore()[it.name]||'';}
   function render(){
     const jf=jurisSel.value, cf=catSel.value, kw=sch.value.trim().toLowerCase();
     const rows=IN_DATA.filter(it=>(!jf||it.juris===jf)&&(!cf||it.cat===cf)&&(!kw||(it.name+it.entity+it.basis+it.juris).toLowerCase().includes(kw)));
     const cnt={};IN_STATUS.forEach(s=>cnt[s]=0);rows.forEach(r=>{const s=getStatus(r);if(s in cnt)cnt[s]++;});
-    $('#inBanner').textContent='共 '+rows.length+' 项['+IN_STATUS.map(s=>s+': '+cnt[s]).join(' | ')+']';
+    const duemap=inDueStore();
+    const nearCnt=Object.values(duemap).filter(v=>{if(!v)return false;const d=(new Date(v).getTime()-Date.now())/86400000;return d>=0&&d<=90;}).length;
+    $('#inBanner').textContent='共 '+rows.length+' 项['+IN_STATUS.map(s=>s+': '+cnt[s]).join(' | ')+']｜已设到期日 '+Object.keys(duemap).length+' 项'+(nearCnt?'（90天内到期 '+nearCnt+' 项）':'');
     $('#inOut').innerHTML=rows.map(it=>{
       const u=it.url&&it.url.trim();
       const src=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 依据：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
@@ -942,19 +1035,31 @@ function inSaveLocal(s){try{localStorage.setItem(IN_KEY,JSON.stringify(s));}catc
         +'<div class="tp-box"><span class="tp-label">申报/履约动作</span>'+it.action+'</div>'
         +'<div class="tp-box"><span class="tp-label">留存文档</span>'+it.doc+'</div>'
         +'<div style="margin-top:8px">状态：<select data-n="'+it.name+'">'+IN_STATUS.map(s=>'<option '+(getStatus(it)===s?'selected':'')+'>'+s+'</option>').join('')+'</select></div>'
+        +'<div style="margin-top:8px">到期日（续期/复审日历提醒）：<input type="date" data-d="'+it.name+'" value="'+getDue(it)+'"></div>'
         +src+'</div>';
     }).join('');
   }
   function inPersist(s){
     inSaveLocal(s);
     if(cloudData)cloudData.incent=s;
+    const due={...inDueStore()};
+    if(cloudData)cloudData.incentDue=due;
+    inSaveDueLocal(due);
     render();
-    cloudWrite(d=>{d.incent=s;return d;},'⑨ 优惠状态').then(r=>{if(!r.ok)$('#inBanner').textContent='☁ '+r.msg;});
+    cloudWrite(d=>{d.incent=s;d.incentDue=due;return d;},'⑨ 优惠状态/到期日').then(r=>{if(!r.ok)$('#inBanner').textContent='☁ '+r.msg;});
   }
-  $('#inOut').addEventListener('change',e=>{const t=e.target;if(t.dataset.n){const s=inStore();s[t.dataset.n]=t.value;inPersist(s);}});
+  $('#inOut').addEventListener('change',e=>{
+    const t=e.target;
+    if(t.dataset.n){const s=inStore();s[t.dataset.n]=t.value;inPersist(s);}
+    else if(t.dataset.d){const due=inDueStore();if(t.value)due[t.dataset.d]=t.value;else delete due[t.dataset.d];inSaveDueLocal(due);if(cloudData)cloudData.incentDue=due;cloudWrite(d=>{d.incentDue=due;return d;},'⑨ 到期日').then(r=>{if(!r.ok)$('#inBanner').textContent='☁ '+r.msg;});render();}
+  });
   $('#inReset').addEventListener('click',()=>{
-    if(!confirm('确定将所有优惠/补助状态恢复为默认？将同步保存到云端，全员可见。'))return;
+    if(!confirm('确定将所有优惠/补助状态与到期日恢复为默认？将同步保存到云端，全员可见。'))return;
     inPersist({});
+    inSaveDueLocal(null);
+    if(cloudData)cloudData.incentDue={};
+    cloudWrite(d=>{d.incentDue={};return d;},'⑨ 优惠到期日重置').then(r=>{if(!r.ok)$('#inBanner').textContent='☁ '+r.msg;});
+    render();
   });
   cloudOnReady(()=>{render();});
   jurisSel.onchange=render;catSel.onchange=render;sch.oninput=render;render();
@@ -1011,19 +1116,34 @@ const TR_ROUTE={
   "中美 301 / 关税与两反动态跟踪":"中国→美国 / 供应链→美国"
 };
 function trRoute(t){return t.route||TR_ROUTE[t.name]||t.entity;}
+const TR_REGIONS=["中国内地","中国香港","新加坡","美国","越南","泰国","墨西哥","跨境/通用"];
+function trRegion(t){
+  const s=(t.route||TR_ROUTE[t.name]||'')+t.entity+t.name;
+  const has=(k)=>s.indexOf(k)>-1;
+  if(has("香港"))return "中国香港";
+  if(has("新加坡"))return "新加坡";
+  if(has("越南"))return "越南";
+  if(has("泰国"))return "泰国";
+  if(has("墨西哥"))return "墨西哥";
+  if(has("美国"))return "美国";
+  if(has("中国")||s.indexOf("境内")>-1)return "中国内地";
+  return "跨境/通用";
+}
 function renderTrade(list){
   const out=$('#trOut');
   if(!list||!list.length){out.innerHTML='<div class="empty">无匹配条目</div>';$('#trBanner').textContent='';return;}
   out.innerHTML=list.map(t=>{
     const u=t.url&&t.url.trim();
+    const docs=TR_DOCS[t.name];
     const src=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 官方/参考：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
     return '<div class="arch">'
-      +'<div class="meta"><span class="cat-tag '+TR_CLS[t.cat]+'">'+TR_CAT[t.cat]+'</span> <span class="remind-country">'+t.dir+'</span> <span class="remind-country" style="margin:0 2px">▶ '+trRoute(t)+'</span> <span class="remind-country">'+t.entity+'</span>'
+      +'<div class="meta"><span class="cat-tag '+TR_CLS[t.cat]+'">'+TR_CAT[t.cat]+'</span> <span class="remind-country">'+t.dir+'</span> <span class="remind-country" style="margin:0 2px">▶ '+trRoute(t)+'</span> <span class="remind-country">'+t.entity+'</span> <span class="remind-country">📍'+trRegion(t)+'</span>'
       +'<div style="font-weight:700;font-size:14px;margin-top:2px">'+t.name+'</div></div>'
       +'<div class="notes" style="margin-top:6px">'+t.rule+'</div>'
       +(t.rate?'<div class="tp-box" style="background:#eef2ff;border-color:#c7d2fe"><span class="tp-label" style="background:#e0e7ff;color:#3730a3">适用税率</span>'+t.rate+'</div>':'')
       +(t.key?'<div class="tp-box"><span class="tp-label">税率 / 归类要素</span>'+t.key+'</div>':'')
       +(t.flow?'<div class="tp-box"><span class="tp-label">流程 / 单证</span>'+t.flow+'</div>':'')
+      +(docs?'<div class="tp-box" style="background:#fff7ed;border-color:#fed7aa"><span class="tp-label" style="background:#ffedd5;color:#c2410c">海关通关合规单据</span>'+docs+'</div>':'')
       +'<div class="tp-box" style="background:#f0fdf4;border-color:#bbf7d0"><span class="tp-label" style="background:#dcfce7;color:#15803d">审核重点</span>'+t.audit+'</div>'
       +'<div class="tp-box" style="background:#fff8e6;border-color:#fde68a"><span class="tp-label" style="background:#fef3c7;color:#b45309">风险提示</span>'+t.risk+'</div>'
       +(t.notes?'<div class="meta" style="margin-top:6px;color:#666">备注：'+t.notes+'</div>':'')
@@ -1031,22 +1151,23 @@ function renderTrade(list){
   }).join('');
 }
 (function(){
-  const dSel=$('#trDir'), cSel=$('#trCat'), eSel=$('#trEntity'), sch=$('#trSearch');
+  const dSel=$('#trDir'), cSel=$('#trCat'), eSel=$('#trEntity'), rSel=$('#trRegion'), sch=$('#trSearch');
   dSel.innerHTML='<option value="">全部方向</option>'+TR_DIRS.map(x=>'<option>'+x+'</option>').join('');
   cSel.innerHTML='<option value="">全部类别</option>'+Object.keys(TR_CAT).map(c=>'<option value="'+c+'">'+TR_CAT[c]+'</option>').join('');
+  rSel.innerHTML='<option value="">全部区域</option>'+TR_REGIONS.map(x=>'<option>'+x+'</option>').join('');
   const entOpts=uniq(TRADE_DATA.map(t=>t.entity)).map(x=>'<option value="e::'+x+'">主体 · '+x+'</option>').join('');
   const rtOpts=uniq(TRADE_DATA.map(t=>trRoute(t))).map(x=>'<option value="r::'+x+'">路径 · '+x+'</option>').join('');
   eSel.innerHTML='<option value="">全部主体/路径</option>'+entOpts+rtOpts;
   function render(){
-    const df=dSel.value, cf=cSel.value, ef=eSel.value, kw=sch.value.trim().toLowerCase();
+    const df=dSel.value, cf=cSel.value, ef=eSel.value, rf=rSel.value, kw=sch.value.trim().toLowerCase();
     let rows=TRADE_DATA.filter(t=>
-      (!df||t.dir===df)&&(!cf||t.cat===cf)
+      (!df||t.dir===df)&&(!cf||t.cat===cf)&&(!rf||trRegion(t)===rf)
       &&(!ef||(ef.indexOf('e::')===0&&t.entity.includes(ef.slice(3)))||(ef.indexOf('r::')===0&&trRoute(t).includes(ef.slice(3))))
       &&(!kw||(t.name+t.rule+t.audit+t.risk+t.key+t.notes).toLowerCase().includes(kw)));
-    $('#trBanner').textContent='共 '+rows.length+' 条 / '+TRADE_DATA.length+' 条'+(ef?(' · '+(ef.slice(0,1)==='e'?'主体':'路径')+'：'+ef.slice(3)):'');
+    $('#trBanner').textContent='共 '+rows.length+' 条 / '+TRADE_DATA.length+' 条'+(ef?(' · '+(ef.slice(0,1)==='e'?'主体':'路径')+'：'+ef.slice(3)):'')+(rf?(' · 区域：'+rf):'');
     renderTrade(rows);
   }
-  eSel.onchange=render; dSel.onchange=render; cSel.onchange=render; sch.oninput=render; render();
+  eSel.onchange=render; dSel.onchange=render; cSel.onchange=render; rSel.onchange=render; sch.oninput=render; render();
 })();
 
 /* ---------- ④ kb ---------- */
