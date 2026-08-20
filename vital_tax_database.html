@@ -297,7 +297,7 @@ const TAXES = [
   {t:"泰国税务局 预提税（WHT）",u:"https://www.rd.go.th/english/6044.html"},
   {t:"泰国地方税务局 土地及建筑物税",u:"https://www.dla.go.th"}
 ]},
-{juris:"墨西哥",name:"企业所得税 ISR",rate:"30%",notes:"",docs:[
+{juris:"墨西哥",name:"企业所得税 ISR",rate:"30%",notes:"按月缴纳「临时预缴款」（Pagos Provisionales）：以上年度财务数据计算的系数（上年净应税所得÷上年应税总收入，口径含汇兑损益等全部应税收入）乘当年累计应税收入（含本年度汇兑损益，按季按 INPC 通胀调整）计提；次年3月做年度汇算（Declaración Anual）多退少补。",docs:[
   {t:"《所得税法》ISR（联邦法律全文）",u:"https://www.diputados.gob.mx/LeyesBiblio/pdf/LISR.pdf"},
   {t:"SAT 2026 综合税收决议（RMF 2026 官方全文 PDF）",u:"https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf"}
 ]},
@@ -624,7 +624,7 @@ const SEED_COMPLIANCE = [
   {country:"泰国",cat:"法律",name:"《投资促进法》及修订（Investment Promotion Act）",req:"BOI 优惠依据《投资促进法》（B.E. 2520/1977）及其第 2、3、4 号修订（B.E. 2534/2544/2560）；与《外国业务法》衔接，获 BOI 促进的项目可豁免部分外资持股限制并享有土地所有权、外籍人员工作许可等便利。",freq:"持续",url:"https://www.boi.go.th"},
   {country:"泰国",cat:"法律",name:"《税收法典》合规",req:"依泰国《税收法典》（Revenue Code）保存账簿凭证、按期申报各税种；账务须以泰语记账。",freq:"持续",url:"https://www.rd.go.th/english/38306.html"},
   {country:"墨西哥",cat:"工商",name:"RFC 税号注册",req:"在墨西哥设立公司须向 SAT 注册税号（RFC）；未注册不得开票经营。",freq:"设立时",url:"https://www.sat.gob.mx"},
-  {country:"墨西哥",cat:"申报",name:"ISR/IVA 月度申报",req:"企业所得税（ISR）30%、增值税（IVA）16%（边境地区8%）；按月申报并年度汇算，按 RMF 2026 执行。",freq:"月度+年度",url:"https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf"},
+  {country:"墨西哥",cat:"申报",name:"ISR 临时预缴 / IVA 月度申报",req:"企业所得税 ISR 税率30%，法人按月缴纳「临时预缴款」（Pagos Provisionales）：以上年度财务数据计算的系数（上年净应税所得 ÷ 上年应税总收入，口径含汇兑损益等全部应税收入）乘本年度截至当月末累计应税收入（含本年度汇兑损益，并按季按 INPC 通胀调整），于次月17日前缴纳；增值税 IVA 16%（边境8%）按月申报；次年3月做年度汇算（Declaración Anual）多退少补，按 RMF 2026 执行。",freq:"月度+年度",url:"https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf"},
   {country:"墨西哥",cat:"申报",name:"IMSS 社保登记与申报",req:"雇主须向墨西哥社保局（IMSS）为雇员登记并申报社保（含 IMSS、INFONAVIT 住房基金、退休储蓄 SAR）。",freq:"月度",url:"https://www.imss.gob.mx"},
   {country:"墨西哥",cat:"工商",name:"年度股东会与财务报表",req:"依商法召开年度股东大会、审定财务报表，并由注册会计师（Contador Público）出具意见后备案。",freq:"每年",url:"https://www.economia.gob.mx"},
   {country:"墨西哥",cat:"法律",name:"外国投资登记（RNIE）",req:"外国投资者须于设立/并购后40日内向经济部（Secretaría de Economía）办理外国投资登记（RNIE）。",freq:"设立后40日内",url:"https://www.economia.gob.mx"},
@@ -635,6 +635,7 @@ const SEED_COMPLIANCE = [
   {country:"中国香港",cat:"申报",name:"雇主报税表 BIR56A/B",req:"雇主须于税局发出雇主报税表后1个月内申报所有雇员薪酬（BIR56A）及说明文件（BIR56B），逾期将面临罚款与检控。",freq:"每年",url:"https://www.ird.gov.hk/eng/tax/er.htm"},
   {country:"新加坡",cat:"申报",name:"预提税申报（IR37）",req:"向非居民付款（利息/特许权使用费/服务费/管理费/租金等）代扣预提税后，须于次月15日前通过 IRAS 提交 IR37 申报并缴款，同时申领缴款凭证。",freq:"每月（次月15日前）",url:"https://www.iras.gov.sg/taxes/withholding-tax"},
   {country:"新加坡",cat:"法律",name:"中央公积金（CPF）供款",req:"雇主须为新加坡公民/PR 雇员缴纳中央公积金（雇员≤55岁雇主供款比例为17%），供款于工资支付后经结算于次月末前缴交。",freq:"每月",url:"https://www.cpf.gov.sg"},
+  {country:"新加坡",cat:"申报",name:"技能发展税（SDL / Skills Development Levy）",req:"雇主须按每名雇员月酬金的 0.25% 缴纳技能发展税，每人每月上限 S$11.25（按月酬金 S$4,500 封顶）；与中央公积金（CPF）供款一并经 CPF e-Submission 按月申报缴交（雇主承担，专项用于技能与终身学习基金 SSG）。",freq:"每月（随 CPF 申报）",url:"https://www.cpf.gov.sg"},
   {country:"美国（德州）",cat:"申报",name:"州失业税申报（TWC 季度）",req:"雇主须向德州劳工委员会（TWC）按季申报并缴纳州失业税（SUTA），同时确保工伤保险（Worker's Comp）合规。",freq:"季度",url:"https://www.twc.texas.gov"},
   {country:"美国（德州）",cat:"申报",name:"德州物业税申报",req:"德州对公司不动产及经营性动产（库存/设备等）征收物业税（ad valorem，地方核定税率），每年4月30日前完成申报，缴纳方式依地方分期。",freq:"每年（4月30日前申报）",url:"https://comptroller.texas.gov/taxes/property-tax/"},
   {country:"越南",cat:"申报",name:"关联交易申报（TP Form 01）",req:"与关联方交易须符合独立交易原则，随企业所得税年度汇算一并报送关联交易专项申报表（Form 01）；达到门槛时保存主体/本地/国别报告（TP 文档）。",freq:"年度",url:"https://english.luatvietnam.vn/lawoncorporateincometaxno67-2025-qh15datedjune142025ofthenationalassembly-404386-doc1.html"},
@@ -710,7 +711,7 @@ const SEED_REMINDERS = [
   {country:"泰国",cat:"法律",name:"《税收法典》合规",url:"https://www.rd.go.th/english/38306.html",freq:"持续",type:"event",start:"持续",dueText:"依《税收法典》保存泰语账簿凭证、按期申报"},
   // 墨西哥
   {country:"墨西哥",cat:"工商",name:"RFC 税号注册",url:"https://www.sat.gob.mx",freq:"设立时",type:"event",start:"设立前",dueText:"设立时向 SAT 注册 RFC 税号"},
-  {country:"墨西哥",cat:"申报",name:"ISR/IVA 月度申报",url:"https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf",freq:"月度+年度",type:"monthly",d:17,start:"应税业务发生后",dueText:"次月17日前申报+年度汇算（3–4月）"},
+  {country:"墨西哥",cat:"申报",name:"ISR 临时预缴 / IVA 月度申报",url:"https://www.sat.gob.mx/minisitio/NormatividadRMFyRGCE/documentos2026/rmf/rmf/RMF_2026-DOF-28122025.pdf",freq:"月度+年度",type:"monthly",d:17,start:"应税业务发生后",dueText:"次月17日前缴纳 ISR 临时预缴款（按上年系数×当年累计收入）并申报 IVA；次年3月年度汇算"},
   {country:"墨西哥",cat:"申报",name:"IMSS 社保登记与申报",url:"https://www.imss.gob.mx",freq:"月度",type:"monthly",d:17,start:"每月工资结算后",dueText:"次月申报缴纳（含 INFONAVIT/SAR）"},
   {country:"墨西哥",cat:"工商",name:"年度股东会与财务报表",url:"https://www.economia.gob.mx",freq:"每年",type:"annual",m:4,d:30,start:"财年结束后",dueText:"财年结束后4个月内召开股东会、审定财报并备案"},
   {country:"墨西哥",cat:"法律",name:"外国投资登记 RNIE",url:"https://www.economia.gob.mx",freq:"设立后40日内",type:"event",start:"设立/并购后",dueText:"设立后40日内向经济部办理外国投资登记"},
@@ -1111,7 +1112,7 @@ const RATE_DATA=[
  {country:"泰国",entity:"泰国孙公司（进口清关）",product:P_ALL,stage:"c",tax:"进口 VAT",rate:"7%（税基含关税与运费）",base:"（完税价格＋关税＋运费）× 7%",note:"进口时缴纳，可在销售环节抵扣。",url:"https://www.rd.go.th/english/6044.html"},
  {country:"泰国",entity:"泰国孙公司（对境外支付）",product:P_ALL,stage:"x",tax:"中泰协定预提税",rate:"股息 10%、利息 10%、特许权使用费 15%",base:"支付额 × 协定限率",note:"向母公司支付款项前留存中国居民身份证明与合同。",url:"https://www.rd.go.th/english/6044.html"},
  {country:"墨西哥",entity:"墨西哥孙公司",product:P_ALL,stage:"s",tax:"增值税 IVA",rate:"16%（边境地区 8%）",base:"不含税销售额 × 16%",note:"蒙特雷属内地税率 16%；月度申报并生成 CFDI 电子发票。",url:"https://www.sat.gob.mx"},
- {country:"墨西哥",entity:"墨西哥孙公司",product:P_ALL,stage:"s",tax:"企业所得税 ISR",rate:"30%",base:"应纳税所得额 × 30%",note:"对境外支付相关费用按 ISR 及扣除限额评估；DIOT 信息申报。",url:"https://www.sat.gob.mx"},
+ {country:"墨西哥",entity:"墨西哥孙公司",product:P_ALL,stage:"s",tax:"企业所得税 ISR",rate:"30%（法定）",base:"全年采用「临时预缴＋年度汇算」机制",note:"临时预缴（Pagos Provisionales）：以上年度口径系数（上年应税所得÷上年应税总收入，含汇兑损益）乘本年度截至当月末累计应税收入（含本年汇兑损益，按 INPC 通胀调整）计提，次月17日前缴纳；次年3月年度汇算多退少补。",url:"https://www.sat.gob.mx"},
  {country:"墨西哥",entity:"墨西哥孙公司",product:P_ALL,stage:"s",tax:"州工资税 ISN",rate:"州规定约 2%–3%（蒙特雷州）",base:"工资支出 × 州税率",note:"按月随州征缴，另计社会保障 IMSS 缴纳。",url:"https://www.sat.gob.mx"},
  {country:"墨西哥",entity:"墨西哥孙公司（进口清关）",product:P_3810,stage:"c",tax:"进口关税（TIGIE HS3810）",rate:"多数 0%–10%（助焊剂/焊膏/清洗剂类，视归类）",base:"完税价格（CIF）",note:"自中国进口适用最惠国税率，按 HS 归类核对；USMCA 优惠可更低。",url:"https://www.sat.gob.mx"},
  {country:"墨西哥",entity:"墨西哥孙公司（进口清关）",product:P_8311,stage:"c",tax:"进口关税（TIGIE HS8311）",rate:"多数 0%–15%（焊丝/焊条/焊棒类，视归类）",base:"完税价格（CIF）",note:"自中国进口适用最惠国税率，按 HS 归类核对。",url:"https://www.sat.gob.mx"},
