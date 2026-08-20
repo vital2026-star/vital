@@ -912,6 +912,7 @@ let cSel,rSel;
 
 /* ---------- 〇 使用介绍（动态生成，登记 PANELS 即自动同步导航与导览） ---------- */
 const PANELS=[
+ {p:"intro",no:"〇",label:"使用说明",desc:"板块导览、数据更新机制与使用注意事项（当前页）。",calc:s=>"内容板块 "+(PANELS.length-1)+" 个"},
  {p:"overview",no:"①",label:"公司 / 分子公司概览",desc:"境内母公司 + 15 家子/分公司及境外主体，按地域/属性筛选，含主营业务与涉及税种。",calc:s=>"主体 "+SUBSIDIARIES.length+" 家"},
  {p:"ledger",no:"②",label:"税种台账",desc:"各管辖区的税种、税率/征收方式，附官方依据链接。",calc:s=>"税种 "+TAXES.length+" 条"},
  {p:"archive",no:"③",label:"每日更新归档",desc:"云端每日自动抓取的政策/新闻流（国税总局 / IRS / HMRC / TaxFoundation），可手动重新加载。",calc:s=>"归档 "+s.arch+" 条"},
@@ -931,7 +932,7 @@ function buildIntro(){
   const nav=document.getElementById('tabsNav');
   nav.innerHTML=PANELS.map(p=>'<button class="tab" data-p="'+p.p+'">'+p.no+' '+p.label+'</button>').join('');
   const state={arch:0};
-  const rows=PANELS.map(p=>{
+  const contentRows=PANELS.filter(p=>p.p!=='intro').map(p=>{
     const cnt=(p.calc&&p.calc(state))||'';
     return '<div class="intro-row"><div class="intro-num">'+p.no+'</div><div class="intro-main"><div class="intro-title">'+p.label+' <span class="intro-cnt">'+cnt+'</span></div><div class="intro-desc">'+p.desc+'</div></div>'
       +'<button class="btn ghost go-tab" data-p="'+p.p+'">前往 →</button></div>';
@@ -939,18 +940,19 @@ function buildIntro(){
   document.getElementById('introBody').innerHTML=
     '<div style="border:1px solid var(--brand);border-radius:10px;padding:14px 16px;margin-bottom:14px;background:#f0f7ff">'
     +'<h2 style="margin:0 0 6px">📌 使用说明</h2>'
-    +'<p class="notes" style="margin:0">唯特偶税务档案数据库（301319.SZ）云端版：'+PANELS.length+' 大板块一体化台账，全球任何电脑点开即用。点击下方任一板块卡片可跳转；具体机制见「数据与更新」。</p>'
+    +'<p class="notes" style="margin:0">唯特偶税务档案数据库（301319.SZ）云端版：'+PANELS.length+' 个标签（含本说明）一体化台账，全球任何电脑点开即用。点击下方任一板块卡片可跳转；具体机制见「数据与更新」。</p>'
     +'</div>'
-    +'<div class="intro-list">'+rows+'</div>'
+    +'<div class="intro-list">'+contentRows+'</div>'
     +'<div style="border:1px solid #cbd5e1;border-radius:8px;padding:10px 14px;margin-top:14px;background:#f8fafc">'
     +'<b>🔁 数据与更新</b>'
     +'<div class="notes" style="margin:6px 0">· 自动抓取：云端每天 <b>09:30（北京时间）</b> 自动运行，来源：国家税务总局政策指引库 / IRS(美国) / HMRC(英国) / Tax Foundation(美国)，去重合并、滚动保留最新 40 条。</div>'
     +'<div class="notes" style="margin:6px 0">· 页面数据更新时间：<b id="introUpd">读取中…</b> ｜ 当前版本：<b id="introVer"></b></div>'
     +'<div class="notes" style="margin:6px 0">· 手动刷新：进入「③ 每日更新归档」点「手动重新加载」；需要重跑云端抓取，可到 GitHub Actions 页面点 Run workflow。</div>'
+    +'<div class="notes" style="margin:6px 0">· 返回本页：任何板块下点击顶部导航最左侧的「〇 使用说明」标签即可随时返回。</div>'
     +'<div class="notes" style="margin:6px 0">· 本地标记（⑨ 优惠状态、⑩ 自检结果）仅存于你的浏览器，不写入云端、他人不可见；页面为公开访问，请勿放置涉密数据。</div>'
     +'<div class="notes" style="margin:6px 0">· 人工维护部分：「⑤ 处罚案例」涉及金额与定性不自动抓取；新加坡 IRAS / 墨西哥 SAT / 欧盟 无稳定公开源，需要时人工补录归档 JSON 即可。</div>'
     +'</div>';
-  document.getElementById('introVer').textContent='v10 · 2026-08-20（含 ⑧ 转让定价 / ⑨ 优惠补助 / ⑩ 自检 / 本使用说明）';
+  document.getElementById('introVer').textContent='v11 · 2026-08-20（含 ⑧⑨⑩ 与本使用说明）';
   nav.querySelectorAll('.tab').forEach(b=>{b.addEventListener('click',()=>{bindTabs(b.dataset.p);});});
   document.getElementById('introBody').addEventListener('click',e=>{const g=e.target.closest('.go-tab');if(g){bindTabs(g.dataset.p);}});
 }
@@ -962,6 +964,7 @@ try{
 }catch(e){}
 buildIntro();
 bindTabs('intro');
+
 </script>
 </body>
 </html>
