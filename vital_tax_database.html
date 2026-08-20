@@ -198,6 +198,18 @@
     <div id="trOut"></div>
     <p class="note">说明：进出口货物税率/HS归类、清关流程与单证、海关审核重点、风险提示及重要跟踪事项（含母公司出口、越南/美国进口侧清关）。关税税则每年调整、优惠协定与两反/出口管制动态变化，具体以当年《进出口税则》及各地海关现行要求为准，建议按年度复核。</p>
   </section>
+
+  <section class="panel" id="rate">
+    <div class="bar">
+      <label>国家/地区：<select id="rateCountry"></select></label>
+      <label>产品：<select id="rateProd"></select></label>
+      <label>环节：<select id="rateStage"></select></label>
+      <input type="text" id="rateSearch" placeholder="搜索：税种 / 税率 / 计税依据 / 关键词" style="min-width:250px;">
+      <span class="note" id="rateBanner"></span>
+    </div>
+    <div id="rateOut"></div>
+    <p class="note">说明：本栏速查 7 个国家/地区 × 集团涉及产品的【销售环节】与【清关环节】税率（增值税/GST/IVA、企业所得税/利得税/ISR、关税与进口环节税、出口退税、跨境预提税）。查税率：先选「国家/地区」，再选「产品」即可定位适用税率——选择具体产品（焊锡膏/焊丝焊条/助焊剂清洗剂）时会同时显示该产品的通用税率与海关归类税率（HS：焊膏/助焊剂/清洗剂→3810；焊丝/焊条/焊棒→8311）。具体以各辖区现行法律与当年《进出口税则》为准，建议逐年复核。</p>
+  </section>
 </main>
 
 <script>
@@ -1051,6 +1063,100 @@ function renderTrade(list){
   rSel.onchange=render; cSel.onchange=render; sch.oninput=render; render();
 })();
 
+/* ---------- ⑪ 国家 × 产品税率查询（销售环节 / 清关环节 / 跨境款项） ---------- */
+const RATE_STAGE={s:{n:"销售环节",cls:"c-green"},c:{n:"清关环节",cls:"c-amber"},x:{n:"跨境款项",cls:"c-purple"}};
+const P_ALL="全品类（通用）";
+const P_PASTE="焊锡膏（锡膏·HS3810.90）",P_WIRE="焊丝/焊条/焊棒（HS8311）",P_FLUX="助焊剂/清洗剂（HS3810）",P_EM="电子焊接材料（各类·HS3810/8311）";
+const RATE_PROD=[P_ALL,P_PASTE,P_WIRE,P_FLUX,P_EM];
+const RATE_DATA=[
+ {country:"中国内地",entity:"母公司及境内销售主体",product:P_ALL,stage:"s",tax:"增值税（销项税额）",rate:"13%（销售货物标准税率）",base:"不含税销售额 × 13%",note:"出口销售收入适用零税率并按规定免抵退；自 2026-01-01 起按新《增值税法》执行。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+ {country:"中国内地",entity:"各销售主体",product:P_ALL,stage:"s",tax:"城市维护建设税及附加（附征）",rate:"城建税 7%（市区）/5%/1% ＋ 教育费附加 3% ＋ 地方教育附加 2%",base:"按实际缴纳增值税额计征",note:"以已缴增值税/消费税为计税依据随主税附征。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+ {country:"中国内地",entity:"母公司（高新）及一般主体",product:P_ALL,stage:"s",tax:"企业所得税",rate:"25%（法定）；高新技术企业 15%；小微企业实际税负 5%",base:"应纳税所得额（利润总额±纳税调整）× 税率",note:"母公司适用 15% 高企；江苏唯特偶、深圳唯特偶技术等符合小微企业条件。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+ {country:"中国内地",entity:"各销售主体",product:P_ALL,stage:"s",tax:"印花税（买卖合同）",rate:"成交金额 × 0.03%（买卖合同税目）",base:"合同价款（不含税）",note:"货物购销合同按万分之三贴花（2022 年印花税法）；境外合同备查留存。",url:"http://www.chinatax.gov.cn"},
+ {country:"中国内地",entity:"各销售主体",product:P_ALL,stage:"s",tax:"消费税",rate:"不适用（焊料/助焊剂/清洗剂均非应税消费品）",base:"—",note:"仅对烟、酒、化妆品、成品油、贵重首饰等 15 类消费品征收。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+ {country:"中国内地",entity:"境内进口主体",product:P_ALL,stage:"c",tax:"进口关税",rate:"最惠国税率一般 0–8%（电子焊接材料类约 3–10%，视 HS 归类）",base:"海关完税价格（CIF）",note:"以 HS 归类对应税率为准；可叠加当年暂定税率或协定税率（RCEP/中国-东盟 FTA 可降至 0–5%）。",url:"http://www.customs.gov.cn"},
+ {country:"中国内地",entity:"境内进口主体",product:P_ALL,stage:"c",tax:"进口环节增值税",rate:"13%（完税价格口径）",base:"（关税完税价格＋关税＋消费税）× 13%",note:"凭海关缴款书进项抵扣；焊料类一般不征消费税。",url:"http://www.customs.gov.cn"},
+ {country:"中国内地",entity:"出口销售主体",product:P_EM,stage:"c",tax:"出口退（免）税",rate:"13%（=增值税征税率，按当年出口退税文库确认档位)",base:"出口销售额（FOB）× 退税率",note:"生产企业免抵退、外贸企业免退；单证备案数字化；与口岸「三单相符」联动核对。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+ {country:"中国内地",entity:"出口销售主体",product:P_EM,stage:"c",tax:"出口关税",rate:"0%（一般不征出口关税）",base:"—",note:"仅对「两高一资」等少数目录商品征收（0–40%）；焊料类一般不属于，按年度目录复核。",url:"http://www.customs.gov.cn"},
+ {country:"中国内地",entity:"各主体（向境外付款）",product:P_ALL,stage:"x",tax:"非居民预提税（利息/股息/特许权使用费）",rate:"源泉扣缴 10%（协定限率：利息 7–10%、特许权 5–10%、股息 5–10%）",base:"支付额 × 适用税率",note:"向港/新/美/越/泰/墨支付利息、特许权使用费须代扣；享协定低税率者留存居民身份证明。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810770/common_list_ssty.html"},
+ {country:"中国香港",entity:"香港子公司",product:P_ALL,stage:"s",tax:"利得税",rate:"首 200 万港元利润 8.25%；超出部分 16.5%（两级制）",base:"应评税利润",note:"须连同经审计账目申报；关连交易按公平交易原则。",url:"https://www.ird.gov.hk/eng/tax/bus_pft.htm"},
+ {country:"中国香港",entity:"香港子公司",product:P_ALL,stage:"s",tax:"增值税 / 销售税 / 资本利得税",rate:"不征收（无关税、无销售税）",base:"—",note:"香港不征收增值税、销售税及资本利得税；仅个别货物涉应课税品。",url:"https://www.ird.gov.hk/eng/tax/bus_pft.htm"},
+ {country:"中国香港",entity:"香港子公司",product:P_ALL,stage:"c",tax:"进口关税",rate:"0%（自由贸易港，一般货物免征）",base:"—",note:"仅对烟、酒、甲醇燃料、烃油等少数应课税品征税。",url:"https://www.customs.gov.hk"},
+ {country:"中国香港",entity:"香港子公司（对境外支付）",product:P_ALL,stage:"x",tax:"预提税（股息/利息/特许权）",rate:"0%（香港不征收预提税）",base:"—",note:"香港对股息、利息及特许权使用费均不征预提税，但转让定价核对仍须留存定价文档。",url:"https://www.ird.gov.hk/eng/tax/bus_pft.htm"},
+ {country:"新加坡",entity:"新加坡子公司",product:P_ALL,stage:"s",tax:"商品及服务税 GST",rate:"9%（自 2024-01-01 起）",base:"不含税销售额 × 9%",note:"超过 100 万新元须登记 GST；出口销售适用零税率（零供应）。",url:"https://www.iras.gov.sg/taxes/goods-services-tax"},
+ {country:"新加坡",entity:"新加坡子公司",product:P_ALL,stage:"s",tax:"企业所得税",rate:"17%（新设企业前三个估税年部分免税）",base:"应课税收入 × 17%",note:"首 10 万新元全额免税、其后 20 万新元减半免税（需符合实质条件）。",url:"https://www.iras.gov.sg/taxes/corporate-income-tax"},
+ {country:"新加坡",entity:"新加坡子公司（进口清关）",product:P_ALL,stage:"c",tax:"进口 GST 及关税",rate:"进口 GST 9%；一般货物关税 0%",base:"完税价格（CIF）",note:"进口时清关缴纳 GST（可抵扣）；烟酒、汽车、燃料等特定品另征关税。",url:"https://www.customs.gov.sg"},
+ {country:"新加坡",entity:"新加坡子公司（对境外支付）",product:P_ALL,stage:"x",tax:"预提税（利息/特许权使用费）",rate:"15% 法定（符合条件协定减免）",base:"支付额 × 适用税率",note:"中新协定：利息 7%、特许权使用费 5%（须留存居民证书与商业实质）。",url:"https://www.iras.gov.sg/taxes/withholding-tax"},
+ {country:"美国（德州）",entity:"美国孙公司",product:P_ALL,stage:"s",tax:"联邦企业所得税",rate:"21%",base:"联邦应税收入 × 21%",note:"净营业收入按季预估缴纳；研发抵免可结转 20 年。",url:"https://www.irs.gov"},
+ {country:"美国（德州）",entity:"美国孙公司",product:P_ALL,stage:"s",tax:"德州州所得税",rate:"不征收（德州无州所得税）",base:"—",note:"德州对公司无州所得税，但需缴纳特许经营税（Margin Tax）。",url:"https://comptroller.texas.gov"},
+ {country:"美国（德州）",entity:"美国孙公司",product:P_ALL,stage:"s",tax:"德州特许经营税（Margin Tax）",rate:"0.375%（EZ/低边际档）或 0.75%（常规）",base:"应税边际＝收入减成本等口径，取资本/利润率孰低",note:"中小企业（EZ）较低档；按州年报申报。",url:"https://comptroller.texas.gov"},
+ {country:"美国（德州）",entity:"美国孙公司（零售/使用）",product:P_ALL,stage:"s",tax:"德州销售/使用税",rate:"州 6.25% ＋ 地方附加（常见合计约 8.25%）",base:"零售价格",note:"批发进料与生产用设备/原材料可享制造豁免；跨境购销注意使用税申报义务。",url:"https://comptroller.texas.gov"},
+ {country:"美国（德州）",entity:"美国孙公司（进口清关）",product:P_EM,stage:"c",tax:"进口关税（HTSUS）",rate:"一般 0–5%；焊材/焊料类约 2–4%",base:"交易价格（19 CFR Part 152 估价）",note:"经 CBP 报关缴纳；中国原产另叠加 301 附加税；关联进口注意成交价格（19 CFR 152）。",url:"https://www.cbp.gov"},
+ {country:"美国（德州）",entity:"美国孙公司（进口清关）",product:P_EM,stage:"c",tax:"301 附加税（原产中国）",rate:"7.5%–100%（视 USTR 清单与轮次）",base:"交易价格（CIF）",note:"按 HTSUS 9903 子目与排除清单逐季复核；评估关税排除申请与供应链再布局。",url:"https://www.ustr.gov"},
+ {country:"美国（德州）",entity:"美国孙公司（对境外支付）",product:P_ALL,stage:"x",tax:"预提税（股息/利息/特许权使用费）",rate:"30% 法定；中美协定降至股息/利息/特许权各 10%",base:"支付额 × 适用税率",note:"向母公司支付特许权使用费等须留存 W-8BEN-E 与居民证明，关联定价同步核对。",url:"https://www.irs.gov"},
+ {country:"越南",entity:"越南孙公司",product:P_ALL,stage:"s",tax:"增值税 VAT",rate:"10%（标准）；2024–2025 部分货物暂减至 8%",base:"不含税销售额 × 10%",note:"出口适用 0%；进口增值税在清关环节缴纳并可进项抵扣。",url:"https://www.customs.gov.vn"},
+ {country:"越南",entity:"越南孙公司",product:P_ALL,stage:"s",tax:"企业所得税",rate:"20%（标准）；新规优惠 10%/15%/17%",base:"应纳税所得额 × 适用税率",note:"河内主体可评估行业/园区优惠；新设外商投资小微企业依 198/2025/QH15 + 20/2026/ND-CP 自首张营业执照起 3 年免征（须符四项条件）。",url:"https://english.luatvietnam.vn"},
+ {country:"越南",entity:"越南孙公司（对非居民付款）",product:P_ALL,stage:"s",tax:"外国承包商税 FCT（代扣）",rate:"所得税 2%（货物）/按服务性质；另涉增值税",base:"支付额 × 适用税率",note:"向境外采购服务/技术付款由越南公司代扣并取得完税凭证。",url:"https://www.customs.gov.vn"},
+ {country:"越南",entity:"越南孙公司（进口清关）",product:P_EM,stage:"c",tax:"进口关税",rate:"一般 0–30%（原料/设备 0–15%）；自中国凭中国-东盟 FTA/RCEP 0–5%",base:"完税价格（CIF）",note:"经 VNACCS 报关；凭 FORM E/RCEP 原产地证享优惠，保留直接运输单证。",url:"https://www.customs.gov.vn"},
+ {country:"越南",entity:"越南孙公司（进口清关）",product:P_ALL,stage:"c",tax:"进口增值税",rate:"10%（VAT 进口环节）",base:"（完税价格＋关税）× 10%",note:"进口时缴纳，可作进项抵扣；化学品进口须持化学品经营许可并按要求申报 FCI。",url:"https://www.customs.gov.vn"},
+ {country:"越南",entity:"越南孙公司（对境外支付）",product:P_ALL,stage:"x",tax:"中越协定预提税",rate:"利息 10%、特许权使用费 15%/10%、股息（符合条件减免）",base:"支付额 × 协定限率",note:"对越付款同时涉 FCT；留存协定待遇文件与完税凭证。",url:"https://english.luatvietnam.vn"},
+ {country:"泰国",entity:"泰国孙公司",product:P_ALL,stage:"s",tax:"增值税 VAT",rate:"7%（含市政维护税安排）",base:"不含税销售额 × 7%",note:"出口适用 0%；登记及月度申报（PP30）。",url:"https://www.rd.go.th/english/6044.html"},
+ {country:"泰国",entity:"泰国孙公司",product:P_ALL,stage:"s",tax:"企业所得税",rate:"20%（中小微企业/BOI 可减免）",base:"应纳税所得额 × 20%",note:"罗勇府主体评估 BOI 行业优惠是否可申请。",url:"https://www.rd.go.th/english/6044.html"},
+ {country:"泰国",entity:"泰国孙公司（境内付款扣缴）",product:P_ALL,stage:"s",tax:"预提税 WHT（PND53）",rate:"1%–3%（视付款性质，服务/租金多按 3%）",base:"支付额 × 适用税率",note:"向居民支付服务/租金按税法代扣并在次月报送。",url:"https://www.rd.go.th/english/6044.html"},
+ {country:"泰国",entity:"泰国孙公司（进口清关）",product:P_EM,stage:"c",tax:"进口关税",rate:"多数工业品 0–10%；凭东盟-中国 FTA 焊料类 0–5%",base:"完税价格（CIF）",note:"凭 FORM E 享东盟-中国优惠；焊料类归类以 HS 为准。",url:"https://www.rd.go.th/english/6044.html"},
+ {country:"泰国",entity:"泰国孙公司（进口清关）",product:P_ALL,stage:"c",tax:"进口 VAT",rate:"7%（税基含关税与运费）",base:"（完税价格＋关税＋运费）× 7%",note:"进口时缴纳，可在销售环节抵扣。",url:"https://www.rd.go.th/english/6044.html"},
+ {country:"泰国",entity:"泰国孙公司（对境外支付）",product:P_ALL,stage:"x",tax:"中泰协定预提税",rate:"股息 10%、利息 10%、特许权使用费 15%",base:"支付额 × 协定限率",note:"向母公司支付款项前留存中国居民身份证明与合同。",url:"https://www.rd.go.th/english/6044.html"},
+ {country:"墨西哥",entity:"墨西哥孙公司",product:P_ALL,stage:"s",tax:"增值税 IVA",rate:"16%（边境地区 8%）",base:"不含税销售额 × 16%",note:"蒙特雷属内地税率 16%；月度申报并生成 CFDI 电子发票。",url:"https://www.sat.gob.mx"},
+ {country:"墨西哥",entity:"墨西哥孙公司",product:P_ALL,stage:"s",tax:"企业所得税 ISR",rate:"30%",base:"应纳税所得额 × 30%",note:"对境外支付相关费用按 ISR 及扣除限额评估；DIOT 信息申报。",url:"https://www.sat.gob.mx"},
+ {country:"墨西哥",entity:"墨西哥孙公司",product:P_ALL,stage:"s",tax:"州工资税 ISN",rate:"州规定约 2%–3%（蒙特雷州）",base:"工资支出 × 州税率",note:"按月随州征缴，另计社会保障 IMSS 缴纳。",url:"https://www.sat.gob.mx"},
+ {country:"墨西哥",entity:"墨西哥孙公司（进口清关）",product:P_EM,stage:"c",tax:"进口关税（TIGIE）",rate:"多数 0–15%（视 HS 归类；USMCA 优惠可更低）",base:"完税价格（CIF）",note:"自中国进口适用最惠国税率，按 HS 归类核对；同步评估美国-墨西哥转口结构。",url:"https://www.sat.gob.mx"},
+ {country:"墨西哥",entity:"墨西哥孙公司（进口清关）",product:P_ALL,stage:"c",tax:"进口 IVA",rate:"16%（进口时预付，可抵扣）",base:"（完税价格＋关税）× 16%",note:"通过 CFDI-T 申报缴纳，进口费用进入抵扣链条。",url:"https://www.sat.gob.mx"},
+ {country:"墨西哥",entity:"墨西哥孙公司（对境外支付）",product:P_ALL,stage:"x",tax:"中墨协定预提税",rate:"股息 5%/10%、利息 10%、特许权使用费 15% 或 10%",base:"支付额 × 协定限率",note:"向母公司付款留存中国居民身份证明与协定待遇文件。",url:"https://www.sat.gob.mx"}
+];
+function renderRate(list){
+  const out=$('#rateOut');
+  if(!list||!list.length){out.innerHTML='<div class="empty">无匹配条目</div>';return;}
+  out.innerHTML=list.map(r=>{
+    const st=RATE_STAGE[r.stage]||{n:r.stage,cls:'c-blue'};
+    const u=r.url&&r.url.trim();
+    return '<div class="arch">'
+      +'<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px">'
+      +'<span class="tp-label">'+r.country+'</span>'
+      +'<span class="cat-tag '+st.cls+'">'+st.n+'</span>'
+      +'<span class="tp-label">'+r.entity+'</span>'
+      +'<span class="tp-label">'+r.product+'</span>'
+      +'</div>'
+      +'<div class="remind-head">'+r.tax+'</div>'
+      +'<div class="rate">✦ '+r.rate+'</div>'
+      +'<div class="tp-box"><span class="tp-label">计税/征收依据</span>'+r.base+'</div>'
+      +'<div class="tp-box"><span class="tp-label">说明</span>'+r.note+'</div>'
+      +(u?'<div class="meta" style="margin-top:8px;word-break:break-all">🔗 官方/参考：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'')
+      +'</div>';
+  }).join('');
+}
+(function(){
+  const countrySel=$('#rateCountry'),prodSel=$('#rateProd'),stageSel=$('#rateStage'),sch=$('#rateSearch');
+  const countries=uniq(RATE_DATA.map(r=>r.country));
+  countrySel.innerHTML='<option value="">全部国家/地区</option>'+countries.map(x=>'<option>'+x+'</option>').join('');
+  prodSel.innerHTML='<option value="">全部产品</option>'+RATE_PROD.map(x=>'<option>'+x+'</option>').join('');
+  stageSel.innerHTML='<option value="">全部环节</option>'+Object.keys(RATE_STAGE).map(k=>'<option value="'+k+'">'+RATE_STAGE[k].n+'</option>').join('');
+  function pmatch(r,p){
+    if(!p||p===P_ALL)return true;
+    if(r.product===p)return true;
+    if(r.product===P_ALL)return true;      // 通用税率适用于所有产品
+    if(r.product===P_EM)return true;      // 选具体电子材料时含「各类」汇总行
+    if(p===P_EM)return true;              // 选「各类」时含具体细分行
+    return false;
+  }
+  function render(){
+    const cf=countrySel.value, pf=prodSel.value, sf=stageSel.value, kw=sch.value.trim().toLowerCase();
+    const rows=RATE_DATA.filter(r=>(!cf||r.country===cf)&&(!sf||r.stage===sf)&&pmatch(r,pf)&&(!kw||(r.country+r.entity+r.product+r.tax+r.rate+r.base+r.note).toLowerCase().includes(kw)));
+    $('#rateBanner').textContent='共 '+rows.length+' 条 / '+RATE_DATA.length+' 条（'+(cf||'全部国家')+' · '+(pf||'全部产品')+' · '+(sf?RATE_STAGE[sf].n:'全部环节')+'）';
+    renderRate(rows);
+  }
+  countrySel.onchange=render; prodSel.onchange=render; stageSel.onchange=render; sch.oninput=render; render();
+})();
+
 /* ---------- 〇 使用介绍（动态生成，登记 PANELS 即自动同步导航与导览） ---------- */
 const PANELS=[
  {p:"intro",no:"〇",label:"使用说明",desc:"板块导览、数据更新机制与使用注意事项（当前页）。",calc:s=>"内容板块 "+(PANELS.length-1)+" 个"},
@@ -1063,8 +1169,9 @@ const PANELS=[
  {p:"reminder",no:"⑦",label:"合规时间提醒",desc:"境内+境外申报节点倒计时，每项可自选按月/季/年申报频率并勾选「已申报」。",calc:s=>"提醒 "+SEED_REMINDERS.length+" 项"},
  {p:"tp",no:"⑧",label:"转让定价",desc:"关联交易定价方法、同期资料门槛、预提税率表、支柱二落地、年度自查清单。",calc:s=>"条目 "+TP_DATA.length+" 条"},
 {p:"incent",no:"⑨",label:"优惠与补助",desc:"各主体适用优惠/补助台账，状态可在本机标记。",calc:s=>"优惠 "+IN_DATA.length+" 项"},
-  {p:"trade",no:"⑩",label:"进出口通关",desc:"进出口税率/HS归类、清关流程、海关审核重点、风险提示与重要跟踪事项。",calc:s=>"条目 "+TRADE_DATA.length+" 条"}
- ];
+{p:"trade",no:"⑩",label:"进出口通关",desc:"进出口税率/HS归类、清关流程、海关审核重点、风险提示与重要跟踪事项。",calc:s=>"条目 "+TRADE_DATA.length+" 条"},
+  {p:"rate",no:"⑪",label:"各国税率查询",desc:"7 个国家/地区 × 各产品（焊锡膏/焊丝/焊条/助焊剂等）的销售环节与清关环节税率速查（增值税/所得税/关税/进口税/出口退税/预提税）。",calc:s=>"条目 "+RATE_DATA.length+" 条"}
+  ];
 function bindTabs(activeId){
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active', b.dataset.p===activeId));
   document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active', x.id===activeId));
@@ -1093,7 +1200,7 @@ function buildIntro(){
     +'<div class="notes" style="margin:6px 0">· 云端共享（⑦ 申报频率/已申报、⑨ 优惠状态）：数据存于本页公共云库（Supabase），无需登录、无需任何设置，任一使用者编辑后保存即全员刷新可见。页面为公开访问，请勿放置涉密数据。</div>'
     +'<div class="notes" style="margin:6px 0">· 人工维护部分：「⑤ 处罚案例」涉及金额与定性不自动抓取；新加坡 IRAS / 墨西哥 SAT / 欧盟 无稳定公开源，需要时人工补录归档 JSON 即可。</div>'
     +'</div>';
-document.getElementById('introVer').textContent='v19 · 2026-08-20（⑦⑨ 标记改为公共云库直读直写，无需任何设置）';
+document.getElementById('introVer').textContent='v20 · 2026-08-20（新增 ⑪ 各国税率查询模块）';
   nav.querySelectorAll('.tab').forEach(b=>{b.addEventListener('click',()=>{bindTabs(b.dataset.p);});});
   document.getElementById('introBody').addEventListener('click',e=>{const g=e.target.closest('.go-tab');if(g){bindTabs(g.dataset.p);}});
 }
