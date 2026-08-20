@@ -69,6 +69,14 @@
   .c-red{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;}
   .tp-label{display:inline-block;font-size:11px;font-weight:700;color:#475569;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:4px;padding:1px 6px;margin-right:6px;}
   .tp-box{margin-top:6px;padding:6px 8px;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;font-size:13px;}
+  .intro-list .intro-row{display:flex;gap:12px;align-items:center;border:1px solid #e2e8f0;border-radius:8px;padding:10px 12px;background:#fff;}
+  .intro-list .intro-row+.intro-row{margin-top:8px;}
+  .intro-num{flex:0 0 36px;height:36px;border-radius:8px;background:var(--brand);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .intro-main{flex:1;min-width:0;}
+  .intro-title{font-weight:700;font-size:15px;}
+  .intro-cnt{font-weight:400;color:var(--brand);font-size:13px;margin-left:6px;white-space:nowrap;}
+  .intro-desc{color:#475569;font-size:13px;margin-top:2px;}
+  .intro-row .btn{margin-left:auto;}
   #rmBanner{font-weight:700;color:var(--brand);}
 </style>
 </head>
@@ -77,20 +85,18 @@
   <h1>唯特偶税务档案数据库</h1>
   <p>深圳市唯特偶新材料股份有限公司（301319.SZ）· 分子公司地域/属性/税种/政策发布页 一体化台账</p>
 </header>
-<nav class="tabs">
-  <button class="tab active" data-p="overview">① 公司 / 分子公司概览</button>
-  <button class="tab" data-p="ledger">② 税种台账</button>
-  <button class="tab" data-p="archive">③ 每日更新归档</button>
-  <button class="tab" data-p="kb">④ 税务知识库</button>
-  <button class="tab" data-p="cases">⑤ 税务处罚案例</button>
-  <button class="tab" data-p="compliance">⑥ 境外合规要求</button>
-  <button class="tab" data-p="reminder">⑦ 合规时间提醒</button>
-  <button class="tab" data-p="tp">⑧ 转让定价</button>
-  <button class="tab" data-p="incent">⑨ 优惠与补助</button>
-  <button class="tab" data-p="check">⑩ 税务自检</button>
-</nav>
+<nav class="tabs" id="tabsNav"></nav>
 <main>
-  <section class="panel active" id="overview">
+  <section class="panel active" id="intro">
+    <div id="introBody"></div>
+  </section>
+  <section class="panel" id="overview">
+    <div class="bar">
+      <label>按地域：<select id="ovRegion"></select></label>
+      <label>按属性：<select id="ovAttr"></select></label>
+    </div>
+    <div id="ovOut"></div>
+  </section>
     <div class="bar">
       <label>按地域：<select id="ovRegion"></select></label>
       <label>按属性：<select id="ovAttr"></select></label>
@@ -903,6 +909,59 @@ let cSel,rSel;
   }
   rSel.onchange=render; cSel.onchange=render; sch.oninput=render; render();
 })();
+
+/* ---------- 〇 使用介绍（动态生成，登记 PANELS 即自动同步导航与导览） ---------- */
+const PANELS=[
+ {p:"overview",no:"①",label:"公司 / 分子公司概览",desc:"境内母公司 + 15 家子/分公司及境外主体，按地域/属性筛选，含主营业务与涉及税种。",calc:s=>"主体 "+SUBSIDIARIES.length+" 家"},
+ {p:"ledger",no:"②",label:"税种台账",desc:"各管辖区的税种、税率/征收方式，附官方依据链接。",calc:s=>"税种 "+TAXES.length+" 条"},
+ {p:"archive",no:"③",label:"每日更新归档",desc:"云端每日自动抓取的政策/新闻流（国税总局 / IRS / HMRC / TaxFoundation），可手动重新加载。",calc:s=>"归档 "+s.arch+" 条"},
+ {p:"kb",no:"④",label:"税务知识库",desc:"常见税务问题问答，按地域/分类检索。",calc:s=>"问答 "+KB.length+" 条"},
+ {p:"cases",no:"⑤",label:"税务处罚案例",desc:"处罚/稽查曝光案例（人工维护），附合规启示；按年份/税种/关键词筛选。",calc:s=>"案例 "+SEED_CASES.length+" 条"},
+ {p:"compliance",no:"⑥",label:"境外合规要求",desc:"各境外主体的申报、工商、法律义务及官方链接。",calc:s=>"事项 "+SEED_COMPLIANCE.length+" 项"},
+ {p:"reminder",no:"⑦",label:"合规时间提醒",desc:"境内+境外申报节点倒计时（紧急/临期/充足），支持只看 90 天内。",calc:s=>"提醒 "+SEED_REMINDERS.length+" 项"},
+ {p:"tp",no:"⑧",label:"转让定价",desc:"关联交易定价方法、同期资料门槛、预提税率表、支柱二落地、年度自查清单。",calc:s=>"条目 "+TP_DATA.length+" 条"},
+ {p:"incent",no:"⑨",label:"优惠与补助",desc:"各主体适用优惠/补助台账，状态可在本机标记。",calc:s=>"优惠 "+IN_DATA.length+" 项"},
+ {p:"check",no:"⑩",label:"税务自检",desc:"年度健康检查清单，点选「通过 / 存疑」实时打分（良好 / 关注 / 预警）。",calc:s=>"检查项 "+CKDATA.length+" 项"}
+];
+function bindTabs(activeId){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active', b.dataset.p===activeId));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active', x.id===activeId));
+}
+function buildIntro(){
+  const nav=document.getElementById('tabsNav');
+  nav.innerHTML=PANELS.map(p=>'<button class="tab" data-p="'+p.p+'">'+p.no+' '+p.label+'</button>').join('');
+  const state={arch:0};
+  const rows=PANELS.map(p=>{
+    const cnt=(p.calc&&p.calc(state))||'';
+    return '<div class="intro-row"><div class="intro-num">'+p.no+'</div><div class="intro-main"><div class="intro-title">'+p.label+' <span class="intro-cnt">'+cnt+'</span></div><div class="intro-desc">'+p.desc+'</div></div>'
+      +'<button class="btn ghost go-tab" data-p="'+p.p+'">前往 →</button></div>';
+  }).join('');
+  document.getElementById('introBody').innerHTML=
+    '<div style="border:1px solid var(--brand);border-radius:10px;padding:14px 16px;margin-bottom:14px;background:#f0f7ff">'
+    +'<h2 style="margin:0 0 6px">📌 使用说明</h2>'
+    +'<p class="notes" style="margin:0">唯特偶税务档案数据库（301319.SZ）云端版：'+PANELS.length+' 大板块一体化台账，全球任何电脑点开即用。点击下方任一板块卡片可跳转；具体机制见「数据与更新」。</p>'
+    +'</div>'
+    +'<div class="intro-list">'+rows+'</div>'
+    +'<div style="border:1px solid #cbd5e1;border-radius:8px;padding:10px 14px;margin-top:14px;background:#f8fafc">'
+    +'<b>🔁 数据与更新</b>'
+    +'<div class="notes" style="margin:6px 0">· 自动抓取：云端每天 <b>09:30（北京时间）</b> 自动运行，来源：国家税务总局政策指引库 / IRS(美国) / HMRC(英国) / Tax Foundation(美国)，去重合并、滚动保留最新 40 条。</div>'
+    +'<div class="notes" style="margin:6px 0">· 页面数据更新时间：<b id="introUpd">读取中…</b> ｜ 当前版本：<b id="introVer"></b></div>'
+    +'<div class="notes" style="margin:6px 0">· 手动刷新：进入「③ 每日更新归档」点「手动重新加载」；需要重跑云端抓取，可到 GitHub Actions 页面点 Run workflow。</div>'
+    +'<div class="notes" style="margin:6px 0">· 本地标记（⑨ 优惠状态、⑩ 自检结果）仅存于你的浏览器，不写入云端、他人不可见；页面为公开访问，请勿放置涉密数据。</div>'
+    +'<div class="notes" style="margin:6px 0">· 人工维护部分：「⑤ 处罚案例」涉及金额与定性不自动抓取；新加坡 IRAS / 墨西哥 SAT / 欧盟 无稳定公开源，需要时人工补录归档 JSON 即可。</div>'
+    +'</div>';
+  document.getElementById('introVer').textContent='v10 · 2026-08-20（含 ⑧ 转让定价 / ⑨ 优惠补助 / ⑩ 自检 / 本使用说明）';
+  nav.querySelectorAll('.tab').forEach(b=>{b.addEventListener('click',()=>{bindTabs(b.dataset.p);});});
+  document.getElementById('introBody').addEventListener('click',e=>{const g=e.target.closest('.go-tab');if(g){bindTabs(g.dataset.p);}});
+}
+try{
+  fetch('tax_updates_archive.json').then(r=>r.json()).then(j=>{
+    const arr=j.archives||j.updates||[];const n=Array.isArray(arr)?arr.length:0;
+    document.getElementById('introUpd').textContent=(j.updated||'未知')+' · '+n+' 条';
+  }).catch(()=>{document.getElementById('introUpd').textContent='（读取失败，详见 ③ 板块）';});
+}catch(e){}
+buildIntro();
+bindTabs('intro');
 </script>
 </body>
 </html>
