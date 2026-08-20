@@ -62,6 +62,13 @@
   .s-soon{background:#fef3c7;color:#b45309;border:1px solid #fcd34d;}
   .s-ok{background:#dcfce7;color:#15803d;border:1px solid #86efac;}
   .s-event{background:#f1f5f9;color:#475569;border:1px solid #cbd5e1;}
+  .c-blue{background:#e0f2fe;color:#0369a1;border:1px solid #7dd3fc;}
+  .c-green{background:#dcfce7;color:#15803d;border:1px solid #86efac;}
+  .c-amber{background:#fef3c7;color:#b45309;border:1px solid #fcd34d;}
+  .c-purple{background:#f3e8ff;color:#7e22ce;border:1px solid #d8b4fe;}
+  .c-red{background:#fee2e2;color:#b91c1c;border:1px solid #fca5a5;}
+  .tp-label{display:inline-block;font-size:11px;font-weight:700;color:#475569;background:#f1f5f9;border:1px solid #cbd5e1;border-radius:4px;padding:1px 6px;margin-right:6px;}
+  .tp-box{margin-top:6px;padding:6px 8px;border-radius:6px;background:#f8fafc;border:1px solid #e2e8f0;font-size:13px;}
   #rmBanner{font-weight:700;color:var(--brand);}
 </style>
 </head>
@@ -78,6 +85,7 @@
   <button class="tab" data-p="cases">⑤ 税务处罚案例</button>
   <button class="tab" data-p="compliance">⑥ 境外合规要求</button>
   <button class="tab" data-p="reminder">⑦ 合规时间提醒</button>
+  <button class="tab" data-p="tp">⑧ 转让定价</button>
 </nav>
 <main>
   <section class="panel active" id="overview">
@@ -145,6 +153,17 @@
     </div>
     <div id="rmOut"></div>
     <p class="note">说明：基于「⑥ 境外合规要求」的法规，按各境外子公司（香港 / 新加坡 / 美国德州 / 越南 / 泰国 / 墨西哥）的申报、工商、法律义务，并补充中国内地主体的关键申报节点，梳理出「开始准备」与「截止」时间提醒；倒计时以当前系统日期为准，分年度 / 月度 / 季度 / 事件四类。具体日期以当地主管部门最新规定及公司实际财年为准。</p>
+  </section>
+
+  <section class="panel" id="tp">
+    <div class="bar">
+      <label>类别：<select id="tpCat"></select></label>
+      <label>涉事主体：<select id="tpEntity"></select></label>
+      <input type="text" id="tpSearch" placeholder="搜索：关联交易 / 定价方法 / 文档 / 风险" style="min-width:240px;">
+      <span class="note" id="tpBanner"></span>
+    </div>
+    <div id="tpOut"></div>
+    <p class="note">说明：本栏聚焦集团与中国内地母公司及境外子（孙）公司之间的关联交易、转让定价方法与定价政策、同期资料准备门槛、跨境资金往来预提税、常设机构/CFC/间接转让等风险，以及支柱二全球最低税落地跟踪；并附年度自查清单。定价方法、门槛与税率以《企业所得税法》及特别纳税调整规则（国税发〔2009〕2号、总局公告〔2016〕42号、〔2017〕6号/7号/35号等）和最新协定/东道国规定为准，建议按实际架构与功能承担逐年复核。</p>
   </section>
 </main>
 
@@ -663,6 +682,69 @@ function renderReminders(list){
     renderReminders(rows);
   }
   cSel.onchange=render;gSel.onchange=render;near.onchange=render;sSel.oninput=render;render();
+})();
+
+/* ---------- ⑧ 转让定价与关联交易 ---------- */
+const TP_CAT = {v:"关联交易", d:"文档门槛", x:"跨境风险", f:"资金/预提税", p:"支柱二", c:"自查清单"};
+const TP_CLS = {v:"c-blue", d:"c-amber", x:"c-red", f:"c-purple", p:"c-green", c:"c-blue"};
+const TP_DATA = [
+  {entity:"集团范围",cat:"v",name:"转让定价与关联交易总体要求",rule:"集团与关联方（含境外子/孙公司）之间的购销、服务、无形资产使用与转让、资金往来应符合独立交易原则；税务机关可特别纳税调整并加收利息（企业所得税法第41条）。",method:"按各关联交易功能风险选择最适当方法（CUP/再销售/成本加成/交易净利率 TNMM/利润分割）。",doc:"每年测算关联交易金额是否触发同期资料门槛（本地文档），留存定价政策与可比数据。",risk:"未按独立交易原则定价、同期资料缺失将显著放大特别纳税调整风险。",notes:"建议每年财税例会出具「关联交易定价年度复核记录」。",url:"https://www.chinatax.gov.cn/n810341/n810765/n812166/n812652/c1189827/content.html"},
+  {entity:"母公司 ↔ 香港",cat:"v",name:"产品转口销售定价（母→港）",rule:"香港为转口/贸易平台，购销价差应与其承担的有限功能与风险匹配，避免利润过度留存境外。",method:"可比非受控价格法（CUP）或再销售价格法（RPM）；港方毛利率建议参照市场分销商区间。",doc:"本地文档（若达门槛）+香港利得税申报定价说明。",risk:"定价偏低使利润留存香港，一旦被特别纳税调整或认定缺乏商业实质将双重征税。",notes:"香港无资本利得税但应按「离岸收入申索」指引保留单据。",url:"https://www.ird.gov.hk/eng/tax/bus_pft.htm"},
+  {entity:"母公司 ↔ 新加坡",cat:"v",name:"产品/服务交易定价",rule:"新设贸易主体定价须与功能风险一致；新加坡可就境外获取收益享受税务风险低、但集团份额留存的透明度要求高。",method:"TNMM（功能方保留正常回报）+CUP（货物）。",doc:"本地文档 + Form C-S/C 申报时留存定价说明。",risk:"新加坡子公司盈利虚高引致集团整体税负不经济；过低则招致尽调/调查。",notes:"关注新加坡实质要求（ECD），无实质可能影响税收优惠。",url:"https://www.iras.gov.sg"},
+  {entity:"母公司 ↔ 美国（德州）",cat:"v",name:"研发成果与技术转让/服务定价",rule:"美国研发主体与母公司间的研发服务、成果让渡须按成本加成或可比安排定价；无税IRC482同源规则。",method:"研发共享协议（R&D cost sharing）或成本加成（Cost Plus）。",doc:"本地文档 + 特许权使用费评估报告 + 8283类披露（如适用）。",risk:"研发成果低价让渡致无形资产价值流失，招致美中两国调整。",notes:"德州无州所得税但特许经营税/物业税为额外成本。",url:"https://www.irs.gov/corporations"},
+  {entity:"母公司 ↔ 越南",cat:"v",name:"原材料供应 + 技术服务 + FCT",rule:"对越销售与技术服务费须符合独立交易原则；向外国承包商付款触发越南外国承包商税（FCT，含所得税+增值税），由越南公司代扣。",method:"CUP（货物）+成本加成（技术服务）。",doc:"本地文档（越南 TP 专项申报 Form 01 随汇算报送）。",risk:"技术服务费定价超公允被 NAV 质疑；FCT 扣缴不足承担连带责任。",notes:"越南 TP 文档门槛与国别报告按 132/2020/ND-CP 执行。",url:"https://english.luatvietnam.vn/lawoncorporateincometaxno67-2025-qh15datedjune142025ofthenationalassembly-404386-doc1.html"},
+  {entity:"香港 ↔ 泰国 / 墨西哥",cat:"v",name:"区域内转口与分销定价",rule:"区域枢纽向泰国/墨西哥分销的定价应与功能风险匹配；同时关注东道国转让定价申报义务。",method:"RPM/TNMM。",doc:"各主体本地文档按门槛准备。",risk:"利润留存枢纽但当地价值创造沟通不足时易被东道国挑战。",notes:"泰国/墨西哥对跨境关联分销逐年加强核查。",url:"https://www.rd.go.th/english/6044.html"},
+  {entity:"境内关联方间",cat:"v",name:"境内制造/贸易主体之间定价",rule:"惠州、苏州等境内公司间的采购、加工、服务定价同样受独立交易原则约束。",method:"成本加成/CUP。",doc:"境内关联交易≥4000万元触发本地文档准备。",risk:"境内主体间定价不公允将受特别纳税调整（同类风险与境外一致）。",notes:"境内关联汇总无需思国别报告但需关联申报。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+  {entity:"集团范围",cat:"d",name:"同期资料与国别报告门槛（本地文档）",rule:"42号公告：年度发生关联交易符合下列之一的应准备本地文档——有形资产所有权转让/受让金额（境外）≥2亿元；无形资产转让/受让≥1亿元；金融资产≥1亿元；劳务合计≥4000万元；或境内关联交易合计≥4000万元。",method:"达到任一门槛即准备本地文档（Local File），并于调查时30日内提供。",doc:"本地文档：组织结构、关联交易描述、功能风险、定价政策、可比分析。",risk:"未按规定准备或提供同期资料，面临1万–5万元罚款并影响举证责任承担。",notes:"境内交易≥4000万与境外劳务≥4000万两条门槛最易被忽视。",url:"https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194557/content.html"},
+  {entity:"集团范围",cat:"d",name:"主体文档与国别报告",rule:"主体文档：上年度发生境外关联交易且合并报表收入≥10亿元的集团应准备主体文档（Master File）并随关联申报一并提供；国别报告（CbC）：上年度合并收入≥55亿元（约7.5亿欧元）且成员单位≥5家、分布在≥2国时报送。",method:"达到门槛向主管税务机关报送。",doc:"主体文档 + 国别报告（通过关联申报系统填报）。",risk:"当年不触发≠永远豁免，集团营收快速增长时需提前测算。",notes:"唯特偶集团当前约10亿人民币级，已接近主体文档收入门槛。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810755/c5191664/content.html"},
+  {entity:"集团范围",cat:"d",name:"5分钟底线 / 低价值服务",rule:"跨境向境外关联方提供的低价值服务（可拆分、金额小、属母集团管理性质等）可采用「5分钟规则」简化定价（成本加成5%），减少文档负担。",method:"成本加成5% + 留存服务清单与分摊依据。",doc:"低价值服务清单、成本分摊表。",risk:"未留存分摊依据在核查时无法自证。",notes:"与他国低价值服务简化规则（如新加坡）并行适用。",url:"https://www.chinatax.gov.cn/chinatax/n810219/n810780/c5168789/content.html"},
+  {entity:"集团范围",cat:"x",name:"常设机构（PE）风险",rule:"驻外人员、代表处、服务交付或代理安排可能构成境外常设机构，导致利润被东道国课税；中国境内主体派驻境外人员亦可能构成中国PE。",method:"核查现有架构是否触发6个月/183天或工程工地12个月规则。",doc:"员工派驻记录 + 合同履行地留痕。",risk:"境外销售尾随驻外人员被认定 PE 须单独核算当地利润并申报纳税。",notes:"外派人员工资社保安排需同步考虑。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810770/common_list_ssty.html"},
+  {entity:"集团范围",cat:"x",name:"受控外国企业（CFC）利润留存",rule:"由居民企业控制、设立在实际税负<12.5%的国家（地区）的企业，无合理经营需要而不分配利润的，归属居民企业的部分应计入当期收入（企业所得税法第45条）。",method:"逐层核算各境外主体实际税负水平。",doc:"境外主体税负测算 + 留存利润的合理商业经营需要说明。",risk:"香港、新加坡等地实际税负低于12.5%时，长期不分配利润存在 CFC 视同分配风险。",notes:"与境外汇回预算一并规划。",url:"https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194417/content.html?zbb=true"},
+  {entity:"集团范围",cat:"x",name:"间接转让中国应税财产（7号公告）",rule:"非居民通过转让境外控股公司间接转让中国境内应税财产，无合理商业目的的，将被重新定性并以中国居民企业权益转让课税（企业所得税法第47条及7号公告）。",method:"转让前做好合理商业目的评估与资料留存。",doc:"该次重组的交易文件 + 商业目的事前说明。",risk:"未来境外股权重组/退出若被认定间接转让，将按17%、20%等税率补税并涉滞纳金。",notes:"唯特偶对境外子公司减持、清算、吸收合并等变动前务必评估。",url:"https://www.chinatax.gov.cn/chinatax/n810219/n810744/n1611176/n1611196/c2348155/content.html"},
+  {entity:"集团范围",cat:"f",name:"关联资金拆借与资本弱化",rule:"关联方资金拆借利率须符合同期同类市场水平；企业实际支付给关联方的利息，超过权益/债务比例（金融企业5:1、其他2:1）的部分不得税前扣除（财税〔2008〕121号）。",method:"以央行贷款市场报价利率（LPR）+合理风险溢价作为利率基准并留存测算。",doc:"借款合同 + 利率定价测算 + 债资比例计算表。",risk:"超比例利息不得扣除、低利率拆借另涉预提税与反避税。",notes:"资金借出方（境内/境外）均须考虑预提税扣缴义务。",url:"https://www.chinatax.gov.cn/n810341/n810765/n812151/n812586/c1188410/content.html"},
+  {entity:"内地 → 香港",cat:"f",name:"跨港预提税",rule:"按中港税收安排：股息一般免征（控股）、利息7%、特许权使用费5%（享受低税率须具合理商业实质并留存居民证明）；资本弱化影响利息扣除。",method:"付款前判定享受协定待遇并准备《非居民享受协定待遇》事项报告表。",doc:"香港居民身份证明（IRD可出具）+支付合同+完税证明。",risk:"未按协定申报享受低税率将按10%代扣且已扣税款难以退回。",notes:"服务费可能按「营业利润」条款处理，避免被认定为特许权使用费。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810770/common_list_ssty.html"},
+  {entity:"内地 → 新加坡",cat:"f",name:"中新预提税",rule:"中新协定：股息5%（持股25%以上）/10%、利息7%、特许权使用费5%（须符合协定收益所有人及合理商业实质）。",method:"付款前协定待遇判定与备案。",doc:"新加坡税务居民证书（COC）+合同 + 规则定位说明。",risk:"预提税漏扣将遭特别纳税调整并被追缴。",notes:"参照 2019年第35号公告执行非居民协定待遇办法。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810770/common_list_ssty.html"},
+  {entity:"内地 → 美国",cat:"f",name:"中美预提税",rule:"中美税收协定限率：利息10%、特许权使用费10%（特殊行业有差异）、股息10%（25%以上持股低档至10%）。",method:"付款前判定、留存对方居民证明。",doc:"美国税局 Form 6166 居民证明等。",risk:"美国子公司向母公司支付特许权使用费时，美方同样有责任审核受益所有人资格。",notes:"同步考虑美国 IRC 482 与我国特别纳税调整交叉影响。",url:"https://www.chinatax.gov.cn/chinatax/n810341/n810770/common_list_ssty.html"},
+  {entity:"内地 → 泰国",cat:"f",name:"中泰预提税",rule:"中泰协定：股息10%（条件持股份额）、利息10%、特许权使用费15%（中国可征）；泰国本地预提税（1%–15%）与协定抵免。",method:"付款前按协定申请降低或抵免。",doc:"泰国公司纳税识别号 + 中国居民身份证明。",risk:"泰国付款方代扣不足将承担差额责任。",notes:"泰国增值税7%（PP30）与预提税（PND53）按次/月申报。",url:"https://www.rd.go.th/english/6044.html"},
+  {entity:"内地 → 越南",cat:"f",name:"中越预提税 / FCT",rule:"中越协定：利息10%、特许权使用费15%/10%（视情形）；对越支付非居民款项同时适用越南 FCT（外国承包商税，所得税+增值税）由越方代扣。",method:"双重扣缴与协定抵免衔接测算。",doc:"FCT 完税凭证 + 协定待遇文件。",risk:"FCT 扣缴不足或未取得凭证，越方账税衔接断裂。",notes:"越南 132/2020/ND-CP 对 TP 文档强制要求。",url:"https://english.luatvietnam.vn/lawoncorporateincometaxno67-2025-qh15datedjune142025ofthenationalassembly-404386-doc1.html"},
+  {entity:"内地 → 墨西哥",cat:"f",name:"中墨预提税",rule:"中墨协定限率：股息5%（持股25%以上）/10%、利息10%、特许权使用费15%（部分10%）；另按 SAT 规则对技术转让预扣。",method:"付款前协定待遇判定。",doc:"墨西哥公司 RFC + 中国居民证明。",risk:"墨西哥对境外付款的合规要求高（电子发票、CEP）。",notes:"墨西哥 CFDI 收付款均需有效电子发票，缺票成本费用不得扣除。",url:"https://www.sat.gob.mx"},
+  {entity:"集团范围",cat:"p",name:"支柱二全球最低税（门槛判断）",rule:"集团合并收入连续两年≥7.5亿欧元时适用15%全球最低有效税率（IIR/UTPR）；低于门槛不触发（母公司低税国国内补足税规则仍按东道国条款）。唯特偶当前约10亿人民币级，未触达，需逐年跟踪集团合并规模。",method:"年度测算合并营收是否接近7.5亿欧元线。",doc:"集团口径合并报表 + 各国补充税法令对照表。",risk:"增长期若跨过门槛，需启动各辖区低税实体补足税梳理（如新加坡/香港/泰国低税主体）。",notes:"触发口径不同于国别报告的55亿元衔接规则，两套测算独立。",url:"https://www.oecd.org/tax/beps/pillar-two-a-global-minimum-tax-of-15-percent-for-multinational-enterprises.htm"},
+  {entity:"集团范围",cat:"p",name:"东道国补充税落地进度（跟踪）",rule:"新加坡与香港已自2025财年起实施15%国内补足税（DTT）与 IIR（香港2025/26起）；泰国自2025财年生效国内补足税（15%）；越南依161/2023/ND-CP自2024-01-01适用「补充企业所得税」（GDPR）；墨西哥尚未实施。以上均以各辖区最新生效法律为准。",method:"对低税负实体逐年做有效税率测算。",doc:"各国行政法规与集团税率试算表。",risk:"低税负实体（尤其香港/新加坡/泰国贸易平台）一旦集团跨线即面临补足税。",notes:"即使未跨线，东道国也可能按「本地规则」单边征收，须逐国核对。",url:"https://www.mof.gov.sg/policies/taxation"},
+  {entity:"集团年度",cat:"c",name:"自查①：关联申报是否随汇算报送",rule:"次年5月31日前随企业所得税年度汇算报送《企业年度关联业务往来报告表》（8张表：基本信息+关联交易明细+同期资料声明等）。",method:"汇算前由税务顾问核对填报口径。",doc:"上年度关联交易明细台账。",risk:"未按时报送关联申报单独罚款+特别纳税调整风险叠加。",notes:"境内+跨境交易均须入表。",url:"https://hainan.chinatax.gov.cn/xxgk_6_1/17102963.html"},
+  {entity:"集团年度",cat:"c",name:"自查②：同期资料门槛测算与文档更新",rule:"每年评估本地文档门槛（有形资产境外≥2亿、无形资产≥1亿、金融资产≥1亿、劳务≥4000万、境内合计≥4000万），达门槛须于次年5月31日前备妥。",method:"财税例会出具《同期资料触发测算表》。",doc:"本地/主体文档存档（30日内可提供）。",risk:"无文档情形下发生调查将面临举证困境与1万–5万罚款。",notes:"同时核对集团是否触发主体文档（收入≥10亿）与国别报告。",url:"https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194557/content.html"},
+  {entity:"集团年度",cat:"c",name:"自查③：对外付款前预提税与协定判定",rule:"凡向境外支付利息、特许权使用费、股息、服务费、研发费等，付款前完成预提税率判定（协定限率/10%）并留存居民身份证明。",method:"建立《境外付款税务检查清单》。",doc:"协定待遇报告表、居民证明、合同、完税证明归档。",risk:"漏扣预提税由扣缴义务人（我方）承担追缴+滞纳金。",notes:"交与银行付汇环节联动。",url:"https://www.chinatax.gov.cn/chinatax/n810219/n810744/n1611176/n1611196/c2348155/content.html"},
+  {entity:"集团年度",cat:"c",name:"自查④：资金拆借利率与债资比例",rule:"每年复核关联借款利率（LPR基准）与债资比例（其他2:1），超限利息不得税前扣除。",method:"季度利率档案留存可比数据。",doc:"借款合同、利率测算、债务结构表。",risk:"低利拆借还可能被认定为转让定价调整事项。",notes:"涉及跨境拆借同步考虑预提税。",url:"https://www.chinatax.gov.cn/n810341/n810765/n812151/n812586/c1188410/content.html"},
+  {entity:"集团年度",cat:"c",name:"自查⑤：CFC 与支柱二触发复核",rule:"每年核对境外主体实际税负（是否<12.5%）与集团合并收入规模（是否接近7.5亿欧元）两项指标。",method:"税务顾问出具年度《跨境税务风险复核报告》。",doc:"税负测算表 + 留存利润商业目的说明。",risk:"指标一旦触发未规划，将形成补税与VIE式结构性成本。",notes:"与境外汇回/再投资计划联动。",url:"https://fgk.chinatax.gov.cn/zcfgk/c100010/c5194417/content.html?zbb=true"}
+];
+function renderTP(list){
+  const out=$('#tpOut');
+  if(!list||!list.length){out.innerHTML='<div class="empty">无匹配条目</div>';$('#tpBanner').textContent='';return;}
+  out.innerHTML=list.map(t=>{
+    const u=t.url&&t.url.trim();
+    const src=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 依据：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
+    return '<div class="arch">'
+      +'<div class="meta"><span class="cat-tag '+TP_CLS[t.cat]+'">'+TP_CAT[t.cat]+'</span> <span class="remind-country">'+t.entity+'</span> <span style="font-weight:700">'+t.name+'</span></div>'
+      +'<div class="notes" style="margin-top:6px">'+t.rule+'</div>'
+      +'<div class="tp-box"><span class="tp-label">定价方法</span>'+t.method+'</div>'
+      +'<div class="tp-box"><span class="tp-label">需准备文档</span>'+t.doc+'</div>'
+      +'<div class="tp-box" style="background:#fff8e6;border-color:#fde68a"><span class="tp-label" style="background:#fef3c7;color:#b45309">风险提示</span>'+t.risk+'</div>'
+      +(t.notes?'<div class="meta" style="margin-top:6px;color:#666">备注：'+t.notes+'</div>':'')
+      +src+'</div>';
+  }).join('');
+}
+(function(){
+  const cats=uniq(TP_DATA.map(t=>t.cat));
+  const ent=uniq(TP_DATA.map(t=>t.entity));
+  const cSel=$('#tpCat'), eSel=$('#tpEntity'), sch=$('#tpSearch');
+  cSel.innerHTML='<option value="">全部类别</option>'+cats.map(x=>'<option value="'+x+'">'+TP_CAT[x]+'</option>').join('');
+  eSel.innerHTML='<option value="">全部主体</option>'+ent.map(x=>'<option>'+x+'</option>').join('');
+  function render(){
+    const cf=cSel.value, ef=eSel.value, kw=sch.value.trim().toLowerCase();
+    const rows=TP_DATA.filter(t=>(!cf||t.cat===cf)&&(!ef||t.entity===ef)&&(!kw||(t.name+t.rule+t.method+t.doc+t.risk).toLowerCase().includes(kw)));
+    $('#tpBanner').textContent='共 '+rows.length+' 条 / '+TP_DATA.length+' 条（'+(cf?TP_CAT[cf]:'全部')+'）';
+    renderTP(rows);
+  }
+  cSel.onchange=render; eSel.onchange=render; sch.oninput=render; render();
 })();
 
 /* ---------- ④ kb ---------- */
