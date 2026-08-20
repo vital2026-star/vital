@@ -109,6 +109,7 @@
       <input type="text" id="txSearch" placeholder="搜索税种名称 / 关键词" style="min-width:220px;">
     </div>
     <div class="grid" id="txOut"></div>
+    <p class="note">说明：各管辖区的税种、税率/征收方式与官方依据。已并入原「进出口通关」模块的关税/进口环节税/出口退税等海关类税种（HS 归类、优惠协定、完税价格审定、301/两反等），具体以当年《进出口税则》及各地海关现行要求为准，建议按年度复核。</p>
   </section>
 
   <section class="panel" id="archive">
@@ -133,7 +134,8 @@
     <div class="bar">
       <label>年份：<select id="csYear"></select></label>
       <label>税种：<select id="csTax"></select></label>
-      <input type="text" id="csSearch" placeholder="搜索案例关键词（标题 / 摘要 / 税种 / 地域）" style="min-width:240px;">
+      <label>国家/地区：<select id="csJuris"></select></label>
+      <input type="text" id="csSearch" placeholder="搜索案例关键词（标题 / 摘要 / 税种 / 国家 / 地域）" style="min-width:240px;">
       <button class="btn ghost" id="loadCases">手动重新加载</button>
       <span class="note" id="csMsg"></span>
     </div>
@@ -188,19 +190,6 @@
     <p class="note">说明：本栏记录集团各主体可适用/已享受的税收优惠与政府补助台账：资质有效期、优惠幅度、申报/复审节点、备案留存要求。状态标记已升级为「一人更新、公共云端存储、全员可见」（未开始 / 进行中 / 已享受 / 已到期；无需任何设置）。具体以各辖区政策与合同约定为准，逐年复核。</p>
   </section>
 
-  <section class="panel" id="trade">
-    <div class="bar">
-      <label>方向：<select id="trDir"></select></label>
-      <label>类别：<select id="trCat"></select></label>
-      <label>主体/路径：<select id="trEntity"></select></label>
-      <label>区域：<select id="trRegion"></select></label>
-      <input type="text" id="trSearch" placeholder="搜索：商品 / 税率 / 流程 / 审核 / 风险" style="min-width:250px;">
-      <span class="note" id="trBanner"></span>
-    </div>
-    <div id="trOut"></div>
-    <p class="note">说明：进出口货物税率/HS归类、清关流程与单证、海关审核重点、风险提示及重要跟踪事项（含母公司出口、越南/美国进口侧清关）。关税税则每年调整、优惠协定与两反/出口管制动态变化，具体以当年《进出口税则》及各地海关现行要求为准，建议按年度复核。</p>
-  </section>
-
   <section class="panel" id="rate">
     <div class="bar">
       <label>国家/地区：<select id="rateCountry"></select></label>
@@ -244,8 +233,25 @@ const TAXES = [
 {juris:"中国·国内",name:"水资源税",rate:"工业取用水按实际取水量从量计征，实行差别税额；节水/循环用水可减征",notes:"",docs:[{t:"财政部 税务总局 水利部公告2024年第28号（水资源费改税全面推开，2024-12-01施行）",u:"https://szs.mof.gov.cn"}]},
 {juris:"中国·国内",name:"个人所得税（代扣代缴）",rate:"综合所得 3%–45% 超额累进；月度预扣、年度汇算",notes:"",docs:[{t:"《中华人民共和国个人所得税法》（2018 年第七次修正）全文",u:"https://12366.chinatax.gov.cn/zqdetail/getcontentPage?contentId=1cd54f0d354940deb2278a108a988fa6&logoid=e48cc09c83349b1601837e5fb7bc1b1b"},{t:"国家税务总局 个人所得税政策",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"}]},
 {juris:"中国·国内",name:"契税 / 车船税 / 残保金",rate:"契税 3%–5%（不动产取得）；车船税按车型；残保金按差额人数",notes:"",docs:[{t:"《中华人民共和国契税法》（主席令第五十二号，2021-09-01 施行）全文",u:"http://www.npc.gov.cn/c2/c30834/202008/t20200811_307161.html"},{t:"国家税务总局 财产行为税政策（车船税/残保金）",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"}]},
-{juris:"中国·海关/出口",name:"出口退（免）税",rate:"按出口货物 HS 编码对应增值税退税率（多为 13%/对应征税率）",notes:"",docs:[{t:"国家税务总局 出口退（免）税政策",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},{t:"财政部 出口退税率文库",u:"http://szs.mof.gov.cn"}]},
-{juris:"中国·海关/出口",name:"关税（进出口）",rate:"进口最惠国税率按 HS 编码；出口一般免征（少数限制类除外）",notes:"",docs:[{t:"《中华人民共和国关税法》（主席令第四十二号，2024-12-01 施行）全文",u:"https://www.gov.cn/yaowen/liebiao/202404/content_6947843.htm"},{t:"海关总署 关税政策/进出口税则",u:"http://www.customs.gov.cn"}]},
+{juris:"中国·海关/进出口",name:"关税（进出口）与 HS 归类",rate:"进口按《进出口税则》对应 HS 品目适用最惠国税率（一般工业品/焊材类约 3%–10%，可叠加当期暂定/协定税率降至 0%–5%）；出口仅少数「两高一资」/资源类商品征出口关税（暂定税率 0–40%），焊材类一般无出口关税",notes:"HS 编码决定税率：品名、成分、用途、加工程度四维决定归类，编码申报错误=申报不实；同一货物须与既往申报保持一致，重大归类可申请海关预归类决定。2026 年税则以国务院关税税则委员会发布年度税则为准。",docs:[
+   {t:"《中华人民共和国关税法》（主席令第四十二号，2024-12-01 施行）全文",u:"https://www.gov.cn/yaowen/liebiao/202404/content_6947843.htm"},
+   {t:"海关总署 关税政策/进出口税则",u:"http://www.customs.gov.cn"}
+  ]},
+   {juris:"中国·海关/进出口",name:"优惠贸易安排关税（RCEP / 中国-东盟 / CPTPP）",rate:"凭原产地证书（FORM E / RCEP CO / CPTPP CO）：中国→越南焊料类多数降至 0%–5%；越南→东盟 / CPTPP 0%–10%；美国 MFN 多数 1%–6%（叠加 301 附加税后另计）",notes:"享受优惠关税须同时满足：原产地规则（RVC/CTH/PSR）、直接运输、原产地证书合规；证书货描/数量/金额与发票、报关单一致，启运港与直运时间链完整，退证查询及时答复，否则进口国拒绝优惠、追溯补税。RCEP 累积原产地规则允许区域累积，规划供应链时应充分利用。",docs:[
+   {t:"海关总署 关税政策/进出口税则",u:"http://www.customs.gov.cn"},
+   {t:"中国贸促会 原产地证书签发",u:"https://www.ccpit.org"}
+  ]},
+   {juris:"中国·海关/进出口",name:"进口环节增值税与消费税（以完税价格为基础）",rate:"进口环节增值税 13%（多数货物，含焊料类）；计税基础=完税价格（CIF）；焊料/助焊剂等一般非应税消费品，不征消费税",notes:"完税价格=货价+运费+保险费+买方负担的与进口直接相关的费用；币种按申报当日汇率中间价折算；FOB 成交须加成运费保费；漏计运保费/特许权费=少缴税款、补税加滞纳金；海关缴款书进项凭证可勾选抵扣。",docs:[
+   {t:"《中华人民共和国增值税法》（主席令第四十一号，2024-12-25 通过，2026-01-01 施行）全文",u:"https://www.gov.cn/yaowen/liebiao/202412/content_6994477.htm"},
+   {t:"海关总署 进出口税收",u:"http://www.customs.gov.cn"}
+  ]},
+   {juris:"中国·海关/进出口",name:"完税价格审定：特许权使用费与关联交易",rate:"关税/进口增值税计税基础=完税价格（CIF）",notes:"与进口货物有关且构成销售条件的特许权使用费应计入完税价格；买方免费提供的材料/模具/设计等也应计入；依据《海关审定进出口货物完税价格办法》。逐票核对向卖方/关联方支付的特许权费与免费供应项目，关联定价与转让定价报告口径须衔接。转让定价与海关完税价格口径不同，注意两条线合一核算。",docs:[
+   {t:"《海关审定进出口货物完税价格办法》全文",u:"http://www.customs.gov.cn"}
+  ]},
+   {juris:"中国·海关/进出口",name:"出口退（免）税",rate:"焊料/焊丝/助焊剂类退税=增值税征税率（一般 13%，按当年出口退税率文库确认档位）；生产企业免抵退、外贸企业免退",notes:"申报须报关单、进货发票、收汇记录齐全且相互匹配；计税依据（FOB 金额）准确、收汇真实并按规定留存；单证备案数字化（2026 年全面推行）。申报虚假或收汇偏离=转内销补税、罚款乃至骗取退税刑事追责。",docs:[
+   {t:"国家税务总局 出口退（免）税政策",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810825/index.html"},
+   {t:"财政部 出口退税率文库",u:"http://szs.mof.gov.cn"}
+  ]},
 {juris:"中国香港",name:"利得税 Profits Tax",rate:"法团首 200 万港元利润 8.25%，超出部分 16.5%（两级制）",notes:"",docs:[
   {t:"香港税务局 利得税（商业）",u:"https://www.ird.gov.hk/eng/tax/bus_pft.htm"},
   {t:"《税务条例》利得税（Cap.112 全文）",u:"https://www.elegislation.gov.hk/hk/cap112"}
@@ -340,7 +346,11 @@ const TAXES = [
 {juris:"跨境",name:"税收协定待遇",rate:"依中外税收协定降低预提税率、划分营业利润征税权",notes:"",docs:[
   {t:"中国对外签订税收协定一览表（国家税务总局·税收条约）",u:"https://www.chinatax.gov.cn/chinatax/n810341/n810770/common_list_ssty.html"},
   {t:"非居民纳税人享受税收协定待遇管理办法（2019年第35号）",u:"https://fgk.chinatax.gov.cn/zcfgk/c100012/c5194569/content.html"}
-]}
+]},
+ {juris:"跨境",name:"中美 301 附加税 / 反倾销反补贴（两反）",rate:"301 附加税按 USTR 清单轮次 7.5%–100%（2024 年起电池、钢铝等品类上升明显）；反倾销/反补贴按个案初裁/终裁，涉案可达 25%–100%+",notes:"美国对原产中国商品征收 301 附加税（多轮加征）、对供应链端产品开展两反调查，直接影响进口到岸成本与越南转口结构。采购到岸成本测算须并入上述税率；季度跟踪 USTR 清单与办案机关初裁/终裁，评估关税排除申请与供应链再布局。",docs:[
+   {t:"USTR 美国贸易代表办公室 301 调查",u:"https://www.ustr.gov"},
+   {t:"美国海关与边境保护局 CBP",u:"https://www.cbp.gov"}
+  ]}
 ];
 
 const KB = [
@@ -548,10 +558,12 @@ function renderCases(list){
 }
 (function(){
   let CASES_SRC = SEED_CASES;
-  const tSel=$('#csTax'), ySel=$('#csYear'), sch=$('#csSearch');
+  const tSel=$('#csTax'), ySel=$('#csYear'), jSel=$('#csJuris'), sch=$('#csSearch');
   function fillSelectors(){
     const taxes = uniq(CASES_SRC.map(c=>c.tax));
     tSel.innerHTML='<option value="">全部税种</option>'+taxes.map(t=>'<option>'+t+'</option>').join('');
+    const juris = uniq(CASES_SRC.map(c=>c.juris));
+    jSel.innerHTML='<option value="">全部国家/地区</option>'+juris.map(j=>'<option>'+j+'</option>').join('');
     const years = uniq(CASES_SRC.map(c=>c.date.slice(0,4))).sort().reverse();
     let yOpt='<option value="">全部年份</option><option value="3y">近三年</option>';
     years.forEach(y=>{ if(y>='2023') yOpt+='<option value="'+y+'">'+y+'</option>'; });
@@ -559,19 +571,20 @@ function renderCases(list){
     ySel.innerHTML=yOpt;
   }
   function render(){
-    const yf=ySel.value, tf=tSel.value, kw=sch.value.trim().toLowerCase();
+    const yf=ySel.value, tf=tSel.value, jf=jSel.value, kw=sch.value.trim().toLowerCase();
     const rows=CASES_SRC.filter(c=>{
       if(yf==='3y'){ if(c.date<'2023-08-19') return false; }
       else if(yf==='early'){ if(c.date.slice(0,4)>='2023') return false; }
       else if(yf){ if(c.date.slice(0,4)!==yf) return false; }
       if(tf && c.tax!==tf) return false;
+      if(jf && c.juris!==jf) return false;
       if(kw && !(c.title+c.summary+c.juris+c.tax+(c.tags||[]).join(' ')+(c.lesson||'')).toLowerCase().includes(kw)) return false;
       return true;
     });
     renderCases(rows);
   }
   fillSelectors();
-  ySel.onchange=render; tSel.onchange=render; sch.oninput=render; render();
+  ySel.onchange=render; tSel.onchange=render; jSel.onchange=render; sch.oninput=render; render();
   function autoLoadCases(btn,msgEl){
     msgEl.textContent='正在读取…';
     fetch('tax_cases_archive.json').then(r=>r.json()).then(j=>{
@@ -580,7 +593,7 @@ function renderCases(list){
         CASES_SRC=arr; fillSelectors(); render();
         const upd=j.updated?('（外部数据最后更新：'+j.updated+'）'):'';
         if(btn) btn.textContent='手动重新加载';
-        msgEl.textContent='已自动加载 '+arr.length+' 条案例 '+upd+'（可继续按年份/税种筛选）。';
+        msgEl.textContent='已自动加载 '+arr.length+' 条案例 '+upd+'（可继续按年份/税种/国家筛筛选）。';
       }else{$('#csMsg').textContent='案例档案为空或格式不符，已显示内置案例。';CASES_SRC=SEED_CASES; fillSelectors(); render();}
     }).catch(e=>{$('#csMsg').textContent='本地读取被浏览器拦截（file:// 限制，已显示内置案例）；或在服务器模式下已自动加载最新案例。';CASES_SRC=SEED_CASES; fillSelectors(); render();});
   }
@@ -806,20 +819,7 @@ function renderReminders(list){
       +src+'</div>';
   }).join('');
 }
-/* ---------- ⑦ 申报提醒：动态数据源（通关/进出口 单据 + 优惠续期） ---------- */
-const TR_DOCS={
-  "进出口关税税率与 HS 归类":"报关单、合同、发票、箱单、提单；预归类决定书（如适用）",
-  "优惠贸易安排关税评审（RCEP / 中国-东盟 / CPTPP）":"原产地证书（FORM E / RCEP CO / CPTPP CO）、直运提单、发票、报关单",
-  "进口增值税与消费税":"海关缴款书、报关单、成交合同、运保费单据（FOB 加成依据）",
-  "国际贸易「单一窗口」申报与无纸化通关":"报关单（无纸化）、委托/协议、随附单证电子档案",
-  "越南进口清关（VNACCS）":"报关单、原产地证（C/O）、化学许可（FCI）、进口增值税缴款凭证",
-  "美国进口清关（CBP HTSUS 归类）":"HTSUS 归类底稿、报关行经手单证、进口 bond、301 附加税评估记录",
-  "完税价格审定：特许权使用费与关联交易":"特许权使用费合同、关联定价分摊说明、免费供应项目清单",
-  "出口退（免）税单证与收汇核销":"报关单、进货发票、箱单、收汇水单、单证备案目录（数字化）",
-  "原产地证退证查询与优惠维持":"历年原产地证书、直运提单、原产地台账、RVC 计算底稿",
-  "危险化学品进出口合规（母公司化工品）":"危险特性鉴定报告、SDS/TDG 标签、运输单证、安监/经可批准文件",
-  "两用物项出口管制与制裁清单合规":"客户/最终用户筛查记录、用途声明、最终用户证书、清单复核底稿"
-};
+/* ---------- ⑦ 申报提醒：动态数据源（通关/进出口 申报节点 + 优惠续期） ---------- */
 const TR_SCHED=[
   {country:"通关/进出口",cat:"申报",name:"报关与缴税（国际贸易单一窗口）",url:"https://www.singlewindow.cn",freq:"按月",type:"monthly",d:15,start:"货物到港/出运后",dueText:"按申报票次及时报关并缴税（缴款后按期核对缴款书抵扣）"},
   {country:"通关/进出口",cat:"申报",name:"海关「汇总征税/关税保证保险」月结",url:"http://www.customs.gov.cn",freq:"按月",type:"monthly",d:10,start:"上月通关后",dueText:"次月按时足额补缴汇总征税/保证保险月结税款，维持额度"},
@@ -1065,110 +1065,6 @@ function inSaveDueLocal(d){try{if(d)localStorage.setItem(IN_KEY_DUE,JSON.stringi
   jurisSel.onchange=render;catSel.onchange=render;sch.oninput=render;render();
 })();
 
-/* ---------- ⑩ 进出口通关 ---------- */
-const TR_CAT={r:"税率/归类",c:"清关流程",a:"审核重点",k:"风险提示",o:"重要事项"};
-const TR_CLS={r:"c-blue",c:"c-amber",a:"c-green",k:"c-red",o:"c-purple"};
-const TR_DIRS=["进口","出口","双向"];
-const TRADE_DATA=[
- {dir:"双向",cat:"r",name:"进出口关税税率与 HS 归类",entity:"境内主业主体",rate:"一般工业品最惠国关税多在 0%–8%（焊料/焊丝/助焊剂类约 3%–10%），部分商品 10%–20% 以上；可叠加当年暂定税率/协定税率降至 0%–5%。具体以货物 HS 归类后对应《进出口税则》税率为准。",rule:"进出口货物按当年《进出口税则》对应 HS 品目适用关税税率（从价/从量/复合并存）；HS 编码决定税率，编码申报错误=申报不实。",key:"关键：品名、成分、用途、加工程度四个维度决定归类；同类货物须与既往申报保持一致。",flow:"报关前建议做预归类，重大归类问题可向海关申请预归类决定（具约束力，全国适用）。",audit:"核对报关单税则号列/品名/数量/单价/成交方式是否与实际、合同、发票一致。",risk:"错报税号即使补税差额也可能被认定为申报不实遭受处罚；被海关核查归类原单的例外。",notes:"2026 年税则以国务院关税税则委员会发布年度税则为准。",url:"http://www.customs.gov.cn"},
- {dir:"双向",cat:"r",name:"优惠贸易安排关税评审（RCEP / 中国-东盟 / CPTPP）",entity:"境内主业主体 + 越南孙公司",rate:"中国→越南（凭中国-东盟 FTA / RCEP 原产地证）：焊料类多数已降至 0%，部分 5%；越南→东盟/CPTPP：0%–10%；美国最惠国 MFN：多数 1%–6%，叠加 301 附加税后另计。",rule:"出口至越南可依中国-东盟 FTA 或 RCEP 关税减让；越南出口按东盟/CPTPP 优惠；美国进口按美最惠国税率并评估 301 附加税。",key:"享受优惠关税须同时满足：原产地规则（RVC/CTH/PSR）、直接运输、原产地证书合规。",flow:"出口时申领原产地证书（FORM E / RCEP CO / CPTPP CO），留存直接运输单证。",audit:"证书货描、数量、金额与发票/报关单一致；启运港与直运时间链完整；进口国退证查询及时答复。",risk:"证书瑕疵导致进口国拒绝优惠、追溯补税甚至课罚。",notes:"RCEP 累积原产地规则允许区域内累积，规划供应链时充分利用。",url:"https://www.customs.gov.cn"},
- {dir:"出口",cat:"r",name:"出口关税与「两高一资」限制商品",entity:"境内出口主体",rate:"出口关税仅对少数「两高一资」产品征收（如钢铁、铝、稀土、部分化工品，暂定税率 0–40%）；一般工业品（含焊料/焊丝/助焊剂类）无出口关税。",rule:"对部分资源性/高污染高耗能及资源类产品（钢铁、铝、部分化工品、稀土等）征收出口关税或取消出口退税。",key:"列入取消退税/两高一资目录后仍按原方式申报即涉偷漏税。",flow:"出口前核对当年税则出口税率与退税目录。",audit:"品名与税号在出口税则项下的归类准确性。",risk:"漏报出口关税或申报不实承担补税+罚款，情节严重涉刑事。",notes:"母公司新材料/焊料类产品一般不属两高一资，但应逐年复核目录更新。",url:"http://www.customs.gov.cn"},
- {dir:"进口",cat:"r",name:"进口增值税与消费税（以完税价格为基础）",entity:"境内进口主体",rate:"进口环节增值税 13%（多数货物，含焊料类）；计税基础=完税价格（CIF）；焊料/助焊剂等一般非应税消费品，不征消费税。",rule:"进口环节增值税按《增值税法》现行 13%（部分低档）计征；应税消费品另征消费税，计税基础=完税价格（CIF）。",key:"完税价格=货价+运费+保险费+买方负担的与进口直接相关费用；折算汇率以申报当日汇率中间价为准。",flow:"申报时按成交方式（FOB 需加成运费保费）准确填制。",audit:"成交方式、运保费分摊、币种折算、特许权相关费是否计入。",risk:"漏计运保费/特许权费导致少缴税款、补税加滞纳金。",notes:"同步核对进项抵扣凭证流转（海关缴款书→勾选抵扣）。",url:"http://www.customs.gov.cn"},
- {dir:"双向",cat:"c",name:"国际贸易「单一窗口」申报与无纸化通关",entity:"境内主体",rule:"中国海关无纸化通关，经国际贸易单一窗口申报；关键要素：经营单位、收发货、运输方式、征免性质、成交方式、监管方式等。",flow:"电子委托→预录入→申报→海关放行→查验或直接放行；可申请汇总征税、自报自缴。",audit:"征免性质/监管方式（一般贸易、加工贸易、退运返修等）与业务实质一致。",risk:"监管方式或征免性质错报影响税款与退税资格。",notes:"新发货人/新企业收发货人备案先行完成。",url:"https://www.singlewindow.cn"},
- {dir:"双向",cat:"c",name:"海关查验与取样化验配合",entity:"各主体",rule:"海关按风险布控开展查验（机检/人工），必要时取样送检；企业应协作配合并在规定时限内补充资料。",flow:"接查验通知后到场配合、留存已查样品与记录；化验结果影响归类时及时申请复验。",audit:"查获差异（品名/数量/价格）如实确认并及时修正申报。",risk:"拒绝查验或拖延将被强制处理；查验发现重大不符升级为立案调查。",notes:"保持单证电子档案即可快速应对。",url:"http://www.customs.gov.cn"},
- {dir:"双向",cat:"c",name:"AEO 高级认证与通关便利",entity:"境内主体",rule:"海关高级认证企业（AEO）享受较低查验率、优先通关、配额免担保等便利，并与互认经济体（含越南等 ASEAN 成员方向）实现通关互认。",flow:"按《海关企业信用管理办法》维持认证条件：内部控制、财务状况、守法规范、贸易安全。",audit:"认证条件年度复核、重新认证与信息变更报备。",risk:"认证不达标降级将丧失便利并影响互认通关效率。",notes:"与信用等级挂钩的还有汇总征税资格。",url:"http://www.customs.gov.cn"},
- {dir:"进口",cat:"c",name:"越南进口清关（VNACCS）",entity:"越南孙公司（河内）",rate:"越南进口关税一般 0%–30%（多数原料/机设备 0%–15%）；自中国凭中国-东盟 FTA 原产地证焊料类多为 0%–5%；另征进口增值税 10%（标准档）并可作为进项抵扣。",rule:"越南进口机设备/原材料通过 VNACCS 系统报关；化学品须持化学品经营许可并符合申报要求（FCI）。可委托在越报关代理。",key:"越南申报要素含单证、金额、原产地；海关对价格和归类核查趋严。",flow:"报关代理制单→申报→查验/放行；保留 C/O 等原产地单据。",audit:"金额与原产地真实、品名与许可范围一致。",risk:"单证不符延误放行并触发核查；化学品无许可进口面临扣货处罚。",notes:"越南侧同步关注进口增值税（可抵扣）与关税缴纳安排。",url:"https://www.customs.gov.vn/index.jsp?ngon_ngu=en"},
- {dir:"进口",cat:"c",name:"美国进口清关（CBP HTSUS 归类）",entity:"美国孙公司",rate:"HTSUS 一般税率多数商品 0%–5%，焊材/焊料类约 2%–4%；原产中国的商品另叠加 301 附加税 7.5%–100%（依 USTR 清单与轮次），到岸成本测算须并入。",rule:"美国进口商品按 HTSUS 税则归类，CBP 报关并缴纳关税（消费账单），须维持进口 bond；关联进口注意转移定价与估价联动。",key:"估值按 19 CFR Part 152（交易价格法），与关联方交易价格须合理。",flow:"货运代理/报关行系统申报（ISF 预申报）→放行→按月结算账单。",audit:"HTSUS 归类、估价基础、301 附加税适用状态跟踪。",risk:"低估申报触发 CBP 追缴与罚则；301 附加税漏计抬高采购成本。",notes:"美国关税调整频繁，按季度复核 HTSUS 与贸易政策变动。",url:"https://www.cbp.gov"},
- {dir:"进口",cat:"a",name:"完税价格审定：特许权使用费与关联交易",entity:"境内进口主体",rule:"与进口货物有关且构成销售条件的特许权使用费应计入完税价格；买方免费提供的材料/模具/设计等也应计入；依据《海关审定进出口货物完税价格办法》。",audit:"逐票核对向卖方/关联方支付的特许权、免费供应项目；关联定价与转让定价报告口径衔接。",risk:"特许权费漏计入=少缴增值税+关税，补税+滞纳金；同时触发转让定价与海关估值联动关注。",flow:"进口时按既有特许权安排留存合同与分摊说明。",notes:"转让定价定价与海关完税价格口径不同，注意两条线合一核算。",url:"http://www.customs.gov.cn"},
- {dir:"双向",cat:"a",name:"「三单相符」实质性审核",entity:"各主体",rule:"报关单、合同、发票、提单/运单、付汇水单等相互印证；单价明显偏离同期市场行情须能说明商业理由。",audit:"价格、数量、币种、抬头一致性；用途与经营实际匹配；成交价格真实性。",risk:"价格异常易触发审价与稽查，虚报价格涉走私风险。",flow:"出口/进口均按真实成交价申报，不两头对敲洗单。",notes:"与外汇收付汇申报联动核对。",url:"http://www.customs.gov.cn"},
- {dir:"出口",cat:"a",name:"出口退（免）税单证与收汇核销",entity:"境内出口主体",rate:"焊料/焊丝/助焊剂类适用退税＝增值税征税率，一般 13%（按 2026 当年出口退税目录确认档位）；生产企业适用免抵退、外贸企业免退。",rule:"出口退（免）税申报须报关单、进货发票、收汇记录齐全且相互匹配；生产企业免抵退、外贸企业免退。",audit:"报关单品名/计量单位与发票一致；计税依据（FOB 金额）准确；收汇真实并按规定留存。",risk:"申报虚假或收汇偏离引发转内销补税、罚款乃至骗取退税刑事追责；单证备案缺失影响退税办理。",flow:"出口后按申报期归集单证，2026 年起单证备案数字化。",notes:"与 ⑨ 出口退（免）税条目联动。",url:"http://www.customs.gov.cn"},
- {dir:"双向",cat:"a",name:"企业海关信用与经营资质维持",entity:"各主体",rule:"进出口收发货人备案、报关企业注册登记、危化品等许可类目维持有效；注册信息（地址、法人、经营范围）变更及时更新。",audit:"备案有效性、报关代理资质、许可年审与到期换证提醒。",risk:"备案失效或超经营范围进出口导致通关受阻及行政处罚。",notes:"新建境外主体涉及进出口的同步办理东道国报关登记。",url:"http://www.customs.gov.cn"},
- {dir:"双向",cat:"k",name:"申报不实与漏缴税款处罚",entity:"各主体",rule:"申报不实（品名、税则号列、数量、价格、原产地等）按《海关法》及行政处罚条例处理，处漏缴等值以下罚款；主动向海关报告并如实申报的可依法从轻或减免。",key:"一旦进入稽查/刑事程序，申报前错误难以自证主观无故意。",flow:"发现申报错误及时主动更正（改单/删单）并依法补税，降低处罚幅度。",audit:"每票申报前自查要素完整性。",risk:"被动被查时补税+罚款+滞纳金三损失叠加。",notes:"主动披露制度（自我纠正）应优先利用。",url:"http://www.customs.gov.cn"},
- {dir:"双向",cat:"k",name:"走私与骗取出口退税刑事红线",entity:"各主体",rule:"伪报品名/税号、低报价格、循环出口、泡沫单证等可构成走私普通货物罪、骗取出口退税罪，刑事红线务必远离。",audit:"对低价、高报、异常税号的交易逐票复核商业真实性。",risk:"涉税刑事风险会波及母公司上市公司合规与信息披露。",notes:"内控上禁止代开票、虚构贸易背景等任何形式倒挂。",url:"https://www.gov.cn"},
- {dir:"出口",cat:"k",name:"两用物项出口管制与制裁清单合规",entity:"境内出口主体 + 美国孙公司",rule:"依《出口管制法》及商务部两用物项清单，涉敏感技术/物项出口需许可；同时关注美 OFAC/商务部制裁与实体清单对美业务的传导影响。",key:"原材料/成品中是否含受管制成分需由业务与技术部门联合判定。",flow:"建立出口管制筛查清单（物项+最终用户+最终用途）。",audit:"客户筛查、用途声明、最终用户证书留存。",risk:"未经许可管制物项出口=行政+刑事双重风险；涉美制裁将冻结在美业务。",notes:"建议年度由法务/合规复核清单更新。",url:"https://www.mofcom.gov.cn"},
- {dir:"出口",cat:"k",name:"原产地证退证查询与优惠维持",entity:"境内出口主体",rule:"进口国海关对原产地证书发起退证查询（疑点函）时，须在时限内提供直运、原产地计算等证据；应对不力将取消优惠资格并追溯补税。",flow:"历年证书存档、原产地台账、供应商成分数据可随时调取。",audit:"证书真实性、直运单证链、RVC 计算底稿齐全。",risk:"退证未复=批量货物追溯补税+行业协会通报。",notes:"证书签发机构（贸促会/海关）便于追溯。",url:"https://www.ccpit.org"},
- {dir:"双向",cat:"k",name:"汇率折算与付汇合规",entity:"各主体",rule:"报关币种与收付汇申报一致；汇率波动影响完税价格换算与出口退税计税；大额/预付付汇须符合外汇管理单证留存要求。",flow:"清关时按申报当日汇率中间价折算；付汇保留合同、发票、报关及税务备案凭证。",audit:"汇率采用与币种一致性；出境付汇与完税/备案凭证衔接。",risk:"付汇单证不齐在未来反避税或 NRA 核查时无法自证。",notes:"跨境付汇单证留存与付汇税务备案联动。",url:"https://www.safe.gov.cn"},
- {dir:"双向",cat:"o",name:"汇总征税 / 关税保证保险降低资金占用",entity:"境内主体",rule:"符合条件企业（含高级认证）可用汇总征税或关税保证保险方式集中纳税，缓解逐票缴税现金流压力。",flow:"向海关申请适用并维持额度；月结后按时足额补缴。",audit:"额度使用、月度补缴及时性、资格维持。",risk:"逾期补缴将被暂停适用并计滞纳金。",notes:"对高频进出口业务性价比高。",url:"http://www.customs.gov.cn"},
- {dir:"双向",cat:"o",name:"危险化学品进出口合规（母公司化工品）",entity:"境内化工类主体 + 越南孙公司",rule:"危化品进出口须完成安监应急登记、SDS/TDG 标签公示、满足运输与装卸要求；越南侧同步持化学品经营许可。",flow:"出口前取得危险特性鉴定；订舱运输按危险品流程；进口留存许可与申报。",audit:"品名活性成分与实际一致、包装运输合规。",risk:"瞒报危险品运输=公海级事故+报关行政处罚+承运方索赔。",notes:"母公司焊料助剂类产品涉化学组分，逐单判定。",url:"https://www.mem.gov.cn"},
- {dir:"进出口",cat:"o",name:"中美 301 / 关税与两反动态跟踪",entity:"美国孙公司 + 进口供应链",rate:"301 附加税 7.5%–100%（随 USTR 清单轮次上调，2024 年起电池、钢铝等品类上升明显）；反倾销/反补贴税率按个案初裁/终裁，涉案可达 25%–100%+。",rule:"美国对中国商品征收 301 附加税（多轮加征）、对供应链端产品开展反倾销/反补贴（两反）调查，直接影响进口到岸成本与越南转口结构。",flow:"季度跟踪 USTR 清单、办案机关初裁/终裁与税率。",audit:"采购到岸成本测算含 301 与两反税率；评估关税排除申请与供应链再布局。",risk:"政策突变导致到岸成本骤升、合同履约亏损。",notes:"美方单位若被两反终裁，需评估应诉策略。",url:"https://www.ustr.gov"}
-];
-const TR_ROUTE={
-  "进出口关税税率与 HS 归类":"中国（全口岸）· 双向",
-  "优惠贸易安排关税评审（RCEP / 中国-东盟 / CPTPP）":"中国→越南 / 越南→东盟 / 各国→美国",
-  "出口关税与「两高一资」限制商品":"中国→各境外",
-  "进口增值税与消费税（以完税价格为基础）":"各境外→中国",
-  "国际贸易「单一窗口」申报与无纸化通关":"中国（全口岸）· 双向",
-  "海关查验与取样化验配合":"各国（通用）",
-  "AEO 高级认证与通关便利":"中国 + 互认国（含越南）",
-  "越南进口清关（VNACCS）":"各境外→越南（VNACCS）",
-  "美国进口清关（CBP HTSUS 归类）":"中国/各国→美国（CBP）",
-  "完税价格审定：特许权使用费与关联交易":"各境外→中国（进口）",
-  "「三单相符」实质性审核":"各国（通用）· 双向",
-  "出口退（免）税单证与收汇核销":"中国→各境外（出口）",
-  "企业海关信用与经营资质维持":"各国（通用）",
-  "申报不实与漏缴税款处罚":"各国（通用）",
-  "走私与骗取出口退税刑事红线":"各国（通用）",
-  "两用物项出口管制与制裁清单合规":"中国/美国→各境外",
-  "原产地证退证查询与优惠维持":"中国→各境外（走FTA/RCEP）",
-  "汇率折算与付汇合规":"各国（通用）· 跨境付汇",
-  "汇总征税 / 关税保证保险降低资金占用":"中国（全口岸）",
-  "危险化学品进出口合规（母公司化工品）":"中国/越南→各国",
-  "中美 301 / 关税与两反动态跟踪":"中国→美国 / 供应链→美国"
-};
-function trRoute(t){return t.route||TR_ROUTE[t.name]||t.entity;}
-const TR_REGIONS=["中国内地","中国香港","新加坡","美国","越南","泰国","墨西哥","跨境/通用"];
-function trRegion(t){
-  const s=(t.route||TR_ROUTE[t.name]||'')+t.entity+t.name;
-  const has=(k)=>s.indexOf(k)>-1;
-  if(has("香港"))return "中国香港";
-  if(has("新加坡"))return "新加坡";
-  if(has("越南"))return "越南";
-  if(has("泰国"))return "泰国";
-  if(has("墨西哥"))return "墨西哥";
-  if(has("美国"))return "美国";
-  if(has("中国")||s.indexOf("境内")>-1)return "中国内地";
-  return "跨境/通用";
-}
-function renderTrade(list){
-  const out=$('#trOut');
-  if(!list||!list.length){out.innerHTML='<div class="empty">无匹配条目</div>';$('#trBanner').textContent='';return;}
-  out.innerHTML=list.map(t=>{
-    const u=t.url&&t.url.trim();
-    const docs=TR_DOCS[t.name];
-    const src=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 官方/参考：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
-    return '<div class="arch">'
-      +'<div class="meta"><span class="cat-tag '+TR_CLS[t.cat]+'">'+TR_CAT[t.cat]+'</span> <span class="remind-country">'+t.dir+'</span> <span class="remind-country" style="margin:0 2px">▶ '+trRoute(t)+'</span> <span class="remind-country">'+t.entity+'</span> <span class="remind-country">📍'+trRegion(t)+'</span>'
-      +'<div style="font-weight:700;font-size:14px;margin-top:2px">'+t.name+'</div></div>'
-      +'<div class="notes" style="margin-top:6px">'+t.rule+'</div>'
-      +(t.rate?'<div class="tp-box" style="background:#eef2ff;border-color:#c7d2fe"><span class="tp-label" style="background:#e0e7ff;color:#3730a3">适用税率</span>'+t.rate+'</div>':'')
-      +(t.key?'<div class="tp-box"><span class="tp-label">税率 / 归类要素</span>'+t.key+'</div>':'')
-      +(t.flow?'<div class="tp-box"><span class="tp-label">流程 / 单证</span>'+t.flow+'</div>':'')
-      +(docs?'<div class="tp-box" style="background:#fff7ed;border-color:#fed7aa"><span class="tp-label" style="background:#ffedd5;color:#c2410c">海关通关合规单据</span>'+docs+'</div>':'')
-      +'<div class="tp-box" style="background:#f0fdf4;border-color:#bbf7d0"><span class="tp-label" style="background:#dcfce7;color:#15803d">审核重点</span>'+t.audit+'</div>'
-      +'<div class="tp-box" style="background:#fff8e6;border-color:#fde68a"><span class="tp-label" style="background:#fef3c7;color:#b45309">风险提示</span>'+t.risk+'</div>'
-      +(t.notes?'<div class="meta" style="margin-top:6px;color:#666">备注：'+t.notes+'</div>':'')
-      +src+'</div>';
-  }).join('');
-}
-(function(){
-  const dSel=$('#trDir'), cSel=$('#trCat'), eSel=$('#trEntity'), rSel=$('#trRegion'), sch=$('#trSearch');
-  dSel.innerHTML='<option value="">全部方向</option>'+TR_DIRS.map(x=>'<option>'+x+'</option>').join('');
-  cSel.innerHTML='<option value="">全部类别</option>'+Object.keys(TR_CAT).map(c=>'<option value="'+c+'">'+TR_CAT[c]+'</option>').join('');
-  rSel.innerHTML='<option value="">全部区域</option>'+TR_REGIONS.map(x=>'<option>'+x+'</option>').join('');
-  const entOpts=uniq(TRADE_DATA.map(t=>t.entity)).map(x=>'<option value="e::'+x+'">主体 · '+x+'</option>').join('');
-  const rtOpts=uniq(TRADE_DATA.map(t=>trRoute(t))).map(x=>'<option value="r::'+x+'">路径 · '+x+'</option>').join('');
-  eSel.innerHTML='<option value="">全部主体/路径</option>'+entOpts+rtOpts;
-  function render(){
-    const df=dSel.value, cf=cSel.value, ef=eSel.value, rf=rSel.value, kw=sch.value.trim().toLowerCase();
-    let rows=TRADE_DATA.filter(t=>
-      (!df||t.dir===df)&&(!cf||t.cat===cf)&&(!rf||trRegion(t)===rf)
-      &&(!ef||(ef.indexOf('e::')===0&&t.entity.includes(ef.slice(3)))||(ef.indexOf('r::')===0&&trRoute(t).includes(ef.slice(3))))
-      &&(!kw||(t.name+t.rule+t.audit+t.risk+t.key+t.notes).toLowerCase().includes(kw)));
-    $('#trBanner').textContent='共 '+rows.length+' 条 / '+TRADE_DATA.length+' 条'+(ef?(' · '+(ef.slice(0,1)==='e'?'主体':'路径')+'：'+ef.slice(3)):'')+(rf?(' · 区域：'+rf):'');
-    renderTrade(rows);
-  }
-  eSel.onchange=render; dSel.onchange=render; cSel.onchange=render; rSel.onchange=render; sch.oninput=render; render();
-})();
 
 /* ---------- ④ kb ---------- */
 (function(){
@@ -1185,7 +1081,7 @@ function renderTrade(list){
   rSel.onchange=render; cSel.onchange=render; sch.oninput=render; render();
 })();
 
-/* ---------- ⑪ 国家 × 产品税率查询（销售环节 / 清关环节 / 跨境款项） ---------- */
+/* ---------- ⑩ 国家 × 产品税率查询（销售环节 / 清关环节 / 跨境款项） ---------- */
 const RATE_STAGE={s:{n:"销售环节",cls:"c-green"},c:{n:"清关环节",cls:"c-amber"},x:{n:"跨境款项",cls:"c-purple"}};
 const P_ALL="全品类（通用）";
 const P_3810="焊锡膏/助焊剂/清洗剂（HS3810）",P_8311="焊丝/焊条/焊棒（HS8311）",P_EM="电子焊接材料（各类·HS3810/8311）";
@@ -1289,16 +1185,15 @@ function renderRate(list){
 const PANELS=[
  {p:"intro",no:"〇",label:"使用说明",desc:"板块导览、数据更新机制与使用注意事项（当前页）。",calc:s=>"内容板块 "+(PANELS.length-1)+" 个"},
  {p:"overview",no:"①",label:"公司 / 分子公司概览",desc:"境内母公司 + 15 家子/分公司及境外主体，按地域/属性筛选，含主营业务与涉及税种。",calc:s=>"主体 "+SUBSIDIARIES.length+" 家"},
- {p:"ledger",no:"②",label:"税种台账",desc:"各管辖区的税种、税率/征收方式，附官方依据链接。",calc:s=>"税种 "+TAXES.length+" 条"},
+ {p:"ledger",no:"②",label:"税种台账",desc:"各管辖区的税种、税率/征收方式（含进出口关税/进口环节税/出口退税等海关类税种），附官方依据链接。",calc:s=>"税种 "+TAXES.length+" 条"},
  {p:"archive",no:"③",label:"每日更新归档",desc:"云端每日自动抓取的政策/新闻流（国税总局 / IRS / HMRC / TaxFoundation），可手动重新加载。",calc:s=>"归档 "+s.arch+" 条"},
  {p:"kb",no:"④",label:"税务知识库",desc:"常见税务问题问答，按地域/分类检索。",calc:s=>"问答 "+KB.length+" 条"},
- {p:"cases",no:"⑤",label:"税务处罚案例",desc:"处罚/稽查曝光案例（人工维护），附合规启示；按年份/税种/关键词筛选。",calc:s=>"案例 "+SEED_CASES.length+" 条"},
+ {p:"cases",no:"⑤",label:"税务处罚案例",desc:"处罚/稽查曝光案例（含自动抓取·供参考），附合规启示；按年份/税种/国家/地区/关键词筛选。",calc:s=>"案例 "+SEED_CASES.length+" 条"},
  {p:"compliance",no:"⑥",label:"境外合规要求",desc:"各境外主体的申报、工商、法律义务及官方链接。",calc:s=>"事项 "+SEED_COMPLIANCE.length+" 项"},
  {p:"reminder",no:"⑦",label:"合规时间提醒",desc:"境内+境外申报节点倒计时，每项可自选按月/季/年申报频率并勾选「已申报」。",calc:s=>"提醒 "+SEED_REMINDERS.length+" 项"},
  {p:"tp",no:"⑧",label:"转让定价",desc:"关联交易定价方法、同期资料门槛、预提税率表、支柱二落地、年度自查清单。",calc:s=>"条目 "+TP_DATA.length+" 条"},
 {p:"incent",no:"⑨",label:"优惠与补助",desc:"各主体适用优惠/补助台账，状态可在本机标记。",calc:s=>"优惠 "+IN_DATA.length+" 项"},
-{p:"trade",no:"⑩",label:"进出口通关",desc:"进出口税率/HS归类、清关流程、海关审核重点、风险提示与重要跟踪事项。",calc:s=>"条目 "+TRADE_DATA.length+" 条"},
-  {p:"rate",no:"⑪",label:"各国税率查询",desc:"7 个国家/地区 × 各产品（焊锡膏/焊丝/焊条/助焊剂等）的销售环节与清关环节税率速查（增值税/所得税/关税/进口税/出口退税/预提税）。",calc:s=>"条目 "+RATE_DATA.length+" 条"}
+{p:"rate",no:"⑩",label:"各国税率查询",desc:"7 个国家/地区 × 各产品（焊锡膏/焊丝/焊条/助焊剂等）的销售环节与清关环节税率速查（增值税/所得税/关税/进口税/出口退税/预提税）。",calc:s=>"条目 "+RATE_DATA.length+" 条"}
   ];
 function bindTabs(activeId){
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active', b.dataset.p===activeId));
@@ -1328,7 +1223,7 @@ function buildIntro(){
     +'<div class="notes" style="margin:6px 0">· 云端共享（⑦ 申报频率/已申报、⑨ 优惠状态）：数据存于本页公共云库（Supabase），无需登录、无需任何设置，任一使用者编辑后保存即全员刷新可见。页面为公开访问，请勿放置涉密数据。</div>'
     +'<div class="notes" style="margin:6px 0">· 人工维护部分：「⑤ 处罚案例」涉及金额与定性不自动抓取；新加坡 IRAS / 墨西哥 SAT / 欧盟 无稳定公开源，需要时人工补录归档 JSON 即可。</div>'
     +'</div>';
-document.getElementById('introVer').textContent='v20 · 2026-08-20（新增 ⑪ 各国税率查询模块）';
+document.getElementById('introVer').textContent='v21 · 2026-08-20（进出口通关并入税种台账，优化 ⑤ 案例筛选）';
   nav.querySelectorAll('.tab').forEach(b=>{b.addEventListener('click',()=>{bindTabs(b.dataset.p);});});
   document.getElementById('introBody').addEventListener('click',e=>{const g=e.target.closest('.go-tab');if(g){bindTabs(g.dataset.p);}});
 }
