@@ -189,6 +189,7 @@
     <div class="bar">
       <label>方向：<select id="trDir"></select></label>
       <label>类别：<select id="trCat"></select></label>
+      <label>主体/路径：<select id="trEntity"></select></label>
       <input type="text" id="trSearch" placeholder="搜索：商品 / 税率 / 流程 / 审核 / 风险" style="min-width:250px;">
       <span class="note" id="trBanner"></span>
     </div>
@@ -895,6 +896,30 @@ const TRADE_DATA=[
  {dir:"双向",cat:"o",name:"危险化学品进出口合规（母公司化工品）",entity:"境内化工类主体 + 越南孙公司",rule:"危化品进出口须完成安监应急登记、SDS/TDG 标签公示、满足运输与装卸要求；越南侧同步持化学品经营许可。",flow:"出口前取得危险特性鉴定；订舱运输按危险品流程；进口留存许可与申报。",audit:"品名活性成分与实际一致、包装运输合规。",risk:"瞒报危险品运输=公海级事故+报关行政处罚+承运方索赔。",notes:"母公司焊料助剂类产品涉化学组分，逐单判定。",url:"https://www.mem.gov.cn"},
  {dir:"进出口",cat:"o",name:"中美 301 / 关税与两反动态跟踪",entity:"美国孙公司 + 进口供应链",rule:"美国对中国商品征收 301 附加税（多轮加征）、对供应链端产品开展反倾销/反补贴（两反）调查，直接影响进口到岸成本与越南转口结构。",flow:"季度跟踪 USTR 清单、办案机关初裁/终裁与税率。",audit:"采购到岸成本测算含 301 与两反税率；评估关税排除申请与供应链再布局。",risk:"政策突变导致到岸成本骤升、合同履约亏损。",notes:"美方单位若被两反终裁，需评估应诉策略。",url:"https://www.ustr.gov"}
 ];
+const TR_ROUTE={
+  "进出口关税税率与 HS 归类":"中国（全口岸）· 双向",
+  "优惠贸易安排关税评审（RCEP / 中国-东盟 / CPTPP）":"中国→越南 / 越南→东盟 / 各国→美国",
+  "出口关税与「两高一资」限制商品":"中国→各境外",
+  "进口增值税与消费税（以完税价格为基础）":"各境外→中国",
+  "国际贸易「单一窗口」申报与无纸化通关":"中国（全口岸）· 双向",
+  "海关查验与取样化验配合":"各国（通用）",
+  "AEO 高级认证与通关便利":"中国 + 互认国（含越南）",
+  "越南进口清关（VNACCS）":"各境外→越南（VNACCS）",
+  "美国进口清关（CBP HTSUS 归类）":"中国/各国→美国（CBP）",
+  "完税价格审定：特许权使用费与关联交易":"各境外→中国（进口）",
+  "「三单相符」实质性审核":"各国（通用）· 双向",
+  "出口退（免）税单证与收汇核销":"中国→各境外（出口）",
+  "企业海关信用与经营资质维持":"各国（通用）",
+  "申报不实与漏缴税款处罚":"各国（通用）",
+  "走私与骗取出口退税刑事红线":"各国（通用）",
+  "两用物项出口管制与制裁清单合规":"中国/美国→各境外",
+  "原产地证退证查询与优惠维持":"中国→各境外（走FTA/RCEP）",
+  "汇率折算与付汇合规":"各国（通用）· 跨境付汇",
+  "汇总征税 / 关税保证保险降低资金占用":"中国（全口岸）",
+  "危险化学品进出口合规（母公司化工品）":"中国/越南→各国",
+  "中美 301 / 关税与两反动态跟踪":"中国→美国 / 供应链→美国"
+};
+function trRoute(t){return t.route||TR_ROUTE[t.name]||t.entity;}
 function renderTrade(list){
   const out=$('#trOut');
   if(!list||!list.length){out.innerHTML='<div class="empty">无匹配条目</div>';$('#trBanner').textContent='';return;}
@@ -902,7 +927,8 @@ function renderTrade(list){
     const u=t.url&&t.url.trim();
     const src=u?'<div class="meta" style="margin-top:4px;word-break:break-all">🔗 官方/参考：<a href="'+u+'" target="_blank" rel="noopener">'+u+'</a></div>':'';
     return '<div class="arch">'
-      +'<div class="meta"><span class="cat-tag '+TR_CLS[t.cat]+'">'+TR_CAT[t.cat]+'</span> <span class="remind-country">'+t.dir+'</span> <span class="remind-country">'+t.entity+'</span> <span style="font-weight:700">'+t.name+'</span></div>'
+      +'<div class="meta"><span class="cat-tag '+TR_CLS[t.cat]+'">'+TR_CAT[t.cat]+'</span> <span class="remind-country">'+t.dir+'</span> <span class="remind-country" style="margin:0 2px">▶ '+trRoute(t)+'</span> <span class="remind-country">'+t.entity+'</span>'
+      +'<div style="font-weight:700;font-size:14px;margin-top:2px">'+t.name+'</div></div>'
       +'<div class="notes" style="margin-top:6px">'+t.rule+'</div>'
       +(t.key?'<div class="tp-box"><span class="tp-label">税率 / 归类要素</span>'+t.key+'</div>':'')
       +(t.flow?'<div class="tp-box"><span class="tp-label">流程 / 单证</span>'+t.flow+'</div>':'')
@@ -913,16 +939,22 @@ function renderTrade(list){
   }).join('');
 }
 (function(){
-  const dSel=$('#trDir'), cSel=$('#trCat'), sch=$('#trSearch');
+  const dSel=$('#trDir'), cSel=$('#trCat'), eSel=$('#trEntity'), sch=$('#trSearch');
   dSel.innerHTML='<option value="">全部方向</option>'+TR_DIRS.map(x=>'<option>'+x+'</option>').join('');
   cSel.innerHTML='<option value="">全部类别</option>'+Object.keys(TR_CAT).map(c=>'<option value="'+c+'">'+TR_CAT[c]+'</option>').join('');
+  const entOpts=uniq(TRADE_DATA.map(t=>t.entity)).map(x=>'<option value="e::'+x+'">主体 · '+x+'</option>').join('');
+  const rtOpts=uniq(TRADE_DATA.map(t=>trRoute(t))).map(x=>'<option value="r::'+x+'">路径 · '+x+'</option>').join('');
+  eSel.innerHTML='<option value="">全部主体/路径</option>'+entOpts+rtOpts;
   function render(){
-    const df=dSel.value, cf=cSel.value, kw=sch.value.trim().toLowerCase();
-    const rows=TRADE_DATA.filter(t=>(!df||t.dir===df)&&(!cf||t.cat===cf)&&(!kw||(t.name+t.rule+t.audit+t.risk+t.key+t.notes).toLowerCase().includes(kw)));
-    $('#trBanner').textContent='共 '+rows.length+' 条 / '+TRADE_DATA.length+' 条';
+    const df=dSel.value, cf=cSel.value, ef=eSel.value, kw=sch.value.trim().toLowerCase();
+    let rows=TRADE_DATA.filter(t=>
+      (!df||t.dir===df)&&(!cf||t.cat===cf)
+      &&(!ef||(ef.indexOf('e::')===0&&t.entity.includes(ef.slice(3)))||(ef.indexOf('r::')===0&&trRoute(t).includes(ef.slice(3))))
+      &&(!kw||(t.name+t.rule+t.audit+t.risk+t.key+t.notes).toLowerCase().includes(kw)));
+    $('#trBanner').textContent='共 '+rows.length+' 条 / '+TRADE_DATA.length+' 条'+(ef?(' · '+(ef.slice(0,1)==='e'?'主体':'路径')+'：'+ef.slice(3)):'');
     renderTrade(rows);
   }
-  dSel.onchange=render; cSel.onchange=render; sch.oninput=render; render();
+  eSel.onchange=render; dSel.onchange=render; cSel.onchange=render; sch.oninput=render; render();
 })();
 
 /* ---------- ④ kb ---------- */
@@ -982,7 +1014,7 @@ function buildIntro(){
     +'<div class="notes" style="margin:6px 0">· 本地标记（⑨ 优惠状态、⑦ 申报频率与「已申报」勾选）仅存于你的浏览器，不写入云端、他人不可见；页面为公开访问，请勿放置涉密数据。</div>'
     +'<div class="notes" style="margin:6px 0">· 人工维护部分：「⑤ 处罚案例」涉及金额与定性不自动抓取；新加坡 IRAS / 墨西哥 SAT / 欧盟 无稳定公开源，需要时人工补录归档 JSON 即可。</div>'
     +'</div>';
-  document.getElementById('introVer').textContent='v16 · 2026-08-20（修复重复残留的按地域/按属性下拉栏）';
+  document.getElementById('introVer').textContent='v17 · 2026-08-20（⑩进出口新增主体/路径下拉）';
   nav.querySelectorAll('.tab').forEach(b=>{b.addEventListener('click',()=>{bindTabs(b.dataset.p);});});
   document.getElementById('introBody').addEventListener('click',e=>{const g=e.target.closest('.go-tab');if(g){bindTabs(g.dataset.p);}});
 }
