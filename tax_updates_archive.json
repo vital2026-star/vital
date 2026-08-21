@@ -1,7 +1,183 @@
 {
-  "updated": "2026-08-20",
+  "updated": "2026-08-21",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-08-21",
+      "juris": "美国",
+      "title": "Treasury, IRS issue proposed regulations on eligible investments for Trump Accounts under the Working Families Tax Cuts",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-on-eligible-investments-for-trump-accounts-under-the-working-families-tax-cuts"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "英国",
+      "title": "Research at HMRC",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/organisations/hm-revenue-customs/about/research"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "美国",
+      "title": "IRS launches digitally authenticated Tax Compliance Report",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-launches-digitally-authenticated-tax-compliance-report"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "美国",
+      "title": "How Poland’s Restrictive Tax Treatment of Losses Penalizes Risk-Taking and Business Expansion",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/research/all/eu/poland-business-tax-treatment/"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "英国",
+      "title": "Guidance: Agent Update: issue 146",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/agent-update-issue-146"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "美国",
+      "title": "Good Tax Reform Starts with Good Process",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/dominican-republic-tax-reform/"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "英国",
+      "title": "Form: Tell HMRC your Stamp Duty Land Tax scheme reference number",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/tax-avoidance-schemes-stamp-duty-land-tax-scheme-reference-number-aag4-sdlt"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "英国",
+      "title": "Form: Tell HMRC your ATED tax avoidance scheme reference number",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/tax-avoidance-schemes-disclosure-of-ated-scheme-reference-number-aag4ated"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "英国",
+      "title": "Form: Tax avoidance schemes: notification by scheme user where no promoter, or promoted by lawyer who can't make full notification (AAG3)",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/tax-avoidance-schemes-notification-by-scheme-user-where-no-promoter-or-promoted-by-lawyer-unable-to-make-full-notification-aag3"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "英国",
+      "title": "Form: Tax avoidance schemes: disclosure by scheme user where offshore promoter doesn't notify (AAG2)",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/tax-avoidance-schemes-disclosure-by-scheme-user-where-offshore-promoter-does-not-notify-aag2"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "美国",
+      "title": "Electric Vehicle Tax Treatment by State, 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/state/electric-vehicle-ev-taxes/"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "英国",
+      "title": "Corporate report: Named tax avoidance schemes, promoters, enablers and suppliers",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/named-tax-avoidance-schemes-promoters-enablers-and-suppliers"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "英国",
+      "title": "Capital Gains Manual",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/hmrc-internal-manuals/capital-gains-manual"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "中国内地",
+      "title": "2023年延续优化创新实施的税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102418/common_list_2023sfyhzczy.html"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "中国内地",
+      "title": "2022年新的组合式税费支持政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
+    },
+    {
+      "date": "2026-08-21",
+      "juris": "中国内地",
+      "title": "2019年度个人所得税综合所得年度汇算办税指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
+    },
     {
       "date": "2026-08-20",
       "juris": "中国内地",
@@ -265,182 +441,6 @@
         "英国"
       ],
       "url": "https://www.gov.uk/hmrc-internal-manuals/vat-health"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "Treasury, IRS proposes rules to protect refundable tax credits from abuse by illegal aliens",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/treasury-irs-proposes-rules-to-protect-refundable-tax-credits-from-abuse-by-illegal-aliens"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "Treasury, IRS issue proposed regulations on employer contributions to Trump Accounts under the Working Families Tax Cuts",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-on-employer-contributions-to-trump-accounts-under-the-working-families-tax-cuts"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "Treasury, IRS issue guidance on rollovers between retirement plans and individual retirement accounts",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-guidance-on-rollovers-between-retirement-plans-and-individual-retirement-accounts"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "Treasury, IRS begin implementing Executive Order 14403 by announcing intent to issue proposed regulations on Saver&#039;s Match, which will benefit millions of low- and moderate-income taxpayers",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/treasury-irs-begin-implementing-executive-order-14403-by-announcing-intent-to-issue-proposed-regulations-on-savers-match-which-will-benefit-millions-of-low-and-moderate-income-taxpayers"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "The Options Guide Shows a Better Way to Fund Social Security",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/fund-social-security-tax-options/"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "Tax Rate vs. Tax Base",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/taxedu/videos/tax-rate-vs-tax-base/"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "New Congressional Data Center Tax Proposals Threaten US AI Investment",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/congressional-data-center-tax-proposals-us-ai-investment/"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "Maryland Court Strikes Down Digital Ad Tax",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/maryland-digital-ad-tax/"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "英国",
-      "title": "List of ports using the Goods Vehicle Movement Service",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/list-of-ports-using-the-goods-vehicle-movement-service"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "IRS, Security Summit remind tax pros they need a Written Information Security Plan to protect client data",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-security-summit-remind-tax-pros-they-need-a-written-information-security-plan-to-protect-client-data"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "IRS updates FAQs about the limitation on the deduction for business interest expense",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-updates-faqs-about-the-limitation-on-the-deduction-for-business-interest-expense"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "美国",
-      "title": "IRS establishes Office of Conservation Easements and transitions settlement process",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-establishes-office-of-conservation-easements-and-transitions-settlement-process"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "英国",
-      "title": "HMRC email updates, videos and webinars for money laundering supervision",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/hmrc-email-updates-videos-and-webinars-for-money-laundering-supervision"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "英国",
-      "title": "HMRC email updates, videos and webinars for employing people",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/help-and-support-for-employing-people"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "英国",
-      "title": "Guidance: Employer Bulletin: August 2026",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/employer-bulletin-august-2026"
-    },
-    {
-      "date": "2026-08-20",
-      "juris": "英国",
-      "title": "Guidance: Appendix 2: DE 1/11: Additional Procedure Codes of the Customs Declaration Service (CDS)",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/appendix-2-de-111-additional-procedure-codes-of-the-customs-declaration-service-cds"
     }
   ]
 }
