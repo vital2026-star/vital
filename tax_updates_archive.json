@@ -1,7 +1,139 @@
 {
-  "updated": "2026-08-23",
+  "updated": "2026-08-24",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "高新技术企业购置设备、器具企业所得税税前一次性扣除和100％加计扣除政策操作指南",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181762/content.html"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "非居民企业源泉扣缴税收指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/download/pdf/fjmqy.pdf"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "退税减税降费政策操作指南",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "软件企业和集成电路企业税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101947/common_list_rjqy.html"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "稳外贸稳外资税收政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102176/common_list_wwm.html"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "研发费用税前加计扣除新政指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5164426/content.html"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "研发费用加计扣除政策执行指引（2.0版）",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5208701/content.html"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "美国",
+      "title": "Electric Vehicle Tax Treatment by State, 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/state/electric-vehicle-ev-taxes/"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "英国",
+      "title": "Capital Gains Manual",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/hmrc-internal-manuals/capital-gains-manual"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "2023年延续优化创新实施的税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102418/common_list_2023sfyhzczy.html"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "2022年新的组合式税费支持政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
+    },
+    {
+      "date": "2026-08-24",
+      "juris": "中国内地",
+      "title": "2019年度个人所得税综合所得年度汇算办税指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
+    },
     {
       "date": "2026-08-23",
       "juris": "中国内地",
@@ -309,138 +441,6 @@
         "美国"
       ],
       "url": "https://www.irs.gov/newsroom/irs-security-summit-remind-tax-pros-they-need-a-written-information-security-plan-to-protect-client-data"
-    },
-    {
-      "date": "2026-08-22",
-      "juris": "美国",
-      "title": "IRS updates FAQs about the limitation on the deduction for business interest expense",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-updates-faqs-about-the-limitation-on-the-deduction-for-business-interest-expense"
-    },
-    {
-      "date": "2026-08-22",
-      "juris": "美国",
-      "title": "IRS establishes Office of Conservation Easements and transitions settlement process",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-establishes-office-of-conservation-easements-and-transitions-settlement-process"
-    },
-    {
-      "date": "2026-08-22",
-      "juris": "英国",
-      "title": "Form: Trusts and estates: statement of income from trust (R185) (trust income)",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/trusts-and-estates-statement-of-income-from-trust-r185-trust-income"
-    },
-    {
-      "date": "2026-08-22",
-      "juris": "美国",
-      "title": "Diving into the Differences Between Tax Transparency Regimes",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/tax-transparency-oecd/"
-    },
-    {
-      "date": "2026-08-22",
-      "juris": "英国",
-      "title": "Disagree with a revenue correction notice",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/disagree-with-a-revenue-correction-notice"
-    },
-    {
-      "date": "2026-08-21",
-      "juris": "美国",
-      "title": "Treasury, IRS issue proposed regulations on eligible investments for Trump Accounts under the Working Families Tax Cuts",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-on-eligible-investments-for-trump-accounts-under-the-working-families-tax-cuts"
-    },
-    {
-      "date": "2026-08-21",
-      "juris": "英国",
-      "title": "Research at HMRC",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/organisations/hm-revenue-customs/about/research"
-    },
-    {
-      "date": "2026-08-21",
-      "juris": "美国",
-      "title": "IRS launches digitally authenticated Tax Compliance Report",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-launches-digitally-authenticated-tax-compliance-report"
-    },
-    {
-      "date": "2026-08-21",
-      "juris": "美国",
-      "title": "How Poland’s Restrictive Tax Treatment of Losses Penalizes Risk-Taking and Business Expansion",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/research/all/eu/poland-business-tax-treatment/"
-    },
-    {
-      "date": "2026-08-21",
-      "juris": "英国",
-      "title": "Guidance: Agent Update: issue 146",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/agent-update-issue-146"
-    },
-    {
-      "date": "2026-08-21",
-      "juris": "美国",
-      "title": "Good Tax Reform Starts with Good Process",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/dominican-republic-tax-reform/"
-    },
-    {
-      "date": "2026-08-21",
-      "juris": "英国",
-      "title": "Form: Tell HMRC your Stamp Duty Land Tax scheme reference number",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/tax-avoidance-schemes-stamp-duty-land-tax-scheme-reference-number-aag4-sdlt"
     }
   ]
 }
