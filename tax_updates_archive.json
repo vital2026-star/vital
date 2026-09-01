@@ -1,7 +1,139 @@
 {
-  "updated": "2026-08-31",
+  "updated": "2026-09-01",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-09-01",
+      "juris": "中国内地",
+      "title": "稳外贸稳外资税收政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102176/common_list_wwm.html"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "中国内地",
+      "title": "研发费用税前加计扣除新政指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5164426/content.html"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "中国内地",
+      "title": "研发费用加计扣除政策执行指引（2.0版）",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5208701/content.html"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "中国内地",
+      "title": "支持高校毕业生等青年就业创业税收优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5206981/content.html"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "中国内地",
+      "title": "支持脱贫攻坚税收优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n3439465/index.html"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "中国内地",
+      "title": "支持绿色发展税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102153/common_list_lsfz.html"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "美国",
+      "title": "Testimony: Legislative Proposal to Adapt the Income Tax Code to the Digital Economy Repeats the Economic and Legal Mistakes of Digital Services Taxes",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/testimony/belgium-digital-tax-proposal/"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "美国",
+      "title": "Siim Kallas Proved the Hard Work of Sound Tax Reform Pays Off",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/siim-kallas-hard-work-sound-tax-reform/"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "英国",
+      "title": "Rates and thresholds for employers 2026 to 2027",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/rates-and-thresholds-for-employers-2026-to-2027"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "英国",
+      "title": "Guidance: Transit newsletters — HMRC updates",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/community-common-transit-and-tir-newsletters"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "英国",
+      "title": "Check which packaging is subject to Plastic Packaging Tax",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/work-out-which-packaging-is-subject-to-plastic-packaging-tax"
+    },
+    {
+      "date": "2026-09-01",
+      "juris": "英国",
+      "title": "Check if an email you've received from HMRC is genuine",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/check-if-an-email-youve-received-from-hmrc-is-genuine"
+    },
     {
       "date": "2026-08-31",
       "juris": "中国内地",
@@ -309,138 +441,6 @@
         "美国"
       ],
       "url": "https://www.irs.gov/newsroom/irs-updates-faqs-about-the-limitation-on-the-deduction-for-business-interest-expense"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "IRS reminder: Information return e-file system transitioning to a new platform",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-reminder-information-return-e-file-system-transitioning-to-a-new-platform"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "IRS online services spotlight: Taxpayers can get more done online",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-online-services-spotlight-taxpayers-can-get-more-done-online"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "IRS launches digitally authenticated Tax Compliance Report",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-launches-digitally-authenticated-tax-compliance-report"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "IRS CEO meets with tax professionals at NY tax forum",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-ceo-meets-with-tax-professionals-at-ny-tax-forum"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "How Poland’s Restrictive Tax Treatment of Losses Penalizes Risk-Taking and Business Expansion",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/research/all/eu/poland-business-tax-treatment/"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "英国",
-      "title": "Guidance: Self Assessment: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/self-assessment-service-availability-and-issues"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "英国",
-      "title": "Guidance: Minimum certification requirements for a mass balance approach for Plastic Packaging Tax",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/minimum-certification-requirements-for-a-mass-balance-approach-for-plastic-packaging-tax"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "英国",
-      "title": "Guidance: Making Tax Digital for Income Tax: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/use-software-to-send-income-tax-updates-service-availability-and-issues"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "Gas Taxes by State, 2026",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/data/all/state/gas-taxes-state/"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "Four Ways US Bond Markets Affect Tax Revenue",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/four-ways-us-bond-markets-affect-tax-revenue/"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "Estate, Inheritance, and Gift Taxes in Europe, 2026",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/data/all/eu/estate-taxes-inheritance-taxes-gift-taxes-europe/"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "Diving into the Differences Between Tax Transparency Regimes",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/tax-transparency-oecd/"
     }
   ]
 }
