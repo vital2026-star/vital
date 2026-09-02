@@ -1,7 +1,183 @@
 {
-  "updated": "2026-09-01",
+  "updated": "2026-09-02",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-09-02",
+      "juris": "美国",
+      "title": "What The Washington Post Misses About Social Security’s Progressivity",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/washington-post-about-social-security-progressivity/"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "英国",
+      "title": "Stamp Duty Land Tax Manual",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/hmrc-internal-manuals/stamp-duty-land-tax-manual"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "英国",
+      "title": "Policy paper: Revenue and Customs Brief 9 (2026): VAT liability of supplies of education by alternative providers of higher and further education",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/revenue-and-customs-brief-9-2026-vat-liability-of-supplies-of-education-by-alternative-providers-of-higher-and-further-education"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "英国",
+      "title": "One month until Vaping Products Duty and the Vaping Duty Stamps Scheme start",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/news/one-month-until-vaping-products-duty-and-the-vaping-duty-stamps-scheme-start"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "美国",
+      "title": "IRS reminder: Information return e-file system transitioning to a new platform",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-reminder-information-return-e-file-system-transitioning-to-a-new-platform"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "美国",
+      "title": "IRS online services spotlight: Taxpayers can get more done online",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-online-services-spotlight-taxpayers-can-get-more-done-online"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "美国",
+      "title": "IRS launches digitally authenticated Tax Compliance Report",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-launches-digitally-authenticated-tax-compliance-report"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "美国",
+      "title": "IRS CEO meets with tax professionals at NY tax forum",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-ceo-meets-with-tax-professionals-at-ny-tax-forum"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "英国",
+      "title": "Guidance: VAT Import One Stop Shop Scheme: service availability and issues",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/vat-import-one-stop-shop-scheme-service-availability-and-issues"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "英国",
+      "title": "Guidance: One Stop Shop Union scheme: service availability and issues",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/one-stop-shop-union-scheme-service-availability-and-issues"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "美国",
+      "title": "Gas Taxes by State, 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/state/gas-taxes-state/"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "美国",
+      "title": "Four Ways US Bond Markets Affect Tax Revenue",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/four-ways-us-bond-markets-affect-tax-revenue/"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "美国",
+      "title": "Exporters Bore Higher Share of the 2025 Tariffs than Previously Estimated, New Research Finds",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/exporters-bore-higher-share-2025-tariffs-than-previously-estimated/"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "英国",
+      "title": "Debt Management and Banking Manual",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/hmrc-internal-manuals/debt-management-and-banking"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "英国",
+      "title": "Check genuine HMRC contact that uses more than one communication method",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/check-genuine-hmrc-contact-that-uses-more-than-one-communication-method"
+    },
+    {
+      "date": "2026-09-02",
+      "juris": "英国",
+      "title": "Accredited official statistics: UK overseas trade in goods statistics: July 2026",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/statistics/announcements/uk-overseas-trade-in-goods-statistics-july-2026"
+    },
     {
       "date": "2026-09-01",
       "juris": "中国内地",
@@ -265,182 +441,6 @@
         "指引"
       ],
       "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n1671176/n2884609/c2884646/content.html"
-    },
-    {
-      "date": "2026-08-30",
-      "juris": "中国内地",
-      "title": "“大众创业 万众创新”税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101827/common_list_dzcy.html"
-    },
-    {
-      "date": "2026-08-30",
-      "juris": "美国",
-      "title": "The Options Guide Shows a Better Way to Fund Social Security",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/fund-social-security-tax-options/"
-    },
-    {
-      "date": "2026-08-30",
-      "juris": "美国",
-      "title": "New Food and Drug Administration Commissioner Should Reform the Center for Tobacco Products",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/fda-tobacco-regulation-reform/"
-    },
-    {
-      "date": "2026-08-30",
-      "juris": "美国",
-      "title": "IRS reminder: Extension filers can use IRS Free File this summer",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-reminder-extension-filers-can-use-irs-free-file-this-summer"
-    },
-    {
-      "date": "2026-08-30",
-      "juris": "中国内地",
-      "title": "2023年延续优化创新实施的税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102418/common_list_2023sfyhzczy.html"
-    },
-    {
-      "date": "2026-08-30",
-      "juris": "中国内地",
-      "title": "2022年新的组合式税费支持政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
-    },
-    {
-      "date": "2026-08-30",
-      "juris": "中国内地",
-      "title": "2019年度个人所得税综合所得年度汇算办税指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "中国内地",
-      "title": "高新技术企业购置设备、器具企业所得税税前一次性扣除和100％加计扣除政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181762/content.html"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "中国内地",
-      "title": "非居民企业源泉扣缴税收指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/download/pdf/fjmqy.pdf"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "中国内地",
-      "title": "退税减税降费政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "中国内地",
-      "title": "软件企业和集成电路企业税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101947/common_list_rjqy.html"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "Treasury, IRS issue proposed regulations on eligible investments for Trump Accounts under the Working Families Tax Cuts",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-on-eligible-investments-for-trump-accounts-under-the-working-families-tax-cuts"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "英国",
-      "title": "Sign up for the Trader Support Service",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/trader-support-service"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "英国",
-      "title": "Preparing to use a mass balance approach for Plastic Packaging Tax",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/preparing-to-use-a-mass-balance-approach-for-plastic-packaging-tax"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "Interest rates remain the same for the fourth quarter of 2026",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/interest-rates-remain-the-same-for-the-fourth-quarter-of-2026"
-    },
-    {
-      "date": "2026-08-29",
-      "juris": "美国",
-      "title": "IRS updates FAQs about the limitation on the deduction for business interest expense",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-updates-faqs-about-the-limitation-on-the-deduction-for-business-interest-expense"
     }
   ]
 }
