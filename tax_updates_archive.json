@@ -1,7 +1,117 @@
 {
-  "updated": "2026-09-07",
+  "updated": "2026-09-08",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-09-08",
+      "juris": "英国",
+      "title": "Use Making Tax Digital for Income Tax",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax"
+    },
+    {
+      "date": "2026-09-08",
+      "juris": "英国",
+      "title": "Os bydd eich amgylchiadau’n newid",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/defnyddio-r-cynllun-troi-treth-yn-ddigidol-ar-gyfer-treth-incwm/os-bydd-eich-amgylchiadau-n-newid"
+    },
+    {
+      "date": "2026-09-08",
+      "juris": "英国",
+      "title": "Official Statistics: Patent Box relief statistics: September 2026",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/statistics/announcements/patent-box-relief-statistics-september-2026"
+    },
+    {
+      "date": "2026-09-08",
+      "juris": "英国",
+      "title": "If your circumstances change",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/use-making-tax-digital-for-income-tax/if-your-circumstances-change"
+    },
+    {
+      "date": "2026-09-08",
+      "juris": "美国",
+      "title": "IRS CEO meets with tax professionals at NY tax forum",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-ceo-meets-with-tax-professionals-at-ny-tax-forum"
+    },
+    {
+      "date": "2026-09-08",
+      "juris": "英国",
+      "title": "Guidance: Making Tax Digital for Income Tax: service availability and issues",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/use-software-to-send-income-tax-updates-service-availability-and-issues"
+    },
+    {
+      "date": "2026-09-08",
+      "juris": "英国",
+      "title": "Guidance: List of approved professional organisations and learned societies (List 3)",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/professional-bodies-approved-for-tax-relief-list-3"
+    },
+    {
+      "date": "2026-09-08",
+      "juris": "美国",
+      "title": "Exporters Bore Higher Share of the 2025 Tariffs than Previously Estimated, New Research Finds",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/exporters-bore-higher-share-2025-tariffs-than-previously-estimated/"
+    },
+    {
+      "date": "2026-09-08",
+      "juris": "英国",
+      "title": "Download the HMRC app",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/download-the-hmrc-app"
+    },
+    {
+      "date": "2026-09-08",
+      "juris": "英国",
+      "title": "Defnyddio’r cynllun Troi Treth yn Ddigidol ar gyfer Treth Incwm",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/defnyddio-r-cynllun-troi-treth-yn-ddigidol-ar-gyfer-treth-incwm"
+    },
     {
       "date": "2026-09-07",
       "juris": "中国内地",
@@ -331,116 +441,6 @@
         "指引"
       ],
       "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210009/content.html"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "中国内地",
-      "title": "小微企业、个体工商户税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101970/common_list_xwqy.html"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "中国内地",
-      "title": "其他企业研发费用加计扣除比例提高到100%政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181758/content.html"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "中国内地",
-      "title": "企业投入基础研究税收优惠政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181967/content.html"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "美国",
-      "title": "Windfall Profits Taxes in Europe, 2026",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/data/all/eu/windfall-profits-taxes-europe/"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "美国",
-      "title": "What The Washington Post Misses About Social Security’s Progressivity",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/washington-post-about-social-security-progressivity/"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "美国",
-      "title": "Security Summit: Strengthen defenses against tax identity theft",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/security-summit-strengthen-defenses-against-tax-identity-theft"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "英国",
-      "title": "Report a problem using the Customs Declaration Service",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/report-a-problem-using-the-customs-declaration-service"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "美国",
-      "title": "IRS reminder: National Payroll Week is time for a paycheck checkup",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-reminder-national-payroll-week-is-time-for-a-paycheck-checkup"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "美国",
-      "title": "IRS reminder: Information return e-file system transitioning to a new platform",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-reminder-information-return-e-file-system-transitioning-to-a-new-platform"
-    },
-    {
-      "date": "2026-09-05",
-      "juris": "美国",
-      "title": "IRS online services spotlight: Taxpayers can get more done online",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-online-services-spotlight-taxpayers-can-get-more-done-online"
     }
   ]
 }
