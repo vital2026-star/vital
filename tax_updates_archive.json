@@ -1,7 +1,216 @@
 {
-  "updated": "2026-09-11",
+  "updated": "2026-09-12",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-09-12",
+      "juris": "中国内地",
+      "title": "小微企业、个体工商户税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101970/common_list_xwqy.html"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "中国内地",
+      "title": "其他企业研发费用加计扣除比例提高到100%政策操作指南",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181758/content.html"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "中国内地",
+      "title": "企业投入基础研究税收优惠政策操作指南",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181967/content.html"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "美国",
+      "title": "Windfall Profits Taxes in Europe, 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/eu/windfall-profits-taxes-europe/"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "美国",
+      "title": "Teachers Are Omitting a Big Part of Financial Literacy",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/oped/financial-literacy-tax-code/"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "美国",
+      "title": "Security Summit: Strengthen defenses against tax identity theft",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/security-summit-strengthen-defenses-against-tax-identity-theft"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "英国",
+      "title": "Guidance: PAYE draft forms: P45",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/paye-draft-forms-p45"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "英国",
+      "title": "Guidance: Filing your Company Tax Return online",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/corporation-tax-commercial-software-suppliers"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "英国",
+      "title": "Guidance: External temporary storage facilities codes for Data Element 5/23 of the Customs Declaration Service",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/external-temporary-storage-facilities-codes-for-data-element-523-of-the-customs-declaration-service"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "美国",
+      "title": "Getting Crypto Tax Reform Right Means Prioritizing Neutrality",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/getting-cryptocurrency-tax-reform-right-means-prioritizing-neutrality/"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "美国",
+      "title": "Even an Ideal Business Tax Base Can’t Justify an 80 Percent Business Tax Rate",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/business-tax-base-cant-justify-an-80-percent-business-tax-rate/"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "英国",
+      "title": "Employment Income Manual",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/hmrc-internal-manuals/employment-income-manual"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "英国",
+      "title": "Customs Declaration Service: service availability and issues",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/customs-declaration-service-service-availability-and-issues"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "英国",
+      "title": "Check genuine HMRC contact that uses more than one communication method",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/check-genuine-hmrc-contact-that-uses-more-than-one-communication-method"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "美国",
+      "title": "Capital Is Not Taking Half of America’s Income, and Other Myths  About the “Labor Share”",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/capital-is-not-taking-half-of-americas-income-labor-share/"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "英国",
+      "title": "Alternative Dispute Resolution Guidance",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/hmrc-internal-manuals/alternative-dispute-resolution-guidance"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "英国",
+      "title": "Accredited official statistics: Corporation Tax Statistics 2026",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/statistics/announcements/corporation-tax-statistics-2026"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "中国内地",
+      "title": "2023年延续优化创新实施的税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102418/common_list_2023sfyhzczy.html"
+    },
+    {
+      "date": "2026-09-12",
+      "juris": "中国内地",
+      "title": "2022年新的组合式税费支持政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
+    },
     {
       "date": "2026-09-11",
       "juris": "中国内地",
@@ -232,215 +441,6 @@
         "英国"
       ],
       "url": "https://www.gov.uk/government/publications/fulfilment-house-due-diligence-scheme-registered-businesses-list"
-    },
-    {
-      "date": "2026-09-11",
-      "juris": "英国",
-      "title": "Guidance: Childcare service: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/tax-free-childcare-service-service-availability-and-issues"
-    },
-    {
-      "date": "2026-09-11",
-      "juris": "中国内地",
-      "title": "2019年度个人所得税综合所得年度汇算办税指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "退税减税降费政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "软件企业和集成电路企业税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101947/common_list_rjqy.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "稳外贸稳外资税收政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102176/common_list_wwm.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "研发费用税前加计扣除新政指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5164426/content.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "研发费用加计扣除政策执行指引（2.0版）",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5208701/content.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "支持高校毕业生等青年就业创业税收优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5206981/content.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "支持绿色发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102153/common_list_lsfz.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "支持教育事业发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5206982/content.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "支持小微企业和个体工商户发展税费优惠政策指引（1.0）",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210955/content.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "支持协调发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210010/content.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "支持共享发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210009/content.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "中国内地",
-      "title": "“大众创业 万众创新”税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101827/common_list_dzcy.html"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "英国",
-      "title": "Trusts, Settlements and Estates Manual",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/hmrc-internal-manuals/trusts-settlements-and-estates-manual"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "美国",
-      "title": "The Tax Problem You, Me, and Patrick Mahomes Have in Common",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/common-tax-problem-you-me-patrick-mahomes/"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "美国",
-      "title": "The Destination-Based Cash Flow Tax Remains a Strong Option for US Business Tax Reform",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/destination-based-cash-flow-tax-strong-option-for-us-business-tax-reform/"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "英国",
-      "title": "Self Assessment Manual",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/hmrc-internal-manuals/self-assessment-manual"
-    },
-    {
-      "date": "2026-09-10",
-      "juris": "英国",
-      "title": "Policy paper: Introduction of Carbon Border Adjustment Mechanism",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/introduction-of-carbon-border-adjustment-mechanism"
     }
   ]
 }
