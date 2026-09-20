@@ -1,7 +1,29 @@
 {
-  "updated": "2026-09-19",
+  "updated": "2026-09-20",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-09-20",
+      "juris": "美国",
+      "title": "Security Summit closes summer series with data security reminder for tax pros",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/security-summit-closes-summer-series-with-data-security-reminder-for-tax-pros"
+    },
+    {
+      "date": "2026-09-20",
+      "juris": "美国",
+      "title": "IRS Reminder: Disaster preparedness starts with tax records",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-reminder-disaster-preparedness-starts-with-tax-records"
+    },
     {
       "date": "2026-09-19",
       "juris": "英国",
@@ -419,28 +441,6 @@
         "指引"
       ],
       "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "中国内地",
-      "title": "2019年度个人所得税综合所得年度汇算办税指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
-    },
-    {
-      "date": "2026-09-17",
-      "juris": "中国内地",
-      "title": "退税减税降费政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
     }
   ]
 }
