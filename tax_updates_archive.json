@@ -1,7 +1,117 @@
 {
-  "updated": "2026-09-20",
+  "updated": "2026-09-22",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-09-22",
+      "juris": "英国",
+      "title": "Software developers providing entry summary declaration support",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/software-developers-providing-entry-summary-declaration-support"
+    },
+    {
+      "date": "2026-09-22",
+      "juris": "英国",
+      "title": "Software developers providing customs declaration software",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/list-of-software-developers-providing-customs-declaration-support"
+    },
+    {
+      "date": "2026-09-22",
+      "juris": "英国",
+      "title": "Pay Stamp Duty Reserve Tax",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/pay-stamp-duty-reserve-tax"
+    },
+    {
+      "date": "2026-09-22",
+      "juris": "英国",
+      "title": "Pay Landfill Tax",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/pay-landfill-tax"
+    },
+    {
+      "date": "2026-09-22",
+      "juris": "英国",
+      "title": "Pay Climate Change Levy",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/pay-climate-change-levy"
+    },
+    {
+      "date": "2026-09-22",
+      "juris": "美国",
+      "title": "IRS wraps up successful Nationwide Tax Forums with nearly 13,000 attendees",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-wraps-up-successful-nationwide-tax-forums-with-nearly-13000-attendees"
+    },
+    {
+      "date": "2026-09-22",
+      "juris": "英国",
+      "title": "Guidance: CWG2: further guide to PAYE and National Insurance contributions",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/cwg2-further-guide-to-paye-and-national-insurance-contributions"
+    },
+    {
+      "date": "2026-09-22",
+      "juris": "英国",
+      "title": "Check genuine HMRC contact that uses more than one communication method",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/check-genuine-hmrc-contact-that-uses-more-than-one-communication-method"
+    },
+    {
+      "date": "2026-09-22",
+      "juris": "美国",
+      "title": "Beer Taxes in Europe, 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/eu/beer-taxes-europe/"
+    },
+    {
+      "date": "2026-09-22",
+      "juris": "英国",
+      "title": "Accredited official statistics: HMRC tax receipts and National Insurance contributions for the UK",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/statistics/hmrc-tax-and-nics-receipts-for-the-uk"
+    },
     {
       "date": "2026-09-20",
       "juris": "美国",
@@ -331,116 +441,6 @@
         "英国"
       ],
       "url": "https://www.gov.uk/guidance/pay-the-vat-due-on-your-import-one-stop-shop-vat-return"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "英国",
-      "title": "PAYE Manual",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/hmrc-internal-manuals/paye-manual"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "美国",
-      "title": "No, Tariffs Can’t Fund $5,000 Dividends to All Adult US Citizens",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/trump-dividend-5000-check-tariff-revenue/"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "美国",
-      "title": "IRS reminder: National Payroll Week is time for a paycheck checkup",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-reminder-national-payroll-week-is-time-for-a-paycheck-checkup"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "美国",
-      "title": "IRS reminder: Direct Pay offers free, easy way to pay taxes",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-reminder-direct-pay-offers-free-easy-way-to-pay-taxes"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "英国",
-      "title": "Guidance: Help to Save: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/help-to-save-service-availability-and-issues"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "英国",
-      "title": "Guidance: Agent update: issue 147",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/agent-update-issue-147"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "英国",
-      "title": "Enquiry Manual",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/hmrc-internal-manuals/enquiry-manual"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "英国",
-      "title": "Capital Gains Manual",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/hmrc-internal-manuals/capital-gains-manual"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "中国内地",
-      "title": "2023年延续优化创新实施的税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102418/common_list_2023sfyhzczy.html"
-    },
-    {
-      "date": "2026-09-18",
-      "juris": "中国内地",
-      "title": "2022年新的组合式税费支持政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
     }
   ]
 }
