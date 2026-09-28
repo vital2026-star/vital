@@ -1,7 +1,139 @@
 {
-  "updated": "2026-09-27",
+  "updated": "2026-09-28",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-09-28",
+      "juris": "中国内地",
+      "title": "非居民企业源泉扣缴税收指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/download/pdf/fjmqy.pdf"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "中国内地",
+      "title": "退税减税降费政策操作指南",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "中国内地",
+      "title": "支持脱贫攻坚税收优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n3439465/index.html"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "美国",
+      "title": "Security Summit closes summer series with data security reminder for tax pros",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/security-summit-closes-summer-series-with-data-security-reminder-for-tax-pros"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "美国",
+      "title": "Options Guide Shows the “No Tax On” Deductions Are Costly and Complex",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/trump-no-tax-on-deductions-are-costly-and-complex/"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "美国",
+      "title": "IRS wraps up successful Nationwide Tax Forums with nearly 13,000 attendees",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-wraps-up-successful-nationwide-tax-forums-with-nearly-13000-attendees"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "美国",
+      "title": "IRS warns of tax credit scams targeting the tribal community",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-warns-of-tax-credit-scams-targeting-the-tribal-community"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "美国",
+      "title": "IRS announces extension of tax relief for farmers and ranchers affected by drought in 49 states, other regions",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-announces-extension-of-tax-relief-for-farmers-and-ranchers-affected-by-drought-in-49-states-other-regions"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "美国",
+      "title": "IRS accepting applicants for 2027 Compliance Assurance Process",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-accepting-applicants-for-2027-compliance-assurance-process"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "美国",
+      "title": "Full Expensing to Be Made Permanent in Canada",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/canada-full-expensing-permanent/"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "英国",
+      "title": "Customs Declaration Service: service availability and issues",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/customs-declaration-service-service-availability-and-issues"
+    },
+    {
+      "date": "2026-09-28",
+      "juris": "美国",
+      "title": "Beer Taxes in Europe, 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/eu/beer-taxes-europe/"
+    },
     {
       "date": "2026-09-27",
       "juris": "中国内地",
@@ -309,138 +441,6 @@
         "美国"
       ],
       "url": "https://www.irs.gov/newsroom/irs-launches-new-mobile-app-expanding-digital-services-for-taxpayers"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "英国",
-      "title": "Guidance: Tax types for Data Element 4/3 of the Customs Declaration Service",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/tax-types-for-data-element-43-of-the-customs-declaration-service"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "英国",
-      "title": "Guidance: National additional codes to declare with Data Element 6/17 of the Customs Declaration Service",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/national-additional-codes-to-declare-with-data-element-617-of-the-customs-declaration-service"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "英国",
-      "title": "Guidance: Excise tax types, excise duty rates and supplementary guidance",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/excise-tax-types-excise-duty-rates-and-supplementary-guidance"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "英国",
-      "title": "Guidance: Currency codes for Data Element 4/10 of the Customs Declaration Service",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/currency-codes-for-data-element-410-of-the-customs-declaration-service"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "英国",
-      "title": "Guidance: CDS Declaration Completion Instructions for Imports",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/cds-uk-trade-tariff-volume-3-import-declaration-completion-guide"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "英国",
-      "title": "Guidance: CDS Declaration Completion Instructions for Exports",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/uk-trade-tariff-cds-volume-3-export-declaration-completion-guide"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "英国",
-      "title": "Guidance: CDS Customs Clearance Request Completion Instructions for Inventory Exports",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/uk-trade-tariff-cds-volume-3-c21-customs-clearance-request-completion-guide-inventory-exports"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "英国",
-      "title": "Guidance: CDS BIRDS Declarations and Customs Clearance Request completion instructions",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/cds-birds-declarations-and-customs-clearance-request-completion-instructions"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "中国内地",
-      "title": "2023年延续优化创新实施的税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102418/common_list_2023sfyhzczy.html"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "中国内地",
-      "title": "2022年新的组合式税费支持政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
-    },
-    {
-      "date": "2026-09-26",
-      "juris": "中国内地",
-      "title": "2019年度个人所得税综合所得年度汇算办税指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
-    },
-    {
-      "date": "2026-09-25",
-      "juris": "中国内地",
-      "title": "高新技术企业购置设备、器具企业所得税税前一次性扣除和100％加计扣除政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181762/content.html"
     }
   ]
 }
