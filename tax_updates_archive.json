@@ -1,7 +1,293 @@
 {
-  "updated": "2026-09-30",
+  "updated": "2026-10-01",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "软件企业和集成电路企业税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101947/common_list_rjqy.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "稳外贸稳外资税收政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102176/common_list_wwm.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "研发费用税前加计扣除新政指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5164426/content.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "研发费用加计扣除政策执行指引（2.0版）",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5208701/content.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "支持高校毕业生等青年就业创业税收优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5206981/content.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "支持绿色发展税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102153/common_list_lsfz.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "支持疫情防控和经济社会发展税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5145863/content.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "支持教育事业发展税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5206982/content.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "支持小微企业和个体工商户发展税费优惠政策指引（1.0）",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210955/content.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "支持协调发展税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210010/content.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "支持共享发展税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210009/content.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "中国内地",
+      "title": "支持乡村振兴税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/c102128/common_list_zcxcjx.html"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "美国",
+      "title": "Security Summit closes summer series with data security reminder for tax pros",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/security-summit-closes-summer-series-with-data-security-reminder-for-tax-pros"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "英国",
+      "title": "Official Statistics: Non-domestic rating: business floorspace, March 2026",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/statistics/announcements/non-domestic-rating-business-floorspace-march-2026"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "英国",
+      "title": "Notice: Loading of excise goods as aircraft, ship and train stores (Excise Notice 69a)",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/excise-notice-69a-duty-free-ships-stores"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "英国",
+      "title": "New Vaping Products Duty comes into effect",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/news/new-vaping-products-duty-comes-into-effect"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "美国",
+      "title": "IRS wraps up successful Nationwide Tax Forums with nearly 13,000 attendees",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-wraps-up-successful-nationwide-tax-forums-with-nearly-13000-attendees"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "美国",
+      "title": "IRS warns of tax credit scams targeting the tribal community",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-warns-of-tax-credit-scams-targeting-the-tribal-community"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "美国",
+      "title": "IRS announces new relief for eligible taxpayers affected by ongoing events in Israel: due dates for eligible returns and payments may be postponed to Sept. 30, 2027; additional relief may be available",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-announces-new-relief-for-eligible-taxpayers-affected-by-ongoing-events-in-israel-due-dates-for-eligible-returns-and-payments-may-be-postponed-to-sept-30-2027-additional-relief-may-be-available"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "美国",
+      "title": "IRS announces extension of tax relief for farmers and ranchers affected by drought in 49 states, other regions",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-announces-extension-of-tax-relief-for-farmers-and-ranchers-affected-by-drought-in-49-states-other-regions"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "英国",
+      "title": "Guidance: Income Record Viewer for agents: service availability and issues",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/income-record-viewer-for-agents-service-availability-and-issues"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "英国",
+      "title": "Guidance: Data Element 2/3: Documents and Other Reference Codes (Union) of the Customs Declaration Service (CDS)",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/data-element-23-documents-and-other-reference-codes-union-of-the-customs-declaration-service-cds"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "英国",
+      "title": "Form: Excise movements: notice of intention to claim drawback (EX75)",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/excise-movements-notice-of-intention-to-claim-drawback-ex75"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "英国",
+      "title": "Enquiry Manual",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/hmrc-internal-manuals/enquiry-manual"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "英国",
+      "title": "Correspondence: Edition 7: Making Tax Digital for Income Tax — software developer newsletter",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/edition-7-making-tax-digital-for-income-tax-software-developer-newsletter"
+    },
+    {
+      "date": "2026-10-01",
+      "juris": "美国",
+      "title": "2026 Spanish Regional Tax Competitiveness Index",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/research/all/global/2026-spanish-regional-tax-competitiveness-index/"
+    },
     {
       "date": "2026-09-30",
       "juris": "中国内地",
@@ -155,292 +441,6 @@
         "美国"
       ],
       "url": "https://www.irs.gov/newsroom/irs-reminder-direct-pay-offers-free-easy-way-to-pay-taxes"
-    },
-    {
-      "date": "2026-09-30",
-      "juris": "美国",
-      "title": "IRS launches new mobile app, expanding digital services for taxpayers",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-launches-new-mobile-app-expanding-digital-services-for-taxpayers"
-    },
-    {
-      "date": "2026-09-30",
-      "juris": "英国",
-      "title": "Guidance: VAT online: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/vat-online-service-availability-and-issues"
-    },
-    {
-      "date": "2026-09-30",
-      "juris": "英国",
-      "title": "Guidance: Self Assessment commercial software suppliers",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/self-assessment-commercial-software-suppliers"
-    },
-    {
-      "date": "2026-09-30",
-      "juris": "英国",
-      "title": "Guidance: List of approved professional organisations and learned societies (List 3)",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/professional-bodies-approved-for-tax-relief-list-3"
-    },
-    {
-      "date": "2026-09-30",
-      "juris": "英国",
-      "title": "Guidance: Basic PAYE Tools: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/basic-paye-tools-service-availability-and-issues"
-    },
-    {
-      "date": "2026-09-30",
-      "juris": "英国",
-      "title": "Compliance Handbook",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/hmrc-internal-manuals/compliance-handbook"
-    },
-    {
-      "date": "2026-09-30",
-      "juris": "英国",
-      "title": "Check the amount of guarantee you need for transit movements",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/check-the-amount-of-guarantee-needed-for-common-and-union-transit"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "中国内地",
-      "title": "高新技术企业购置设备、器具企业所得税税前一次性扣除和100％加计扣除政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181762/content.html"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "美国",
-      "title": "Treasury, IRS issue proposed regulations on installment payments for tax on certain farmland sales",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-on-installment-payments-for-tax-on-certain-farmland-sales"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "美国",
-      "title": "The Hidden Tariff Burden of Related-Party Trade",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/hidden-tariff-burden-tariff-incidence/"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "英国",
-      "title": "Registration and approval of excise goods held in duty suspension (Excise Notice 196)",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/registration-and-approval-of-excise-goods-held-in-duty-suspension-excise-notice-196"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "英国",
-      "title": "Make a change to your vaping products manufacturer approval",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/make-a-change-to-your-vaping-products-manufacturer-approval"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "英国",
-      "title": "How to get authorisation as an excise warehousekeeper",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/apply-for-authorisation-as-an-excise-warehousekeeper"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "英国",
-      "title": "Guidance: Payrolling benefits and expenses online service: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/payrolling-benefits-and-expenses-online-service-service-availability-and-issues"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "英国",
-      "title": "Guidance: Making Tax Digital for Income Tax: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/use-software-to-send-income-tax-updates-service-availability-and-issues"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "英国",
-      "title": "Guidance: Compliance checks: general information about compliance checks into large and complex businesses — CC/FS1c",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/compliance-checks-large-and-complex-businesses-ccfs1c"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "美国",
-      "title": "Federal Surcharge Drives Another Increase in Wireless Taxes and Fees in 2026",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/data/all/state/wireless-taxes-cell-phone-tax-rates-by-state-2026/"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "美国",
-      "title": "California’s Wealth Tax Explained (And Why It Might Fail)",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/podcast/all/california-wealth-tax-explained/"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "英国",
-      "title": "Apply to make changes to your approval as an authorised excise warehousekeeper",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/apply-to-add-remove-or-change-a-warehouse-as-an-authorised-excise-warehousekeeper"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "英国",
-      "title": "Apply for approval for Vaping Products Duty and the Vaping Duty Stamps Scheme",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/apply-for-approval-for-vaping-products-duty-and-the-vaping-duty-stamps-scheme"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "中国内地",
-      "title": "2023年延续优化创新实施的税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102418/common_list_2023sfyhzczy.html"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "中国内地",
-      "title": "2022年新的组合式税费支持政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
-    },
-    {
-      "date": "2026-09-29",
-      "juris": "中国内地",
-      "title": "2019年度个人所得税综合所得年度汇算办税指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
-    },
-    {
-      "date": "2026-09-28",
-      "juris": "中国内地",
-      "title": "非居民企业源泉扣缴税收指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/download/pdf/fjmqy.pdf"
-    },
-    {
-      "date": "2026-09-28",
-      "juris": "中国内地",
-      "title": "退税减税降费政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
-    },
-    {
-      "date": "2026-09-28",
-      "juris": "中国内地",
-      "title": "支持脱贫攻坚税收优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n3439465/index.html"
     }
   ]
 }
