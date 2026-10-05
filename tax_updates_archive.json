@@ -1,7 +1,95 @@
 {
-  "updated": "2026-10-04",
+  "updated": "2026-10-05",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-10-05",
+      "juris": "中国内地",
+      "title": "支持脱贫攻坚税收优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n3439465/index.html"
+    },
+    {
+      "date": "2026-10-05",
+      "juris": "美国",
+      "title": "Treasury, IRS issue proposed regulations on installment payments for tax on certain farmland sales",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-on-installment-payments-for-tax-on-certain-farmland-sales"
+    },
+    {
+      "date": "2026-10-05",
+      "juris": "美国",
+      "title": "The Trump administration advances the establishment of America’s first nationwide school choice program",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/the-trump-administration-advances-the-establishment-of-americas-first-nationwide-school-choice-program"
+    },
+    {
+      "date": "2026-10-05",
+      "juris": "美国",
+      "title": "The IRS seeks community partners and volunteers to support free tax services",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/the-irs-seeks-community-partners-and-volunteers-to-support-free-tax-services"
+    },
+    {
+      "date": "2026-10-05",
+      "juris": "美国",
+      "title": "The Hidden Tariff Burden of Related-Party Trade",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/hidden-tariff-burden-tariff-incidence/"
+    },
+    {
+      "date": "2026-10-05",
+      "juris": "美国",
+      "title": "Inflation Costs New Jerseyans More than a Rebate Check",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/oped/new-jersey-rebate-property-tax-inflation/"
+    },
+    {
+      "date": "2026-10-05",
+      "juris": "美国",
+      "title": "IRS launches new mobile app, expanding digital services for taxpayers",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-launches-new-mobile-app-expanding-digital-services-for-taxpayers"
+    },
+    {
+      "date": "2026-10-05",
+      "juris": "美国",
+      "title": "Federal Surcharge Drives Another Increase in Wireless Taxes and Fees in 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/state/wireless-taxes-cell-phone-tax-rates-by-state-2026/"
+    },
     {
       "date": "2026-10-04",
       "juris": "中国内地",
@@ -353,94 +441,6 @@
         "美国"
       ],
       "url": "https://www.irs.gov/newsroom/irs-announces-new-relief-for-eligible-taxpayers-affected-by-ongoing-events-in-israel-due-dates-for-eligible-returns-and-payments-may-be-postponed-to-sept-30-2027-additional-relief-may-be-available"
-    },
-    {
-      "date": "2026-10-03",
-      "juris": "英国",
-      "title": "Guidance: Find software suppliers for the Excise Movement and Control System",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/excise-movement-and-control-system-commercial-software-suppliers"
-    },
-    {
-      "date": "2026-10-03",
-      "juris": "英国",
-      "title": "Form: Tell HMRC about an ending of a conditional exemption (IHT100f)",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/inheritance-tax-cessation-of-conditional-exemption-disposal-of-timber-or-underwood-iht100f"
-    },
-    {
-      "date": "2026-10-03",
-      "juris": "美国",
-      "title": "Colorado’s Election Day Choice on Income Taxes",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/colorado-income-tax-amendment-87-proposition-136/"
-    },
-    {
-      "date": "2026-10-03",
-      "juris": "英国",
-      "title": "Check if you meet HMRC's conditions to register as a tax adviser",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/check-if-you-meet-hmrcs-conditions-to-register-as-a-tax-adviser"
-    },
-    {
-      "date": "2026-10-03",
-      "juris": "美国",
-      "title": "2026 Spanish Regional Tax Competitiveness Index",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/research/all/global/2026-spanish-regional-tax-competitiveness-index/"
-    },
-    {
-      "date": "2026-10-02",
-      "juris": "中国内地",
-      "title": "高新技术企业购置设备、器具企业所得税税前一次性扣除和100％加计扣除政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181762/content.html"
-    },
-    {
-      "date": "2026-10-02",
-      "juris": "中国内地",
-      "title": "非居民企业源泉扣缴税收指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/download/pdf/fjmqy.pdf"
-    },
-    {
-      "date": "2026-10-02",
-      "juris": "中国内地",
-      "title": "退税减税降费政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
     }
   ]
 }
