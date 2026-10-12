@@ -1,7 +1,95 @@
 {
-  "updated": "2026-10-11",
+  "updated": "2026-10-12",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-10-12",
+      "juris": "美国",
+      "title": "Treasury, IRS issue proposed regulations on installment payments for tax on certain farmland sales",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-proposed-regulations-on-installment-payments-for-tax-on-certain-farmland-sales"
+    },
+    {
+      "date": "2026-10-12",
+      "juris": "美国",
+      "title": "The Trump administration advances the establishment of America’s first nationwide school choice program",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/the-trump-administration-advances-the-establishment-of-americas-first-nationwide-school-choice-program"
+    },
+    {
+      "date": "2026-10-12",
+      "juris": "美国",
+      "title": "The IRS seeks community partners and volunteers to support free tax services",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/the-irs-seeks-community-partners-and-volunteers-to-support-free-tax-services"
+    },
+    {
+      "date": "2026-10-12",
+      "juris": "美国",
+      "title": "Real Property Taxes in Europe, 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/eu/real-property-taxes-europe/"
+    },
+    {
+      "date": "2026-10-12",
+      "juris": "美国",
+      "title": "Inflation Costs New Jerseyans More than a Rebate Check",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/oped/new-jersey-rebate-property-tax-inflation/"
+    },
+    {
+      "date": "2026-10-12",
+      "juris": "美国",
+      "title": "IRS launches new mobile app, expanding digital services for taxpayers",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-launches-new-mobile-app-expanding-digital-services-for-taxpayers"
+    },
+    {
+      "date": "2026-10-12",
+      "juris": "美国",
+      "title": "Colorado’s Election Day Choice on Income Taxes",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/colorado-income-tax-amendment-87-proposition-136/"
+    },
+    {
+      "date": "2026-10-12",
+      "juris": "美国",
+      "title": "2026 Spanish Regional Tax Competitiveness Index",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/research/all/global/2026-spanish-regional-tax-competitiveness-index/"
+    },
     {
       "date": "2026-10-11",
       "juris": "中国内地",
@@ -353,94 +441,6 @@
         "税制研究"
       ],
       "url": "https://taxfoundation.org/blog/repeal-trump-tariffs-vat-consumption-taxes/"
-    },
-    {
-      "date": "2026-10-10",
-      "juris": "中国内地",
-      "title": "2023年延续优化创新实施的税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102418/common_list_2023sfyhzczy.html"
-    },
-    {
-      "date": "2026-10-10",
-      "juris": "中国内地",
-      "title": "2022年新的组合式税费支持政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102173/common_list_2022nxdzhs.html"
-    },
-    {
-      "date": "2026-10-10",
-      "juris": "中国内地",
-      "title": "2019年度个人所得税综合所得年度汇算办税指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
-    },
-    {
-      "date": "2026-10-09",
-      "juris": "中国内地",
-      "title": "高新技术企业购置设备、器具企业所得税税前一次性扣除和100％加计扣除政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181762/content.html"
-    },
-    {
-      "date": "2026-10-09",
-      "juris": "中国内地",
-      "title": "非居民企业源泉扣缴税收指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/download/pdf/fjmqy.pdf"
-    },
-    {
-      "date": "2026-10-09",
-      "juris": "中国内地",
-      "title": "退税减税降费政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
-    },
-    {
-      "date": "2026-10-09",
-      "juris": "中国内地",
-      "title": "软件企业和集成电路企业税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101947/common_list_rjqy.html"
-    },
-    {
-      "date": "2026-10-09",
-      "juris": "中国内地",
-      "title": "支持脱贫攻坚税收优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n3439465/index.html"
     }
   ]
 }
