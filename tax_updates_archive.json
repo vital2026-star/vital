@@ -1,7 +1,139 @@
 {
-  "updated": "2026-10-18",
+  "updated": "2026-10-19",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-10-19",
+      "juris": "中国内地",
+      "title": "软件企业和集成电路企业税费优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101947/common_list_rjqy.html"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "中国内地",
+      "title": "支持脱贫攻坚税收优惠政策指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n3439465/index.html"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "美国",
+      "title": "Why the US Needs a Fiscal Commission to Help Solve the Debt Crisis",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/united-states-federal-government-fiscal-commission-debt-crisis/"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "美国",
+      "title": "Washington Voters Will Decide Whether to Keep or Reject an Income Tax on High Earners",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/washington-millionaire-tax-ballot-initiative-645/"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "美国",
+      "title": "The Trump administration advances the establishment of America’s first nationwide school choice program",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/the-trump-administration-advances-the-establishment-of-americas-first-nationwide-school-choice-program"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "美国",
+      "title": "Rental Cars Shouldn’t Face Another Layer of Tax",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/rental-car-sales-tax-exemption/"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "美国",
+      "title": "Estate and Inheritance Taxes by State, 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/state/estate-inheritance-taxes/"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "美国",
+      "title": "Combined State and Federal Corporate Income Tax Rates in 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/federal/combined-state-federal-corporate-income-tax-rates-2026/"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "英国",
+      "title": "Check if a business is registered for money laundering supervision",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/money-laundering-regulations-supervised-business-register"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "英国",
+      "title": "Accredited official statistics: HMRC tax receipts and National Insurance contributions for the UK",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/statistics/announcements/hmrc-tax-receipts-and-national-insurance-contributions-for-the-uk--162"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "英国",
+      "title": "Accredited official statistics: HMRC tax receipts and National Insurance contributions for the UK",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/statistics/announcements/hmrc-tax-receipts-and-national-insurance-contributions-for-the-uk--151"
+    },
+    {
+      "date": "2026-10-19",
+      "juris": "美国",
+      "title": "A Small Value-Added Tax Could Pay for Tariff Repeal",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/repeal-trump-tariffs-vat-consumption-taxes/"
+    },
     {
       "date": "2026-10-18",
       "juris": "中国内地",
@@ -309,138 +441,6 @@
         "美国"
       ],
       "url": "https://www.irs.gov/newsroom/irs-reminder-cybersecurity-awareness-month-offers-simple-steps-to-protect-tax-data"
-    },
-    {
-      "date": "2026-10-17",
-      "juris": "美国",
-      "title": "IRS provides dyed diesel fuel relief related to excise tax following President Trump’s Executive Order",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-provides-dyed-diesel-fuel-relief-related-to-excise-tax-following-president-trumps-executive-order"
-    },
-    {
-      "date": "2026-10-17",
-      "juris": "美国",
-      "title": "IRS launches new mobile app, expanding digital services for taxpayers",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-launches-new-mobile-app-expanding-digital-services-for-taxpayers"
-    },
-    {
-      "date": "2026-10-17",
-      "juris": "美国",
-      "title": "IRS highlights partnership with UK tax authority’s new whistleblower program",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-highlights-partnership-with-uk-tax-authoritys-new-whistleblower-program"
-    },
-    {
-      "date": "2026-10-17",
-      "juris": "美国",
-      "title": "IRS has begun issuing automatic refunds to individuals who claimed Adoption Tax Credit carryforward from prior years",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-has-begun-issuing-automatic-refunds-to-individuals-who-claimed-adoption-tax-credit-carryforward-from-prior-years"
-    },
-    {
-      "date": "2026-10-17",
-      "juris": "美国",
-      "title": "IRS announces 2026 Tax Professional Awareness Week, highlighting resources to help tax professionals prepare for the 2027 filing season",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-announces-2026-tax-professional-awareness-week-highlighting-resources-to-help-tax-professionals-prepare-for-the-2027-filing-season"
-    },
-    {
-      "date": "2026-10-17",
-      "juris": "英国",
-      "title": "Herbal smoking products and Tobacco Products Duty",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/herbal-smoking-products"
-    },
-    {
-      "date": "2026-10-17",
-      "juris": "英国",
-      "title": "Guidance: VAT Import One Stop Shop Scheme: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/vat-import-one-stop-shop-scheme-service-availability-and-issues"
-    },
-    {
-      "date": "2026-10-17",
-      "juris": "英国",
-      "title": "Guidance: One Stop Shop Union scheme: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/one-stop-shop-union-scheme-service-availability-and-issues"
-    },
-    {
-      "date": "2026-10-17",
-      "juris": "英国",
-      "title": "Guidance: Community Amateur Sports Clubs detailed guidance notes",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/community-amateur-sports-clubs-detailed-guidance-notes"
-    },
-    {
-      "date": "2026-10-16",
-      "juris": "中国内地",
-      "title": "高新技术企业购置设备、器具企业所得税税前一次性扣除和100％加计扣除政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181762/content.html"
-    },
-    {
-      "date": "2026-10-16",
-      "juris": "中国内地",
-      "title": "非居民企业源泉扣缴税收指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/download/pdf/fjmqy.pdf"
-    },
-    {
-      "date": "2026-10-16",
-      "juris": "中国内地",
-      "title": "退税减税降费政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
     }
   ]
 }
