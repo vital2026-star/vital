@@ -1,7 +1,117 @@
 {
-  "updated": "2026-10-25",
+  "updated": "2026-10-26",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-10-26",
+      "juris": "美国",
+      "title": "Treasury, IRS update retirement plan correction program and establish correction program for individual retirement accounts",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/treasury-irs-update-retirement-plan-correction-program-and-establish-correction-program-for-individual-retirement-accounts"
+    },
+    {
+      "date": "2026-10-26",
+      "juris": "美国",
+      "title": "Options to Reform the Tax Treatment of Exempt Hospitals",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/options-to-reform-the-tax-treatment-of-exempt-hospitals/"
+    },
+    {
+      "date": "2026-10-26",
+      "juris": "美国",
+      "title": "International Tax Competitiveness Index 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/research/all/global/2026-international-tax-competitiveness-index/"
+    },
+    {
+      "date": "2026-10-26",
+      "juris": "美国",
+      "title": "In Wyoming, Are Two Homestead Exemptions Enough?",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/wyoming-proposition-1-homestead-exemption-property-tax/"
+    },
+    {
+      "date": "2026-10-26",
+      "juris": "美国",
+      "title": "IRS reminder: Take steps now to protect tax information",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-reminder-take-steps-now-to-protect-tax-information"
+    },
+    {
+      "date": "2026-10-26",
+      "juris": "美国",
+      "title": "IRS launches new mobile app, expanding digital services for taxpayers",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-launches-new-mobile-app-expanding-digital-services-for-taxpayers"
+    },
+    {
+      "date": "2026-10-26",
+      "juris": "美国",
+      "title": "IRS has begun issuing automatic refunds to individuals who claimed Adoption Tax Credit carryforward from prior years",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-has-begun-issuing-automatic-refunds-to-individuals-who-claimed-adoption-tax-credit-carryforward-from-prior-years"
+    },
+    {
+      "date": "2026-10-26",
+      "juris": "美国",
+      "title": "IRS announces 2026 Tax Professional Awareness Week, highlighting resources to help tax professionals prepare for the 2027 filing season",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-announces-2026-tax-professional-awareness-week-highlighting-resources-to-help-tax-professionals-prepare-for-the-2027-filing-season"
+    },
+    {
+      "date": "2026-10-26",
+      "juris": "英国",
+      "title": "Guidance: Making Tax Digital for Income Tax: service availability and issues",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/use-software-to-send-income-tax-updates-service-availability-and-issues"
+    },
+    {
+      "date": "2026-10-26",
+      "juris": "英国",
+      "title": "Corporate report: Named tax avoidance schemes, promoters, enablers and suppliers",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/named-tax-avoidance-schemes-promoters-enablers-and-suppliers"
+    },
     {
       "date": "2026-10-25",
       "juris": "中国内地",
@@ -331,116 +441,6 @@
         "英国"
       ],
       "url": "https://www.gov.uk/government/publications/simple-assessment-payment-plan-service-availability-and-issues"
-    },
-    {
-      "date": "2026-10-24",
-      "juris": "英国",
-      "title": "Guidance: Self Assessment payment plan: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/self-assessment-payment-plan-service-availability-and-issues"
-    },
-    {
-      "date": "2026-10-24",
-      "juris": "英国",
-      "title": "Guidance: Employers PAYE payment plan: service availability and issues",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/government/publications/employers-paye-payment-plan-service-availability-and-issues"
-    },
-    {
-      "date": "2026-10-24",
-      "juris": "美国",
-      "title": "Expensing Concentrates the Corporate Tax Burden on Economic Profits",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/expensing-concentrates-the-corporate-tax-burden-on-economic-profits/"
-    },
-    {
-      "date": "2026-10-24",
-      "juris": "美国",
-      "title": "2026 Economics Nobel Laureate Robert Hall Helped Lay Foundation for Pro-Growth Tax Reform",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/2026-economics-nobel-laureate-robert-hall-helped-lay-foundation-for-pro-growth-tax-reform/"
-    },
-    {
-      "date": "2026-10-24",
-      "juris": "英国",
-      "title": "14. Taking control of goods or distraint",
-      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
-      "tags": [
-        "HMRC",
-        "英国"
-      ],
-      "url": "https://www.gov.uk/guidance/insolvency-practitioner-s-handbook/14-taking-control-of-goods-or-distraint"
-    },
-    {
-      "date": "2026-10-23",
-      "juris": "中国内地",
-      "title": "高新技术企业购置设备、器具企业所得税税前一次性扣除和100％加计扣除政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181762/content.html"
-    },
-    {
-      "date": "2026-10-23",
-      "juris": "中国内地",
-      "title": "非居民企业源泉扣缴税收指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/download/pdf/fjmqy.pdf"
-    },
-    {
-      "date": "2026-10-23",
-      "juris": "中国内地",
-      "title": "退税减税降费政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5175810/content.html"
-    },
-    {
-      "date": "2026-10-23",
-      "juris": "中国内地",
-      "title": "软件企业和集成电路企业税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101947/common_list_rjqy.html"
-    },
-    {
-      "date": "2026-10-23",
-      "juris": "中国内地",
-      "title": "支持脱贫攻坚税收优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n3439465/index.html"
     }
   ]
 }
