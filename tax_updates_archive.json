@@ -1,7 +1,183 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "count": 40,
   "archives": [
+    {
+      "date": "2026-11-24",
+      "juris": "美国",
+      "title": "Treasury, IRS issue final rules to help hardworking Americans build a financially secure retirement",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/treasury-irs-issue-final-rules-to-help-hardworking-americans-build-a-financially-secure-retirement"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "英国",
+      "title": "The Tax Agent's Handbook",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/tax-agents-handbook"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "英国",
+      "title": "Tax code notices go online for millions",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/news/tax-code-notices-go-online-for-millions"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "美国",
+      "title": "Spain’s 2026 Election: Diverging Tax Agendas and the Push for Full Expensing",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/spain-election-tax-proposals-reform/"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "英国",
+      "title": "Pensions Tax Manual",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/hmrc-internal-manuals/pensions-tax-manual"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "英国",
+      "title": "Pay the Soft Drinks Industry Levy (notice 5)",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/pay-the-soft-drinks-industry-levy-notice-5"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "美国",
+      "title": "Online Sports Betting Taxes by State, 2026",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/data/all/state/online-sports-betting-taxes/"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "美国",
+      "title": "IRS announces 2027 Tax Counseling for the Elderly and Volunteer Income Tax Assistance program grants",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-announces-2027-tax-counseling-for-the-elderly-and-volunteer-income-tax-assistance-program-grants"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "美国",
+      "title": "IRS Advisory Council issues annual public report",
+      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
+      "tags": [
+        "IRS",
+        "美国"
+      ],
+      "url": "https://www.irs.gov/newsroom/irs-advisory-council-issues-annual-public-report"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "美国",
+      "title": "How Value-Added in Trade Complicates the Tariff Picture",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/value-added-trade-tariffs-china-iphone/"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "英国",
+      "title": "Guidance: Self Assessment payment plan: service availability and issues",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/self-assessment-payment-plan-service-availability-and-issues"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "英国",
+      "title": "Guidance: Employers PAYE payment plan: service availability and issues",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/government/publications/employers-paye-payment-plan-service-availability-and-issues"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "英国",
+      "title": "Getting started",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/tax-agents-handbook/getting-started"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "美国",
+      "title": "Europe Doesn’t Need New EU Taxes. Policymakers Should Fix the Existing System",
+      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
+      "tags": [
+        "美国",
+        "税制研究"
+      ],
+      "url": "https://taxfoundation.org/blog/eu-budget-europe-digital-services-taxes/"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "英国",
+      "title": "Apply for business rates for a self-catering property in Wales",
+      "summary": "来源：英国税务及海关总署 HMRC·最新动态。点击原文查阅全文。",
+      "tags": [
+        "HMRC",
+        "英国"
+      ],
+      "url": "https://www.gov.uk/guidance/apply-for-business-rates-for-a-self-catering-property-in-wales"
+    },
+    {
+      "date": "2026-11-24",
+      "juris": "中国内地",
+      "title": "2019年度个人所得税综合所得年度汇算办税指引",
+      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
+      "tags": [
+        "税务总局",
+        "指引"
+      ],
+      "url": "http://www.chinatax.gov.cn/chinatax/n363/c5147685/content.html"
+    },
     {
       "date": "2026-11-23",
       "juris": "中国内地",
@@ -265,182 +441,6 @@
         "指引"
       ],
       "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181967/content.html"
-    },
-    {
-      "date": "2026-11-22",
-      "juris": "中国内地",
-      "title": "“走出去”税收指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n1671176/n2884609/c2884646/content.html"
-    },
-    {
-      "date": "2026-11-22",
-      "juris": "中国内地",
-      "title": "“大众创业 万众创新”税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101827/common_list_dzcy.html"
-    },
-    {
-      "date": "2026-11-22",
-      "juris": "美国",
-      "title": "Senator Moreno’s 100% Federal Tax on Data Center Incentives Would Usurp Sound State Sales Tax Policies",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/data-center-sales-tax-reclaim-act/"
-    },
-    {
-      "date": "2026-11-22",
-      "juris": "美国",
-      "title": "Senator Kelly’s Plan to “Make AI Work for Americans” Is Funded by Three Poorly Designed Taxes",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/blog/senator-kelly-ai-taxes/"
-    },
-    {
-      "date": "2026-11-22",
-      "juris": "美国",
-      "title": "IRS shares Agency Financial Report for fiscal year 2026",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-shares-agency-financial-report-for-fiscal-year-2026"
-    },
-    {
-      "date": "2026-11-22",
-      "juris": "美国",
-      "title": "IRS launches new mobile app, expanding digital services for taxpayers",
-      "summary": "来源：美国国税局 IRS·新闻稿。点击原文查阅全文。",
-      "tags": [
-        "IRS",
-        "美国"
-      ],
-      "url": "https://www.irs.gov/newsroom/irs-launches-new-mobile-app-expanding-digital-services-for-taxpayers"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "中国内地",
-      "title": "支持疫情防控和经济社会发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5145863/content.html"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "中国内地",
-      "title": "支持教育事业发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5206982/content.html"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "中国内地",
-      "title": "支持小微企业和个体工商户发展税费优惠政策指引（1.0）",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210955/content.html"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "中国内地",
-      "title": "支持协调发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210010/content.html"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "中国内地",
-      "title": "支持共享发展税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5210009/content.html"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "中国内地",
-      "title": "支持乡村振兴税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/c102128/common_list_zcxcjx.html"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "中国内地",
-      "title": "小微企业、个体工商户税费优惠政策指引",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/c101970/common_list_xwqy.html"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "中国内地",
-      "title": "国别（地区）投资税收指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810219/n810744/n1671176/n1671206/index.html"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "中国内地",
-      "title": "其他企业研发费用加计扣除比例提高到100%政策操作指南",
-      "summary": "来源：国家税务总局·政策指引库（最新发布）。点击原文查阅全文。",
-      "tags": [
-        "税务总局",
-        "指引"
-      ],
-      "url": "http://www.chinatax.gov.cn/chinatax/n810341/n810825/c101434/c5181758/content.html"
-    },
-    {
-      "date": "2026-11-21",
-      "juris": "美国",
-      "title": "Washington Can Start Delivering on Affordability by Rejecting Trump’s Tariffs",
-      "summary": "来源：美国税务基金会 Tax Foundation·税制研究。点击原文查阅全文。",
-      "tags": [
-        "美国",
-        "税制研究"
-      ],
-      "url": "https://taxfoundation.org/oped/congress-trump-tariffs-affordability-inflation/"
     }
   ]
 }
